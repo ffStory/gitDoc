@@ -18,6 +18,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomasr/molokai'
+Plugin 'Solarized'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdcommenter'
@@ -180,8 +181,8 @@ let g:ag_prg="ag --vimgrep"
 "------------------------------------------------------------------bundle
 
 
-
 "----------------------------------------costumize 
+set runtimepath^=~/.vim/colors
 syntax on
 set ai
 set ci
@@ -201,21 +202,28 @@ set showmatch
 set incsearch
 set t_Co=256
 
-set path=.,/Users/fingerdance/Desktop/work/kingdom/client/kingdom/assets/script/**
-set path+=/Users/fingerdance/Desktop/work/kingdom/client/kingdom/assets/resources/i18n/**
+if has('gui_running')
+    set background=dark
+	let g:molokai_original=1
+	let g:rehash256=1
+	colorscheme molokai
 
-set path+=/Users/fingerdance/Desktop/work/kingdom/client/kingdom/library
-set path+=/Users/fingerdance/Desktop/work/kingdom/client-build/jsb-default/src
-
-if has ('gui_running')
-	"colorscheme molokai
-	"let g:molokai_original=1
-	colorscheme solarized
+	set guifont=Consolas:h19
+	set cursorline
+	au InsertEnter * hi Cursor guibg=yellow
+	au InsertLeave * hi Cursor guibg=gray
+else
 	set background=dark
-	
-	"colorscheme desert
-else 
+	colorscheme desert
 endif
+
+set path=.,~/Desktop/work/kingdom/client/kingdom/assets/script/**
+set path+=~/Desktop/work/kingdom/client/kingdom/assets/resources/i18n/**
+
+set path+=~/Desktop/work/kingdom/client/kingdom/library
+set path+=~/Desktop/work/kingdom/client-build/jsb-default/src
+
+
 
 set linespace=4
 
