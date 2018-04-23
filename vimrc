@@ -106,6 +106,7 @@ let g:NERDTrimTrailingWhitespace = 1
 "===============================syntastic start
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
+" let g:syntastic_warning_symbol='!'
 " let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list =1
 let g:syntastic_check_on_open=1
@@ -158,7 +159,7 @@ let g:DoxygenToolkit_authorName="wangff, 2422312148@qq.com"
 
 "============================== YouCompleteMe start
 if version > 750
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 " 设置跳转到方法/函数定义的快捷键 
 nnoremap <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR> 
 " 触发补全快捷键 
@@ -203,10 +204,12 @@ set incsearch
 set t_Co=256
 
 if has('gui_running')
-    set background=dark
-	let g:molokai_original=1
-	let g:rehash256=1
-	colorscheme molokai
+	set background=dark
+	" let g:molokai_original=1
+	" let g:rehash256=1
+	" colorscheme molokai
+	" colorscheme wombat256mod
+	colorscheme solarized
 
 	set guifont=Consolas:h19
 	set cursorline
