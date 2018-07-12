@@ -126,8 +126,10 @@ highlight SyntasticWarningSign guifg=white guibg=red
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme='solarized'
-" let g:airline_powerline_fonts = 1
+" let g:airline_theme='base16_default' "++++
+" let g:airline_theme='base16_embers' "+++
+let g:airline_theme='gruvbox'
+let g:airline_powerline_fonts=1
 "==============================airline  end
 "
 "==============================minibufexpl  end
@@ -209,12 +211,16 @@ if has('gui_running')
 	" let g:rehash256=1
 	" colorscheme molokai
 	" colorscheme wombat256mod
-	colorscheme solarized
-
-	set guifont=Consolas:h19
+	" colorscheme solarized
+	colorscheme gruvbox
+	"set guifont=Consolas:h19
+	" set guifont=Menlo_Regular:h18
+ 	set guifont=DejaVu_Sans_Mono_for_Powerline:h16
+	
+	 
 	set cursorline
-	au InsertEnter * hi Cursor guibg=yellow
-	au InsertLeave * hi Cursor guibg=gray
+	" au InsertEnter * hi Cursor guibg=yellow
+	" au InsertLeave * hi Cursor guibg=gray
 else
 	set background=dark
 	colorscheme desert
