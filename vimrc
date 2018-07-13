@@ -16,17 +16,17 @@ Plugin 'VundleVim/Vundle.vim'
 "(1) plugin on GitHub repo
 	"about Git
 Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
 Plugin 'tomasr/molokai'
 Plugin 'Solarized'
+Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'AutoComplPop'
 Bundle 'fholgado/minibufexpl.vim'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'kien/ctrlp.vim'
-
+Plugin 'rking/ag.vim'
+Plugin 'Shougo/unite.vim'
 if version > 750
 Plugin 'Valloric/YouCompleteMe'
 endif
@@ -37,8 +37,6 @@ Plugin 'L9'
 
 "(3) Git plugin not hosted on GitHub
 	"fast locate file
-Plugin 'git://git.wincent.com/command-t.git'
-	
 Plugin 'git://github.com/jiangmiao/auto-pairs.git'
 
 "(4) git repos on your local machine (i.e. when working on your own plugin)
@@ -65,25 +63,7 @@ filetype plugin on
 " Put your non-Plugin stuff after this line
 
 "------------------------------------------------------------------bundle
-"===============================nerdTree start 
-let NERDTreeChDirMode=2
-let NERDTreeWinPos='right'
-let NERDTreeWinSize=25
-map <C-n> :NERDTreeToggle<CR>
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '~'
-let NERDTreeIgnore=['\.meta$', '\.d.ts', '\~$', '\.swp$']
 
-" NERDTress File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-
-"call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-"=============================== nerdTree end
 
 "==============================nerdcommenter
 " :map  see command
@@ -176,16 +156,15 @@ endif
 "============================== YouCompleteMe end
 
 "============================== ag start
-set runtimepath^=~/.vim/bundle/ag
 let g:ag_working_path_mode='r'
 let g:ag_prg="ag --vimgrep"
-" let g:ag_highlight=1
+let g:ag_highlight=0
 "============================== ag end
 "------------------------------------------------------------------bundle
 
 
 "----------------------------------------costumize 
-set runtimepath^=~/.vim/colors
+" set runtimepath^=~/.vim/colors
 syntax on
 set ai
 set ci
@@ -204,7 +183,8 @@ set smartindent
 set showmatch
 set incsearch
 set t_Co=256
-
+set autochdir
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.meta     " MacOSX/Linux
 if has('gui_running')
 	set background=dark
 	" let g:molokai_original=1
@@ -249,8 +229,4 @@ command! JsonFormat :execute '%!python -m json.tool'
   \ | :%s/ \+$//ge
   \ | :set ft=javascript
   \ | :1
-
-
-
-
 
