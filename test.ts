@@ -17,4 +17,7 @@ class Student extends Person {
 }
 
 var s = new Student();
+
+let a  = 3;
+a = 3;
 s.init();
