@@ -1,42 +1,29 @@
-
-# Table of Contents
-
-1.  [如何普遍的定位对象属性及其相关信息](#orgd0a4a36)
-2.  [递归的事件系统](#orga70b8e2)
-3.  [Bonus](#org532aefc)
-4.  [Buff](#org2db30a8)
-5.  [Cost条件/消耗系统](#org94b9182)
-6.  [CostHandler](#org12a8373)
-7.  [Yield奖励系统](#org274dcd6)
-
 从设计角度来说，剔除具体业务逻辑功能，一个SLG项目如果能高度抽象一下几条功能，无论是新功能的扩展还是维护，都会便捷很多。
 
+* 如何普遍的定位对象属性及其相关信息
+  
+  游戏开发中，对于某个属性，我们常常有以下需求
 
-<a id="orgd0a4a36"></a>
+  该属性的icon是什么
 
-# 如何普遍的定位对象属性及其相关信息
+  该属性的UI显示格式是什么。比如：时间、百分比等
 
-游戏开发中，对于某个属性，我们常常有以下需求
+  该属性是否需要特殊公式计算
 
-该属性的icon是什么
+  该属性的I18n名称，或者更详细的I18n描述
 
-该属性的UI显示格式是什么。比如：时间、百分比等
+  
+  程序开发并不关心具体是哪个对象的哪个属性是什么样子的。我们更关心的是怎样设计更通用的结构来表示策划数据。
 
-该属性是否需要特殊公式计算
+  - 如何设计
 
-该属性的I18n名称，或者更详细的I18n描述
-
-程序开发并不关心具体是哪个对象的哪个属性是什么样子的。我们更关心的是怎样设计更通用的结构来表示策划数据。
-
--   如何设计
-    
     首先坚持一个原则，任何前后端共用的数据，都不应该手撕代码，比如前后端通信使用Protobuf或自定义的序列化工具；任何前后端包括策划共用的数据，让策划配置表导出前后端语言代码结构。
-    
+
     举例：
     p-exp 来表示玩家经验值
     i-100-number 来表示Id = 100 的物品的数量。
     b-100-level 来表示Id = 100 的建筑等级
-    
+
     我们抽象出基类：
     UnifiedAttr = {
     type;  //类型，该字符串的第一个值
@@ -47,211 +34,191 @@
     add();  //增加该属性值
     remove();  //减少该属性值
     }
-    
+
     再对应每个对象类别
     UnifiedattrPlayer = {
     }
-    
+
     UnifiedattrItem = {
     }
-    
+
     UnifiedattrBuilding = {
     }
-    
+
     提供统一的接口来处理这个字符串
-    
+
     UnifiedAttr.create(string key);
-    
+
     到目前为止，我们把一个字符串封装成对象。该字符串可来自策划表或者服务器。我们就可以获得该属性的详细数据。
-
-
-<a id="orga70b8e2"></a>
-
-# 递归的事件系统
-
-事件时很多其他功能模块的基石，可以有效的解耦代码。
-
--   什么是递归的事件系统
+    
+* 递归的事件系统
+  事件时很多其他功能模块的基石，可以有效的解耦代码。
+  
+  - 什么是递归的事件系统
     
     用数组保存多个key值，Post事件的时候，依次Post其子集。
     
     比如一个key为：
     
     【A，B，C，D】，则当Post事件的时候，会依次Post以下几个事件：
-    
-    【A，B，C，D】
-    
-    【A，B，C】
-    
-    【A，B】
-    
-    【A】//注：这一级的事件基本没用
 
--   需求引入
+    【A，B，C，D】
+
+    【A，B，C】
+
+    【A，B】
+
+    【A】//注：这一级的事件基本没用
+    
+  - 需求引入
     
     假如现在有两个任务：
     
     Task1: 升级任何建筑一次
-    
-    Task2：升级兵营建筑一次
-    
-    两个任务监听的事件分别为：
-    
-    Task1:【Building, Level】
-    
-    Task2:【Building, Level, 5】 //注 这里的5位兵营建筑Id
-    
-    我们希望的情况是升级任何一个建筑Task1完成，只有当建筑为兵营的时候两个任务同时完成。
-    
-    则当升级一个建筑的时候，会抛出一个id确定的事件：
-    
-    【Building, Level, id】//注：这里的id表示任何建筑Id值
-    
-    则依次抛出以下事件：
-    
-    【Building, Level, id】
-    
-    【Building, Level】
-    
-    【Building】
-    
-    则我们只需要Post一次事件，则Task1必定完成，id==5条件满足的时候Task2才会完成。
 
--   如何设计
+    Task2：升级兵营建筑一次
+
+    两个任务监听的事件分别为：
+
+    Task1:【Building, Level】
+
+    Task2:【Building, Level, 5】 //注 这里的5位兵营建筑Id
+
+    我们希望的情况是升级任何一个建筑Task1完成，只有当建筑为兵营的时候两个任务同时完成。
+
+    则当升级一个建筑的时候，会抛出一个id确定的事件：
+
+    【Building, Level, id】//注：这里的id表示任何建筑Id值
+
+    则依次抛出以下事件：
+
+    【Building, Level, id】
+
+    【Building, Level】
+
+    【Building】
+
+    则我们只需要Post一次事件，则Task1必定完成，id==5条件满足的时候Task2才会完成。
+    
+  - 如何设计
     
     区分属性类型
     
     游戏汇总对象的属性基本可以分为三类。
-    
+
     Data存储类型，这类值可读写。存储在数据库中，每次登陆需要服务器下发。比如经验、物品等等。
-    
+
     Calculate计算类型，这类值只读。通过已知数据计算得出。比如游戏Level值根据Exp经验值计算得出。
-    
+
     Buff类型，间接的通过加Buff对象，改变这类值的属性。
-    
+
     以上三种类型，只有Data、Buff类型的属性修改的时候，会Post事件。
 
--   事件格式定义。
-    
+  - 事件格式定义。
+
     游戏中所有对象都有类型区分：
-    
+
     ObjType = {
     
     Building,
-    
+
     Player,
-    
+
     Hero,
-    
+
     Troop,
-    
+
     Item
-    
+
     }
-    
+
     事件的第一个字段一般为对象名字。
-    
+
     Building = {
-    
+
     Id,
-    
+
     Level
-    
+
     }
     
     对一个建筑Level升级，根据其描述的属性类型来决策是否要Post事件，此为第二个字段。
-    
+
     对象本身是有Id的此为第三个字段。
     
     完整的事件极为：
-    
+
     Post([Building, Level, Id])
-    
+
     为了更方便处理数据，一般会把属性的新旧值作为参数传入，则更普遍的事件格式为：
-    
+
     Post([Building, Level, Id], oldLevel, newLevel)
-
-
-<a id="org532aefc"></a>
-
-# Bonus
-
-Bonus就是对属性增减。有些Bonus是梯度的，和等级有关。
-
--   需求&设计
+* Bonus
+  Bonus就是对属性增减。有些Bonus是梯度的，和等级有关。
+  - 需求&设计
     比如升级一个建筑到1级可以带来以下增益。
     增加1000出兵上限；
     城市粮食每小时增益20%
-    
+
     我们结合UnifiedAttr抽象出来每个BonusItem结构为：
-    item1:  [c-troop<sub>capacity</sub>, [500， 100， 1500]]
-    item2:  [c-food<sub>boost</sub>, [0, 0.2, 1]]  //这里的小数表示其实用万分比更合适
-    
+    item1:  [c-troop_capacity, [500， 100， 1500]]
+    item2:  [c-food_boost, [0, 0.2, 1]]  //这里的小数表示其实用万分比更合适
+
     则整个Bonus是个数组：
     Bonus = [item1, item2]
-    
+
     我们把Bonus对象化：
-    
+
     Bonus = {
     level,
     Unifiedattr attr;
-    
+
     //通过attr 增减对应等级的属性值
     add(); 
     remove();
     }
-    
+
     在服务器端，只需记录该建筑Level属性，客户端会根据Level自行计算增益属性具体指。
-
-
-<a id="org2db30a8"></a>
-
-# Buff
-
-Buff就是有时间限制的Bonus。
-服务器需维护对象下的Buff列表。每个Buff记录结束时间和等级。客户端根据Bonus实现属性增益。 
-
-
-<a id="org94b9182"></a>
-
-# Cost条件/消耗系统
-
--   需求分析
+* Buff
+    Buff就是有时间限制的Bonus。
+    服务器需维护对象下的Buff列表。每个Buff记录结束时间和等级。客户端根据Bonus实现属性增益。 
+* Cost条件/消耗系统
+  - 需求分析
     我们升级Id = 100的建筑到2级需要满足以下条件：
     消耗城市粮食100
     消耗玩家体力100
     Id = 200 的建筑达到3级
 
--   设计
+  - 设计
     我们把整个条件抽象一个Cost，每个子条件为CostItem,则 Cost = [CostItem]。
     上面三哥CostItem可以分为两类，一类为消耗类型(扣除资源)，一类为条件类型(比较大小)。
-    
+
     Consume 消耗类型
     结合UnifiedAttr结构：
-    
+
     Consume city.food 100 => [c, c-food, 100]
     Consume player.energy 100 => [c, p-energy, 100]
-    
+
     Between 条件类型
-    
+
     Between building-200-Level 3 = > [b, b-200-level, [3 -1]] //这里-1表示无穷大
-    
+
     综上整个Cost结构：
-    
+
     Cost = [
     [c, c-food, 100],
     [c, p-energy, 100],
     [b, b-200-level, [3, -1]]
     ]
-    
+
     我们要把上面这个序列化的策划数据对象化：
-    
+
     Cost = {
     items = [CostItem],
     check();
     consume();
     }
-    
+
     CostItem = {
     Unifiedattr attr;
     int requireValue;
@@ -259,59 +226,49 @@ Buff就是有时间限制的Bonus。
     consume(); //根据attr增减数据
     }
 
--   使用流程
+  - 使用流程
     加入建筑策划数据为：
     Building = {
     id = 100;
-    upgrade<sub>costs</sub> = [Cost, Cost, &#x2026;] //根据等级取Cost
+    upgrade_costs = [Cost, Cost, ...] //根据等级取Cost
     }
-    
-    升级的时候，先取出id = 100的 cost = upgrade<sub>costs</sub>[2];
+
+    升级的时候，先取出id = 100的 cost = upgrade_costs[2];
     如果cost.check()通过，再cost.consume();
-    
+
     这样把整个条件判断和资源修改全部放到Cost里，极大的简化开发流程。
     Cost在整个游戏开发过程中，可以用在任何需要条件判断或者资源改变的地方。
-
-
-<a id="org12a8373"></a>
-
-# CostHandler
-
-Cost 和 事件系统结合，可以打造一个监听Cost条件变化的监听系统。
-
--   需求和实现
+    
+* CostHandler
+  Cost 和 事件系统结合，可以打造一个监听Cost条件变化的监听系统。
+  - 需求和实现
     游戏中有个任务，其接取条件为：
     玩家等级到5级。
     Id=100的建筑等级到6级。
-    
+
     策划可以编辑条件为：
     AcceptCost = [
     [b, p-level, [5, -1]],
     [b, b-level, [6, -1]]
     ]
-    
+
     初始化任务的时候，反序列化数据，创建Cost对象。
     CostHandler 以Cost为参数监听里面每个CostItem数据变化。一旦满足就会回调函数。
-    
+
     程序在开发的过程中，并不关心CostItem具体属性是什么，这些都有策划取配置。我们只关心实现框架。
-
-
-<a id="org274dcd6"></a>
-
-# Yield奖励系统
-
-游戏中所有的奖励通过Yield结构发送。
-
--   需求
+    
+* Yield奖励系统
+  游戏中所有的奖励通过Yield结构发送。
+  - 需求
     领取任务有概率获得以下奖励
     玩家经验+500
     城市粮食+1000
 
--   设计
+  - 设计
     类比Cost，数据为：
     [p-exp, 500]
     [c-food, 1000]
-    
+
     在加上概率编辑： 后面两个值为概率，需要服务器随机
     [[p-exp, 500], 1, 100]
     [[c-food, 1000], 50, 100]
@@ -324,6 +281,5 @@ Cost 和 事件系统结合，可以打造一个监听Cost条件变化的监听�
     gain();
     }
 
--   使用
+  - 使用
     创建Yiled对象 调用gain()；
-
