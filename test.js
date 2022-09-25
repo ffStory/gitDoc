@@ -1,4 +1,3 @@
-web1
 web2
 web3
 win1
