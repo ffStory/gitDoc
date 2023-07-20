@@ -23,13 +23,12 @@ public class BaseObject : EventTarget
         EventRegister(GetAttrEvent(attrName), callBack, this);
     }
 
-    public virtual void LoadProtocol(IMessage baseProtocol)
+    public virtual void LoadMsg(IMessage iMessage)
     {
     }
 
-    public virtual void AfterLoadProtocol()
+    public virtual void AfterLoadMsg()
     {
-
     }
 
     public Game game { get; private set; }

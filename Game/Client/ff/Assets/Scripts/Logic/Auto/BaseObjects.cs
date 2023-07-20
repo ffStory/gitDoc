@@ -26,13 +26,13 @@ public abstract class BaseHero : BaseObject
             PostAttrEvent("name", old, name);
         }
     }
-    public override void LoadProtocol(IMessage baseProtocol)
+    public override void LoadMsg(IMessage iMessage)
     {
-        var protoco = baseProtocol as HeroProtocol;
-        id = protoco.Id;
-        exp = protoco.Exp;
-        name = protoco.Name;
-        AfterLoadProtocol();
+        var message = iMessage as HeroMsg;
+        id = message.Id;
+        exp = message.Exp;
+        name = message.Name;
+        AfterLoadMsg();
     }
 }
 public abstract class BasePlayer : BaseObject
@@ -65,28 +65,29 @@ public abstract class BasePlayer : BaseObject
     public List<Hero> items;
     public List<int> itemsInt;
     public Dictionary<int, int> heroesDicInt;
-    public override void LoadProtocol(IMessage baseProtocol)
+    public abstract int power { get; }
+    public override void LoadMsg(IMessage iMessage)
     {
-        var protoco = baseProtocol as PlayerProtocol;
-        id = protoco.Id;
-        exp = protoco.Exp;
+        var message = iMessage as PlayerMsg;
+        id = message.Id;
+        exp = message.Exp;
         heroes = new Dictionary<int, Hero>();
-        foreach (var pair in protoco.Heroes)
+        foreach (var pair in message.Heroes)
         {
             var item = new Hero(this);
-            item.LoadProtocol(pair.Value);
+            item.LoadMsg(pair.Value);
             heroes.Add(pair.Key, item);
         }
-        gold = protoco.Gold;
+        gold = message.Gold;
         items = new List<Hero>();
-        for (int i = 0; i < protoco.Items.Count; i++)
+        for (int i = 0; i < message.Items.Count; i++)
         {
             var item = new Hero(this);
-            item.LoadProtocol(protoco.Items[i]);
+            item.LoadMsg(message.Items[i]);
             items.Add(item);
         }
-        itemsInt = new List<int>(protoco.ItemsInt);
-        heroesDicInt = new Dictionary<int, int>(protoco.HeroesDicInt);
-        AfterLoadProtocol();
+        itemsInt = new List<int>(message.ItemsInt);
+        heroesDicInt = new Dictionary<int, int>(message.HeroesDicInt);
+        AfterLoadMsg();
     }
 }

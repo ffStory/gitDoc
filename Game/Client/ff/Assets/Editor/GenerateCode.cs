@@ -27,13 +27,10 @@ public static class GenerateCode
     [MenuItem("Auto/ExportResource")]
     public static void ExportResource()
     {
-        EditorUtility.DisplayProgressBar("Generate Patch for Android", "patching...", 0);
-
         LoadType();
         ExportBaseObject();
         ExportProtoBase();
         ExportProtoEnum();
-        EditorUtility.ClearProgressBar();
     }
 
     private static void LoadType()
@@ -105,7 +102,7 @@ public static class GenerateCode
                 AppendProto(file, builder);
             }
 
-            var codePath = "D:\\Documents\\wangfanfan\\Desktop\\Doc\\gitDoc\\Game\\Proto\\Auto\\ObjectProtocol.proto";
+            var codePath = "D:\\Documents\\wangfanfan\\Desktop\\Doc\\gitDoc\\Game\\Proto\\Auto\\ObjectMsg.proto";
             using var stream = new FileStream(codePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
             var data = Encoding.UTF8.GetBytes(builder.ToString());
             stream.Write(data, 0, data.Length);
@@ -146,7 +143,6 @@ public static class GenerateCode
     [MenuItem("Auto/ProtoToCS")]
     public static void ProtoToCS()
     {
-        EditorUtility.DisplayProgressBar("Generate Patch for Android", "patching...", 0);
         try
         {
             var protoPath = "D:\\Documents\\wangfanfan\\Desktop\\Doc\\gitDoc\\Game\\Proto";
@@ -185,7 +181,6 @@ public static class GenerateCode
         {
             UnityEngine.Debug.LogError(e);
         }
-        EditorUtility.ClearProgressBar();
     }
 
     private static void AppendProto(string fullFile, StringBuilder builder)
@@ -198,7 +193,7 @@ public static class GenerateCode
         var protoIndex = GetColumnIndex(firstRow, "proto_export");
 
         var fileName = Path.GetFileNameWithoutExtension(fullFile);
-        var protoName = fileName + "Protocol";
+        var protoName = fileName + "Msg";
         builder.Append($"message {protoName}\n");
         builder.Append("{\n");
 
@@ -252,8 +247,7 @@ public static class GenerateCode
         var firstRow = sheet.GetRow(0);
         var attrIndex = GetColumnIndex(firstRow, "attr");
         var attrTypeIndex = GetColumnIndex(firstRow, "attr_type");
-        var setterIndex = GetColumnIndex(firstRow, "setter");
-        var getterIndex = GetColumnIndex(firstRow, "getter");
+        var onlyGetterIndex = GetColumnIndex(firstRow, "only_getter");
         var protoIndex = GetColumnIndex(firstRow, "proto_export");
 
         var fileName = Path.GetFileNameWithoutExtension(fullFile);
@@ -270,16 +264,21 @@ public static class GenerateCode
             var attrName = GetCellValue(attrCell);
             if (attrName == "id") { continue; }
             var attrTypeCell = row.GetCell(attrTypeIndex);
-            var setterpeCell = row.GetCell(setterIndex);
-            var getterpeCell = row.GetCell(getterIndex);
+            var onlyGetterpeCell = row.GetCell(onlyGetterIndex);
 
-            var getterFlag = GetCellValue(getterpeCell) == "1";
-            var setterFlag = GetCellValue(setterpeCell) == "1";
-
+            var onlyGetterFlag = GetCellValue(onlyGetterpeCell) == "1";
             var type = GetCSharpAttrType(GetCellValue(attrTypeCell));
-            if (getterFlag && setterFlag)
-            {
 
+            if (onlyGetterFlag)
+            {
+                builder.Append($"    public abstract {type} {attrName} {{ get; }}\n");
+            }
+            else if (type.StartsWith("List") || type.StartsWith("Dictionary"))
+            {
+                builder.Append($"    public {type} {attrName};\n");
+            }
+            else
+            {
                 builder.Append
                     (
                     $"    protected {type} _{attrName};\r\n" +
@@ -294,34 +293,19 @@ public static class GenerateCode
                     "    }\n"
                     );
             }
-            else if (!getterFlag && !setterFlag)
-            {
-                builder.Append($"    public {type} {attrName};\n");
-            }
-            else
-            {
-                builder.Append($"    public abstract {type} {attrName} {{ get; }}\n");
-            }
         }
 
-        // 增加LoadProtocol 方法
-        builder.Append("    public override void LoadProtocol(IMessage baseProtocol)\n");
+        builder.Append("    public override void LoadMsg(IMessage iMessage)\n");
         builder.Append("    {\n");
-        builder.Append($"        var protoco = baseProtocol as {fileName}Protocol;\n");
+        builder.Append($"        var message = iMessage as {fileName}Msg;\n");
         for (int i = 4; i <= rows; i++)
         {
             var row = sheet.GetRow(i);
             var attrCell = row.GetCell(attrIndex);
             var attrName = GetCellValue(attrCell);
             var attrTypeCell = row.GetCell(attrTypeIndex);
-            var setterpeCell = row.GetCell(setterIndex);
-            var getterpeCell = row.GetCell(getterIndex);
             var protoCell = row.GetCell(protoIndex);
-
-            var getterFlag = GetCellValue(getterpeCell) == "1";
-            var setterFlag = GetCellValue(setterpeCell) == "1";
             var protoFlag = GetCellValue(protoCell) == "1";
-
             var type = GetCSharpAttrType(GetCellValue(attrTypeCell));
             if (!protoFlag)
             {
@@ -336,17 +320,17 @@ public static class GenerateCode
                     builder.Append
                         (
                         $"        {attrName} = new {type}();\r\n" +
-                        $"        foreach (var pair in protoco.{FirstCharUp(attrName)})\r\n" +
+                        $"        foreach (var pair in message.{FirstCharUp(attrName)})\r\n" +
                         "        {\r\n" +
                         $"            var item = new {dicPair.Value}(this);\r\n" +
-                        "            item.LoadProtocol(pair.Value);\r\n" +
+                        "            item.LoadMsg(pair.Value);\r\n" +
                         $"            {attrName}.Add(pair.Key, item);\r\n" +
                         "        }\r\n"
                         );
                 }
                 else
                 {
-                    builder.Append($"        {attrName} = new {type}(protoco.{FirstCharUp(attrName)});\n");
+                    builder.Append($"        {attrName} = new {type}(message.{FirstCharUp(attrName)});\n");
                 }
 
             }
@@ -358,25 +342,25 @@ public static class GenerateCode
                     builder.Append
                         (
                         $"        {attrName} = new {type}();\r\n" +
-                        $"        for (int i = 0; i < protoco.{FirstCharUp(attrName)}.Count; i++)\r\n" +
+                        $"        for (int i = 0; i < message.{FirstCharUp(attrName)}.Count; i++)\r\n" +
                         "        {\r\n" +
                         $"            var item = new {listType}(this);\r\n" +
-                        $"            item.LoadProtocol(protoco.{FirstCharUp(attrName)}[i]);\r\n" +
+                        $"            item.LoadMsg(message.{FirstCharUp(attrName)}[i]);\r\n" +
                         $"            {attrName}.Add(item);\r\n" +
                         "        }\r\n"
                         );
                 }
                 else
                 {
-                    builder.Append($"        {attrName} = new {type}(protoco.{FirstCharUp(attrName)});\n");
+                    builder.Append($"        {attrName} = new {type}(message.{FirstCharUp(attrName)});\n");
                 }
             }
             else
             {
-                builder.Append($"        {attrName} = protoco.{FirstCharUp(attrName)};\n");
+                builder.Append($"        {attrName} = message.{FirstCharUp(attrName)};\n");
             }
         }
-        builder.Append("        AfterLoadProtocol();\n");
+        builder.Append("        AfterLoadMsg();\n");
         builder.Append("    }\n");
         builder.Append("}\n");
     }
@@ -517,7 +501,7 @@ public static class GenerateCode
         {
             if (ObjectTypeList.Contains(typeStr))
             {
-                return typeStr + "Protocol";
+                return typeStr + "Msg";
             }
 
             if (ProtoTypeMap.ContainsKey(typeStr))

@@ -6,9 +6,8 @@ public class Game
     public Game()
     {
         player = new Player(this);
-
-        var protocol = new PlayerProtocol();
+        var protocol = new PlayerMsg();
         protocol.Exp = 100;
-        player.LoadProtocol(protocol);
+        player.LoadMsg(protocol);
     }
 }

@@ -9,9 +9,6 @@ public class Player : BasePlayer
     }
 
 
-    public override void AfterLoadProtocol()
-    {
-    }
 
     private void ExpChagnedEvent(EventDispatcherArgs args)
     {
@@ -19,6 +16,8 @@ public class Player : BasePlayer
     }
 
     public override int level { get => exp / 10; }
+
+    public override int power => throw new System.NotImplementedException();
 }
 
 
@@ -32,10 +31,6 @@ public class Hero : BaseHero
 
     public override int level => throw new System.NotImplementedException();
 
-    public override void AfterLoadProtocol()
-    {
-        base.AfterLoadProtocol();
-    }
 }
 
 

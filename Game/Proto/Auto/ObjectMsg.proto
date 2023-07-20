@@ -1,17 +1,17 @@
 syntax = "proto3";
-message HeroProtocol
+message HeroMsg
 {
     int32 id = 1;
     int32 exp = 2;
     string name = 3;
 }
-message PlayerProtocol
+message PlayerMsg
 {
     int32 id = 1;
     int32 exp = 2;
-    map<int32, HeroProtocol> heroes = 3;
+    map<int32, HeroMsg> heroes = 3;
     int32 gold = 4;
-    repeated HeroProtocol items = 5;
+    repeated HeroMsg items = 5;
     repeated int32 itemsInt = 6;
     map<int32, int32> heroesDicInt = 7;
 }
