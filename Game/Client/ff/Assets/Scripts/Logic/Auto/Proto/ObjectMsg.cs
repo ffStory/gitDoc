@@ -22,11 +22,11 @@ public static partial class ObjectMsgReflection {
   static ObjectMsgReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg9PYmplY3RNc2cucHJvdG8iMAoHSGVyb01zZxIKCgJpZBgBIAEoBRILCgNl",
-          "eHAYAiABKAUSDAoEbmFtZRgDIAEoCSKnAgoJUGxheWVyTXNnEgoKAmlkGAEg",
-          "ASgFEgsKA2V4cBgCIAEoBRImCgZoZXJvZXMYAyADKAsyFi5QbGF5ZXJNc2cu",
-          "SGVyb2VzRW50cnkSDAoEZ29sZBgEIAEoBRIXCgVpdGVtcxgFIAMoCzIILkhl",
-          "cm9Nc2cSEAoIaXRlbXNJbnQYBiADKAUSMgoMaGVyb2VzRGljSW50GAcgAygL",
+          "Cg9PYmplY3RNc2cucHJvdG8iMAoHSGVyb01zZxIKCgJJZBgBIAEoBRILCgNF",
+          "eHAYAiABKAUSDAoETmFtZRgDIAEoCSKnAgoJUGxheWVyTXNnEgoKAklkGAEg",
+          "ASgFEgsKA0V4cBgCIAEoBRImCgZIZXJvZXMYAyADKAsyFi5QbGF5ZXJNc2cu",
+          "SGVyb2VzRW50cnkSDAoER29sZBgEIAEoBRIXCgVJdGVtcxgFIAMoCzIILkhl",
+          "cm9Nc2cSEAoISXRlbXNJbnQYBiADKAUSMgoMSGVyb2VzRGljSW50GAcgAygL",
           "MhwuUGxheWVyTXNnLkhlcm9lc0RpY0ludEVudHJ5GjcKC0hlcm9lc0VudHJ5",
           "EgsKA2tleRgBIAEoBRIXCgV2YWx1ZRgCIAEoCzIILkhlcm9Nc2c6AjgBGjMK",
           "EUhlcm9lc0RpY0ludEVudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEo",
@@ -88,7 +88,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     return new HeroMsg(this);
   }
 
-  /// <summary>Field number for the "id" field.</summary>
+  /// <summary>Field number for the "Id" field.</summary>
   public const int IdFieldNumber = 1;
   private int id_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -100,7 +100,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     }
   }
 
-  /// <summary>Field number for the "exp" field.</summary>
+  /// <summary>Field number for the "Exp" field.</summary>
   public const int ExpFieldNumber = 2;
   private int exp_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -112,7 +112,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     }
   }
 
-  /// <summary>Field number for the "name" field.</summary>
+  /// <summary>Field number for the "Name" field.</summary>
   public const int NameFieldNumber = 3;
   private string name_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -355,7 +355,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     return new PlayerMsg(this);
   }
 
-  /// <summary>Field number for the "id" field.</summary>
+  /// <summary>Field number for the "Id" field.</summary>
   public const int IdFieldNumber = 1;
   private int id_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -367,7 +367,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     }
   }
 
-  /// <summary>Field number for the "exp" field.</summary>
+  /// <summary>Field number for the "Exp" field.</summary>
   public const int ExpFieldNumber = 2;
   private int exp_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -379,7 +379,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     }
   }
 
-  /// <summary>Field number for the "heroes" field.</summary>
+  /// <summary>Field number for the "Heroes" field.</summary>
   public const int HeroesFieldNumber = 3;
   private static readonly pbc::MapField<int, global::HeroMsg>.Codec _map_heroes_codec
       = new pbc::MapField<int, global::HeroMsg>.Codec(pb::FieldCodec.ForInt32(8, 0), pb::FieldCodec.ForMessage(18, global::HeroMsg.Parser), 26);
@@ -390,7 +390,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     get { return heroes_; }
   }
 
-  /// <summary>Field number for the "gold" field.</summary>
+  /// <summary>Field number for the "Gold" field.</summary>
   public const int GoldFieldNumber = 4;
   private int gold_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -402,7 +402,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     }
   }
 
-  /// <summary>Field number for the "items" field.</summary>
+  /// <summary>Field number for the "Items" field.</summary>
   public const int ItemsFieldNumber = 5;
   private static readonly pb::FieldCodec<global::HeroMsg> _repeated_items_codec
       = pb::FieldCodec.ForMessage(42, global::HeroMsg.Parser);
@@ -413,7 +413,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     get { return items_; }
   }
 
-  /// <summary>Field number for the "itemsInt" field.</summary>
+  /// <summary>Field number for the "ItemsInt" field.</summary>
   public const int ItemsIntFieldNumber = 6;
   private static readonly pb::FieldCodec<int> _repeated_itemsInt_codec
       = pb::FieldCodec.ForInt32(50);
@@ -424,7 +424,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     get { return itemsInt_; }
   }
 
-  /// <summary>Field number for the "heroesDicInt" field.</summary>
+  /// <summary>Field number for the "HeroesDicInt" field.</summary>
   public const int HeroesDicIntFieldNumber = 7;
   private static readonly pbc::MapField<int, int>.Codec _map_heroesDicInt_codec
       = new pbc::MapField<int, int>.Codec(pb::FieldCodec.ForInt32(8, 0), pb::FieldCodec.ForInt32(16, 0), 58);

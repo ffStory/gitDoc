@@ -1,17 +1,17 @@
 syntax = "proto3";
 message HeroMsg
 {
-    int32 id = 1;
-    int32 exp = 2;
-    string name = 3;
+    int32 Id = 1;
+    int32 Exp = 2;
+    string Name = 3;
 }
 message PlayerMsg
 {
-    int32 id = 1;
-    int32 exp = 2;
-    map<int32, HeroMsg> heroes = 3;
-    int32 gold = 4;
-    repeated HeroMsg items = 5;
-    repeated int32 itemsInt = 6;
-    map<int32, int32> heroesDicInt = 7;
+    int32 Id = 1;
+    int32 Exp = 2;
+    map<int32, HeroMsg> Heroes = 3;
+    int32 Gold = 4;
+    repeated HeroMsg Items = 5;
+    repeated int32 ItemsInt = 6;
+    map<int32, int32> HeroesDicInt = 7;
 }

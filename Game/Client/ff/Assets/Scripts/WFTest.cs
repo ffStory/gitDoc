@@ -5,7 +5,7 @@ public class Player : BasePlayer
 {
     public Player(Game game) : base(game)
     {
-        RegisterAttrEvent("exp", ExpChagnedEvent);
+        RegisterAttrEvent("Exp", ExpChagnedEvent);
     }
 
 
@@ -15,21 +15,21 @@ public class Player : BasePlayer
         Debug.Log(".......changed:" + args.OldValue + " " + args.NewValue);
     }
 
-    public override int level { get => exp / 10; }
+    public override int Level { get => Exp / 10; }
 
-    public override int power => throw new System.NotImplementedException();
+    public override int Power => throw new System.NotImplementedException();
 }
 
 
 
 public class Hero : BaseHero
 {
-    public Hero(BasePlayer player):base(player.game)
+    public Hero(BasePlayer player):base(player.Game)
     {
 
     }
 
-    public override int level => throw new System.NotImplementedException();
+    public override int Level => throw new System.NotImplementedException();
 
 }
 
@@ -41,7 +41,7 @@ public class WFTest : MonoBehaviour
     void OnEnable()
     {
         var game = new Game();
-        game.player.exp = 200;
+        game.player.Exp = 200;
     }
 
     // Update is called once per frame

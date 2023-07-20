@@ -22,8 +22,8 @@ public static partial class RequestReflection {
   static RequestReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg1SZXF1ZXN0LnByb3RvImQKB1JlcXVlc3QSCgoCaWQYASABKAMSCwoDbnVt",
-          "GAIgASgDEgwKBGhlcm8YAyABKAkSDwoHaGVyb19pZBghIAEoCRIPCgdoZXJv",
+          "Cg1SZXF1ZXN0LnByb3RvImQKB1JlcXVlc3QSCgoCSWQYASABKAMSCwoDTnVt",
+          "GAIgASgDEgwKBEhlcm8YAyABKAkSDwoHSGVyb19pZBghIAEoCRIPCgdIZXJv",
           "SWRkGCIgASgJEhAKCEhlcm9JZGRkGCMgASgJYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
@@ -84,7 +84,7 @@ public sealed partial class Request : pb::IMessage<Request>
     return new Request(this);
   }
 
-  /// <summary>Field number for the "id" field.</summary>
+  /// <summary>Field number for the "Id" field.</summary>
   public const int IdFieldNumber = 1;
   private long id_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -96,7 +96,7 @@ public sealed partial class Request : pb::IMessage<Request>
     }
   }
 
-  /// <summary>Field number for the "num" field.</summary>
+  /// <summary>Field number for the "Num" field.</summary>
   public const int NumFieldNumber = 2;
   private long num_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -108,7 +108,7 @@ public sealed partial class Request : pb::IMessage<Request>
     }
   }
 
-  /// <summary>Field number for the "hero" field.</summary>
+  /// <summary>Field number for the "Hero" field.</summary>
   public const int HeroFieldNumber = 3;
   private string hero_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -120,7 +120,7 @@ public sealed partial class Request : pb::IMessage<Request>
     }
   }
 
-  /// <summary>Field number for the "hero_id" field.</summary>
+  /// <summary>Field number for the "Hero_id" field.</summary>
   public const int HeroIdFieldNumber = 33;
   private string heroId_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -132,7 +132,7 @@ public sealed partial class Request : pb::IMessage<Request>
     }
   }
 
-  /// <summary>Field number for the "heroIdd" field.</summary>
+  /// <summary>Field number for the "HeroIdd" field.</summary>
   public const int HeroIddFieldNumber = 34;
   private string heroIdd_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

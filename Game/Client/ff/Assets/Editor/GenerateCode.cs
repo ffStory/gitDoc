@@ -33,6 +33,9 @@ public static class GenerateCode
         ExportProtoEnum();
     }
 
+    /// <summary>
+    /// 加载自定义类型 包括 enum
+    /// </summary>
     private static void LoadType()
     {
         var path = "../../Resource/Object";
@@ -55,15 +58,15 @@ public static class GenerateCode
     }
 
     /// <summary>
-    /// 根据excel生成Base对象
+    /// 根据excel生成BaseXx对象
     /// </summary>
     public static void ExportBaseObject()
     {
         try
         {
             var builder = new StringBuilder();
-            builder.Append("using System.Collections.Generic;\n");
-            builder.Append("using Google.Protobuf;\n");
+            builder.Append("using System.Collections.Generic;\r\n");
+            builder.Append("using Google.Protobuf;\r\n");
             var path = "../../Resource/Object";
             var fiels = Directory.GetFiles(path);
             for (int i = 0; i < fiels.Length; i++)
@@ -72,7 +75,7 @@ public static class GenerateCode
                 AppendObj(fiel, builder);
             }
 
-            var codePath = "D:\\Documents\\wangfanfan\\Desktop\\Doc\\gitDoc\\Game\\Client\\ff\\Assets\\Scripts\\Logic\\Auto\\BaseObjects.cs";
+            var codePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets\\Scripts\\Logic\\Auto\\BaseObjects.cs");
             using var stream = new FileStream(codePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
             var data = Encoding.UTF8.GetBytes(builder.ToString());
             stream.Write(data, 0, data.Length);
@@ -102,7 +105,7 @@ public static class GenerateCode
                 AppendProto(file, builder);
             }
 
-            var codePath = "D:\\Documents\\wangfanfan\\Desktop\\Doc\\gitDoc\\Game\\Proto\\Auto\\ObjectMsg.proto";
+            var codePath = Path.Combine(Directory.GetCurrentDirectory(), "../../Proto/Auto/ObjectMsg.proto");
             using var stream = new FileStream(codePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
             var data = Encoding.UTF8.GetBytes(builder.ToString());
             stream.Write(data, 0, data.Length);
@@ -121,13 +124,13 @@ public static class GenerateCode
         {
             var builder = new StringBuilder();
             builder.Append("syntax = \"proto3\";\r\n");
-            var enumDir = "D:\\Documents\\wangfanfan\\Desktop\\Doc\\gitDoc\\Game\\Resource\\Enum";
+            var enumDir = Path.Combine(Directory.GetCurrentDirectory(), "../../Resource/Enum");
             var files = Directory.GetFiles(enumDir);
             for (int i = 0; i < files.Length; i++)
             {
                 AppendEnum(files[i], builder);
             }
-            var codePath = $"D:\\Documents\\wangfanfan\\Desktop\\Doc\\gitDoc\\Game\\Proto\\Auto\\Enum.proto";
+            var codePath = Path.Combine(Directory.GetCurrentDirectory(), "../../Proto/Auto/Enum.proto");
             using var stream = new FileStream(codePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
             var data = Encoding.UTF8.GetBytes(builder.ToString());
             stream.Write(data, 0, data.Length);
@@ -145,12 +148,13 @@ public static class GenerateCode
     {
         try
         {
-            var protoPath = "D:\\Documents\\wangfanfan\\Desktop\\Doc\\gitDoc\\Game\\Proto";
+            var protoPath = Path.Combine(Directory.GetCurrentDirectory(), "../../Proto");
             foreach (string file in Directory.GetFiles(protoPath, "*", SearchOption.AllDirectories))
             {
                 var fileName = Path.GetFileName(file);
                 var directory = Path.GetDirectoryName(file);
-                var arguments = $" -I={directory} --csharp_out=D:/Documents/wangfanfan/Desktop/Doc/gitDoc/Game/Client/ff/Assets/Scripts/Logic/Auto/Proto {fileName}";
+                var targetPath = Path.Combine(Directory.GetCurrentDirectory(), "Assets/Scripts/Logic/Auto/Proto");
+                var arguments = $" -I={directory} --csharp_out={targetPath} {fileName}";
                 var process = new Process
                 {
                     StartInfo =
@@ -194,8 +198,8 @@ public static class GenerateCode
 
         var fileName = Path.GetFileNameWithoutExtension(fullFile);
         var protoName = fileName + "Msg";
-        builder.Append($"message {protoName}\n");
-        builder.Append("{\n");
+        builder.Append($"message {protoName}\r\n");
+        builder.Append("{\r\n");
 
         var rows = sheet.LastRowNum;
         var index = 0;
@@ -209,9 +213,9 @@ public static class GenerateCode
             var attrTypeCell = row.GetCell(attrTypeIndex);
             var type = GetProtoAttrType(GetCellValue(attrTypeCell));
 
-            builder.Append($"    {type} {attrName} = {index};\n");
+            builder.Append($"    {type} {attrName} = {index};\r\n");
         }
-        builder.Append("}\n");
+        builder.Append("}\r\n");
     }
 
     /// <summary>
@@ -225,8 +229,8 @@ public static class GenerateCode
         var sheet = workBook.GetSheetAt(0);
         
         var fileName = Path.GetFileNameWithoutExtension(fullFile);
-        builder.Append($"enum {fileName}\n");
-        builder.Append("{\n");
+        builder.Append($"enum {fileName}\r\n");
+        builder.Append("{\r\n");
 
 
         var rows = sheet.LastRowNum;
@@ -235,11 +239,16 @@ public static class GenerateCode
             var row = sheet.GetRow(i);
             var attrCell = row.GetCell(0);
             var valueCell = row.GetCell(1);
-            builder.Append($"    {GetCellValue(attrCell)} = {GetCellValue(valueCell)};\n");
+            builder.Append($"    {GetCellValue(attrCell)} = {GetCellValue(valueCell)};\r\n");
         }
-        builder.Append("}\n");
+        builder.Append("}\r\n");
     }
 
+    /// <summary>
+    /// 生成单个BaseXxx 对象
+    /// </summary>
+    /// <param name="fullFile"></param>
+    /// <param name="builder"></param>
     private static void AppendObj(string fullFile, StringBuilder builder)
     {
         var workBook = CreateWorkbook(fullFile);
@@ -251,9 +260,9 @@ public static class GenerateCode
         var protoIndex = GetColumnIndex(firstRow, "proto_export");
 
         var fileName = Path.GetFileNameWithoutExtension(fullFile);
-        builder.Append($"public abstract class Base{fileName} : BaseObject\n");
-        builder.Append("{\n");
-        builder.Append($"    public Base{fileName}(Game game) : base(game, ObjectType.{fileName}){{}}\n");
+        builder.Append($"public abstract class Base{fileName} : BaseObject\r\n");
+        builder.Append("{\r\n");
+        builder.Append($"    public Base{fileName}(Game game) : base(game, ObjectType.{fileName}){{}}\r\n");
 
 
         var rows = sheet.LastRowNum;
@@ -262,7 +271,7 @@ public static class GenerateCode
             var row = sheet.GetRow(i);
             var attrCell = row.GetCell(attrIndex);
             var attrName = GetCellValue(attrCell);
-            if (attrName == "id") { continue; }
+            if (attrName == "Id") { continue; }
             var attrTypeCell = row.GetCell(attrTypeIndex);
             var onlyGetterpeCell = row.GetCell(onlyGetterIndex);
 
@@ -271,33 +280,35 @@ public static class GenerateCode
 
             if (onlyGetterFlag)
             {
-                builder.Append($"    public abstract {type} {attrName} {{ get; }}\n");
+                builder.Append($"    public abstract {type} {attrName} {{ get; }}\r\n");
             }
             else if (type.StartsWith("List") || type.StartsWith("Dictionary"))
             {
-                builder.Append($"    public {type} {attrName};\n");
+                builder.Append($"    public {type} {attrName};\r\n");
             }
             else
             {
+                var privateAttr = FirstCharLower(attrName);
                 builder.Append
                     (
-                    $"    protected {type} _{attrName};\r\n" +
+                    $"    protected {type} {privateAttr};\r\n" +
                     $"    public {type} {attrName}\r\n" +
                     "    {\r\n" +
-                    $"        get{{return _{attrName};}}\r\n" +
-                    "        set\r\n        {\r\n" +
-                    $"            var old = _{attrName};\r\n" +
-                    $"            _{attrName} = value;\r\n" +
+                    $"        get{{return {privateAttr};}}\r\n" +
+                    "        set\r\n" +
+                    "        {\r\n" +
+                    $"            var old = {privateAttr};\r\n" +
+                    $"            {privateAttr} = value;\r\n" +
                     $"            PostAttrEvent(\"{attrName}\", old, {attrName});\r\n" +
                     "        }\r\n" +
-                    "    }\n"
+                    "    }\r\n"
                     );
             }
         }
 
-        builder.Append("    public override void LoadMsg(IMessage iMessage)\n");
-        builder.Append("    {\n");
-        builder.Append($"        var message = iMessage as {fileName}Msg;\n");
+        builder.Append("    public override void LoadMsg(IMessage iMessage)\r\n");
+        builder.Append("    {\r\n");
+        builder.Append($"        var message = iMessage as {fileName}Msg;\r\n");
         for (int i = 4; i <= rows; i++)
         {
             var row = sheet.GetRow(i);
@@ -320,7 +331,7 @@ public static class GenerateCode
                     builder.Append
                         (
                         $"        {attrName} = new {type}();\r\n" +
-                        $"        foreach (var pair in message.{FirstCharUp(attrName)})\r\n" +
+                        $"        foreach (var pair in message.{attrName})\r\n" +
                         "        {\r\n" +
                         $"            var item = new {dicPair.Value}(this);\r\n" +
                         "            item.LoadMsg(pair.Value);\r\n" +
@@ -330,7 +341,7 @@ public static class GenerateCode
                 }
                 else
                 {
-                    builder.Append($"        {attrName} = new {type}(message.{FirstCharUp(attrName)});\n");
+                    builder.Append($"        {attrName} = new {type}(message.{attrName});\r\n");
                 }
 
             }
@@ -342,27 +353,27 @@ public static class GenerateCode
                     builder.Append
                         (
                         $"        {attrName} = new {type}();\r\n" +
-                        $"        for (int i = 0; i < message.{FirstCharUp(attrName)}.Count; i++)\r\n" +
+                        $"        for (int i = 0; i < message.{attrName}.Count; i++)\r\n" +
                         "        {\r\n" +
                         $"            var item = new {listType}(this);\r\n" +
-                        $"            item.LoadMsg(message.{FirstCharUp(attrName)}[i]);\r\n" +
+                        $"            item.LoadMsg(message.{attrName}[i]);\r\n" +
                         $"            {attrName}.Add(item);\r\n" +
                         "        }\r\n"
                         );
                 }
                 else
                 {
-                    builder.Append($"        {attrName} = new {type}(message.{FirstCharUp(attrName)});\n");
+                    builder.Append($"        {attrName} = new {type}(message.{attrName});\r\n");
                 }
             }
             else
             {
-                builder.Append($"        {attrName} = message.{FirstCharUp(attrName)};\n");
+                builder.Append($"        {attrName} = message.{attrName};\r\n");
             }
         }
-        builder.Append("        AfterLoadMsg();\n");
-        builder.Append("    }\n");
-        builder.Append("}\n");
+        builder.Append("        AfterLoadMsg();\r\n");
+        builder.Append("    }\r\n");
+        builder.Append("}\r\n");
     }
 
 
@@ -390,58 +401,18 @@ public static class GenerateCode
         return bracketInteralStr;
     }
 
-    public static string FirstCharUp(this string s)
+    public static string FirstCharLower(this string s)
     {
         if (String.IsNullOrEmpty(s))
         {
             throw new ArgumentException("String is mull or empty");
         }
 
-        return s[0].ToString().ToUpper() + s.Substring(1);
+        return s[0].ToString().ToLower() + s.Substring(1);
     }
-
-    public static IWorkbook CreateWorkbook(string path)
-    {
-        try
-        {
-            using var stream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
-            return WorkbookFactory.Create(stream);
-        }
-        catch (Exception e)
-        {
-            UnityEngine.Debug.LogError($"����{path}ʧ��\n{e.Message}\n{e.StackTrace}\n InnerException=>{e.InnerException}");
-            throw;
-        }
-    }
-
-    public static void WriteExcel(IWorkbook workbook, string path)
-    {
-        using var ms = new MemoryStream();
-        using var fs = new FileStream(path, FileMode.Create, FileAccess.Write);
-        workbook.Write(ms);
-        var b = ms.ToArray();
-        fs.Write(b, 0, b.Length);
-        fs.Flush();
-        fs.Close();
-    }
-
-    public static int GetColumnIndex(IRow row, string name)
-    {
-        var index = -1;
-        if (row == null || string.IsNullOrEmpty(name)) return index;
-        foreach (var cell in row.Cells)
-        {
-            if (GetCellValue(cell).ToLower().Trim() != name.ToLower().Trim()) continue;
-            index = cell.ColumnIndex;
-            break;
-        }
-
-        return index;
-    }
-
 
     /// <summary>
-    /// 解析类型
+    /// 解析C#类型
     /// </summary>
     /// <param name="typeStr"></param>
     /// <returns></returns>
@@ -492,6 +463,11 @@ public static class GenerateCode
         return string.Format(typeStr, GetCSharpAttrType(bracketInteralStr));
     }
 
+    /// <summary>
+    /// 解析Proto类型
+    /// </summary>
+    /// <param name="typeStr"></param>
+    /// <returns></returns>
     public static string GetProtoAttrType(string typeStr)
     {
         typeStr = typeStr.Trim();
@@ -546,6 +522,46 @@ public static class GenerateCode
         return string.Format(typeStr, GetProtoAttrType(bracketInteralStr));
     }
 
+    #region Excel相关操作
+
+    public static IWorkbook CreateWorkbook(string path)
+    {
+        try
+        {
+            using var stream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+            return WorkbookFactory.Create(stream);
+        }
+        catch (Exception e)
+        {
+            UnityEngine.Debug.LogError($"����{path}ʧ��\n{e.Message}\n{e.StackTrace}\n InnerException=>{e.InnerException}");
+            throw;
+        }
+    }
+
+    public static void WriteExcel(IWorkbook workbook, string path)
+    {
+        using var ms = new MemoryStream();
+        using var fs = new FileStream(path, FileMode.Create, FileAccess.Write);
+        workbook.Write(ms);
+        var b = ms.ToArray();
+        fs.Write(b, 0, b.Length);
+        fs.Flush();
+        fs.Close();
+    }
+    public static int GetColumnIndex(IRow row, string name)
+    {
+        var index = -1;
+        if (row == null || string.IsNullOrEmpty(name)) return index;
+        foreach (var cell in row.Cells)
+        {
+            if (GetCellValue(cell).ToLower().Trim() != name.ToLower().Trim()) continue;
+            index = cell.ColumnIndex;
+            break;
+        }
+
+        return index;
+    }
+
     public static string GetCellValue(ICell cell)
     {
         if (cell == null) return string.Empty;
@@ -561,7 +577,8 @@ public static class GenerateCode
             _ => throw new ArgumentOutOfRangeException()
         };
 
-        //����һ��ת��
-        return str.Replace("\\n", "\n");
+        return str.Trim();
     }
+
+    #endregion
 }

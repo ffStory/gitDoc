@@ -4,13 +4,13 @@ public class BaseObject : EventTarget
 {
     public BaseObject(Game game, ObjectType type)
     {
-        this.game = game;
-        this.type = type;
+        this.Game = game;
+        this.Type = type;
     }
 
     public string GetAttrEvent(string attrName)
     {
-        return type.ToString() + '-' + attrName + "-" + id;
+        return Type.ToString() + '-' + attrName + "-" + Id;
     }
     public void PostAttrEvent(string attrName, object oldV = null, object newV = null)
     {
@@ -31,7 +31,7 @@ public class BaseObject : EventTarget
     {
     }
 
-    public Game game { get; private set; }
-    public int id { get; set; }
-    public ObjectType type { get; set; }
+    public Game Game { get; private set; }
+    public int Id { get; set; }
+    public ObjectType Type { get; set; }
 }

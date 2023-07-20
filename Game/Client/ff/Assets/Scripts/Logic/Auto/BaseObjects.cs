@@ -3,91 +3,91 @@ using Google.Protobuf;
 public abstract class BaseHero : BaseObject
 {
     public BaseHero(Game game) : base(game, ObjectType.Hero){}
-    protected int _exp;
-    public int exp
+    protected int exp;
+    public int Exp
     {
-        get{return _exp;}
+        get{return exp;}
         set
         {
-            var old = _exp;
-            _exp = value;
-            PostAttrEvent("exp", old, exp);
+            var old = exp;
+            exp = value;
+            PostAttrEvent("Exp", old, Exp);
         }
     }
-    public abstract int level { get; }
-    protected string _name;
-    public string name
+    public abstract int Level { get; }
+    protected string name;
+    public string Name
     {
-        get{return _name;}
+        get{return name;}
         set
         {
-            var old = _name;
-            _name = value;
-            PostAttrEvent("name", old, name);
+            var old = name;
+            name = value;
+            PostAttrEvent("Name", old, Name);
         }
     }
     public override void LoadMsg(IMessage iMessage)
     {
         var message = iMessage as HeroMsg;
-        id = message.Id;
-        exp = message.Exp;
-        name = message.Name;
+        Id = message.Id;
+        Exp = message.Exp;
+        Name = message.Name;
         AfterLoadMsg();
     }
 }
 public abstract class BasePlayer : BaseObject
 {
     public BasePlayer(Game game) : base(game, ObjectType.Player){}
-    protected int _exp;
-    public int exp
+    protected int exp;
+    public int Exp
     {
-        get{return _exp;}
+        get{return exp;}
         set
         {
-            var old = _exp;
-            _exp = value;
-            PostAttrEvent("exp", old, exp);
+            var old = exp;
+            exp = value;
+            PostAttrEvent("Exp", old, Exp);
         }
     }
-    public abstract int level { get; }
-    public Dictionary<int, Hero> heroes;
-    protected int _gold;
-    public int gold
+    public abstract int Level { get; }
+    public Dictionary<int, Hero> Heroes;
+    protected int gold;
+    public int Gold
     {
-        get{return _gold;}
+        get{return gold;}
         set
         {
-            var old = _gold;
-            _gold = value;
-            PostAttrEvent("gold", old, gold);
+            var old = gold;
+            gold = value;
+            PostAttrEvent("Gold", old, Gold);
         }
     }
-    public List<Hero> items;
-    public List<int> itemsInt;
-    public Dictionary<int, int> heroesDicInt;
-    public abstract int power { get; }
+    public List<Hero> Items;
+    public List<int> ItemsInt;
+    public Dictionary<int, int> HeroesDicInt;
+    public abstract int Power { get; }
     public override void LoadMsg(IMessage iMessage)
     {
         var message = iMessage as PlayerMsg;
-        id = message.Id;
-        exp = message.Exp;
-        heroes = new Dictionary<int, Hero>();
+        Id = message.Id;
+        Exp = message.Exp;
+        Heroes = new Dictionary<int, Hero>();
         foreach (var pair in message.Heroes)
         {
             var item = new Hero(this);
             item.LoadMsg(pair.Value);
-            heroes.Add(pair.Key, item);
+            Heroes.Add(pair.Key, item);
         }
-        gold = message.Gold;
-        items = new List<Hero>();
+        Gold = message.Gold;
+        Items = new List<Hero>();
         for (int i = 0; i < message.Items.Count; i++)
         {
             var item = new Hero(this);
             item.LoadMsg(message.Items[i]);
-            items.Add(item);
+            Items.Add(item);
         }
-        itemsInt = new List<int>(message.ItemsInt);
-        heroesDicInt = new Dictionary<int, int>(message.HeroesDicInt);
+        ItemsInt = new List<int>(message.ItemsInt);
+        HeroesDicInt = new Dictionary<int, int>(message.HeroesDicInt);
         AfterLoadMsg();
     }
 }
