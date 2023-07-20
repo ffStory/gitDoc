@@ -1,1 +1,11 @@
 *.swp
+.vs/
+.idea/
+Library
+Temp/
+Logs/
+obj/
+.vsconfig
+ff.sln
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor.csproj

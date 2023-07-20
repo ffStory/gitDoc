@@ -1,0 +1,11 @@
+syntax = "proto3";
+enum ItemType
+{
+    Resource = 0;
+    Speed = 2;
+}
+enum ObjectType
+{
+    Player = 0;
+    Hero = 2;
+}

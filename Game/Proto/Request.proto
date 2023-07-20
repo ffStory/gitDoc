@@ -1,0 +1,10 @@
+syntax = "proto3";
+message Request
+{
+    int64 id = 1;
+    int64 num = 2;
+    string hero = 3;
+    string hero_id = 33;
+    string heroIdd = 34;
+    string HeroIddd = 35;
+}
