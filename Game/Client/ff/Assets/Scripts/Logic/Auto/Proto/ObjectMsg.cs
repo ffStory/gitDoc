@@ -22,20 +22,21 @@ public static partial class ObjectMsgReflection {
   static ObjectMsgReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg9PYmplY3RNc2cucHJvdG8iMAoHSGVyb01zZxIKCgJJZBgBIAEoBRILCgNF",
-          "eHAYAiABKAUSDAoETmFtZRgDIAEoCSKnAgoJUGxheWVyTXNnEgoKAklkGAEg",
-          "ASgFEgsKA0V4cBgCIAEoBRImCgZIZXJvZXMYAyADKAsyFi5QbGF5ZXJNc2cu",
-          "SGVyb2VzRW50cnkSDAoER29sZBgEIAEoBRIXCgVJdGVtcxgFIAMoCzIILkhl",
-          "cm9Nc2cSEAoISXRlbXNJbnQYBiADKAUSMgoMSGVyb2VzRGljSW50GAcgAygL",
-          "MhwuUGxheWVyTXNnLkhlcm9lc0RpY0ludEVudHJ5GjcKC0hlcm9lc0VudHJ5",
-          "EgsKA2tleRgBIAEoBRIXCgV2YWx1ZRgCIAEoCzIILkhlcm9Nc2c6AjgBGjMK",
-          "EUhlcm9lc0RpY0ludEVudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEo",
-          "BToCOAFiBnByb3RvMw=="));
+          "Cg9PYmplY3RNc2cucHJvdG8aCkVudW0ucHJvdG8iMAoHSGVyb01zZxIKCgJJ",
+          "ZBgBIAEoBRILCgNFeHAYAiABKAUSDAoETmFtZRgDIAEoCSLEAgoJUGxheWVy",
+          "TXNnEgoKAklkGAEgASgFEgsKA0V4cBgCIAEoBRImCgZIZXJvZXMYAyADKAsy",
+          "Fi5QbGF5ZXJNc2cuSGVyb2VzRW50cnkSDAoER29sZBgEIAEoBRIXCgVJdGVt",
+          "cxgFIAMoCzIILkhlcm9Nc2cSEAoISXRlbXNJbnQYBiADKAUSMgoMSGVyb2Vz",
+          "RGljSW50GAcgAygLMhwuUGxheWVyTXNnLkhlcm9lc0RpY0ludEVudHJ5EhsK",
+          "CEl0ZW1UeXBlGAggASgOMgkuSXRlbVR5cGUaNwoLSGVyb2VzRW50cnkSCwoD",
+          "a2V5GAEgASgFEhcKBXZhbHVlGAIgASgLMgguSGVyb01zZzoCOAEaMwoRSGVy",
+          "b2VzRGljSW50RW50cnkSCwoDa2V5GAEgASgFEg0KBXZhbHVlGAIgASgFOgI4",
+          "AWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { },
+        new pbr::FileDescriptor[] { global::EnumReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::HeroMsg), global::HeroMsg.Parser, new[]{ "Id", "Exp", "Name" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerMsg), global::PlayerMsg.Parser, new[]{ "Id", "Exp", "Heroes", "Gold", "Items", "ItemsInt", "HeroesDicInt" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, })
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerMsg), global::PlayerMsg.Parser, new[]{ "Id", "Exp", "Heroes", "Gold", "Items", "ItemsInt", "HeroesDicInt", "ItemType" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, })
         }));
   }
   #endregion
@@ -346,6 +347,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     items_ = other.items_.Clone();
     itemsInt_ = other.itemsInt_.Clone();
     heroesDicInt_ = other.heroesDicInt_.Clone();
+    itemType_ = other.itemType_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -435,6 +437,18 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     get { return heroesDicInt_; }
   }
 
+  /// <summary>Field number for the "ItemType" field.</summary>
+  public const int ItemTypeFieldNumber = 8;
+  private global::ItemType itemType_ = global::ItemType.Resource;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::ItemType ItemType {
+    get { return itemType_; }
+    set {
+      itemType_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -457,6 +471,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     if(!items_.Equals(other.items_)) return false;
     if(!itemsInt_.Equals(other.itemsInt_)) return false;
     if (!HeroesDicInt.Equals(other.HeroesDicInt)) return false;
+    if (ItemType != other.ItemType) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -471,6 +486,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     hash ^= items_.GetHashCode();
     hash ^= itemsInt_.GetHashCode();
     hash ^= HeroesDicInt.GetHashCode();
+    if (ItemType != global::ItemType.Resource) hash ^= ItemType.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -505,6 +521,10 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     items_.WriteTo(output, _repeated_items_codec);
     itemsInt_.WriteTo(output, _repeated_itemsInt_codec);
     heroesDicInt_.WriteTo(output, _map_heroesDicInt_codec);
+    if (ItemType != global::ItemType.Resource) {
+      output.WriteRawTag(64);
+      output.WriteEnum((int) ItemType);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -531,6 +551,10 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     items_.WriteTo(ref output, _repeated_items_codec);
     itemsInt_.WriteTo(ref output, _repeated_itemsInt_codec);
     heroesDicInt_.WriteTo(ref output, _map_heroesDicInt_codec);
+    if (ItemType != global::ItemType.Resource) {
+      output.WriteRawTag(64);
+      output.WriteEnum((int) ItemType);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -554,6 +578,9 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     size += items_.CalculateSize(_repeated_items_codec);
     size += itemsInt_.CalculateSize(_repeated_itemsInt_codec);
     size += heroesDicInt_.CalculateSize(_map_heroesDicInt_codec);
+    if (ItemType != global::ItemType.Resource) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ItemType);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -579,6 +606,9 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     items_.Add(other.items_);
     itemsInt_.Add(other.itemsInt_);
     heroesDicInt_.MergeFrom(other.heroesDicInt_);
+    if (other.ItemType != global::ItemType.Resource) {
+      ItemType = other.ItemType;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -623,6 +653,10 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
           heroesDicInt_.AddEntriesFrom(input, _map_heroesDicInt_codec);
           break;
         }
+        case 64: {
+          ItemType = (global::ItemType) input.ReadEnum();
+          break;
+        }
       }
     }
   #endif
@@ -665,6 +699,10 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
         }
         case 58: {
           heroesDicInt_.AddEntriesFrom(ref input, _map_heroesDicInt_codec);
+          break;
+        }
+        case 64: {
+          ItemType = (global::ItemType) input.ReadEnum();
           break;
         }
       }

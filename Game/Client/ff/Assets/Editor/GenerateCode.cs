@@ -99,6 +99,7 @@ public static class GenerateCode
             var files = Directory.GetFiles(path);
             var builder = new StringBuilder();
             builder.Append("syntax = \"proto3\";\r\n");
+            builder.Append("import \"Enum.proto\";\r\n");
             for (int i = 0; i < files.Length; i++)
             {
                 var file = files[i];
@@ -353,7 +354,7 @@ public static class GenerateCode
                     builder.Append
                         (
                         $"        {attrName} = new {type}();\r\n" +
-                        $"        for (int i = 0; i < message.{attrName}.Count; i++)\r\n" +
+                        $"        for (var i = 0; i < message.{attrName}.Count; i++)\r\n" +
                         "        {\r\n" +
                         $"            var item = new {listType}(this);\r\n" +
                         $"            item.LoadMsg(message.{attrName}[i]);\r\n" +

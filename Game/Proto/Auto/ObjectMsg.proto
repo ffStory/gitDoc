@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "Enum.proto";
 message HeroMsg
 {
     int32 Id = 1;
@@ -14,4 +15,5 @@ message PlayerMsg
     repeated HeroMsg Items = 5;
     repeated int32 ItemsInt = 6;
     map<int32, int32> HeroesDicInt = 7;
+    ItemType ItemType = 8;
 }

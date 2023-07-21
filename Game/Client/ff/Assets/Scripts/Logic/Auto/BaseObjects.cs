@@ -66,6 +66,17 @@ public abstract class BasePlayer : BaseObject
     public List<int> ItemsInt;
     public Dictionary<int, int> HeroesDicInt;
     public abstract int Power { get; }
+    protected ItemType itemType;
+    public ItemType ItemType
+    {
+        get{return itemType;}
+        set
+        {
+            var old = itemType;
+            itemType = value;
+            PostAttrEvent("ItemType", old, ItemType);
+        }
+    }
     public override void LoadMsg(IMessage iMessage)
     {
         var message = iMessage as PlayerMsg;
@@ -80,7 +91,7 @@ public abstract class BasePlayer : BaseObject
         }
         Gold = message.Gold;
         Items = new List<Hero>();
-        for (int i = 0; i < message.Items.Count; i++)
+        for (var i = 0; i < message.Items.Count; i++)
         {
             var item = new Hero(this);
             item.LoadMsg(message.Items[i]);
@@ -88,6 +99,7 @@ public abstract class BasePlayer : BaseObject
         }
         ItemsInt = new List<int>(message.ItemsInt);
         HeroesDicInt = new Dictionary<int, int>(message.HeroesDicInt);
+        ItemType = message.ItemType;
         AfterLoadMsg();
     }
 }
