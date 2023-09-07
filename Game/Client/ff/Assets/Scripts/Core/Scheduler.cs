@@ -1,9 +1,16 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Util;
 
 namespace Core
 {
+    public enum SchedulerType
+    {
+        Timer = 1,
+        Frame = 2
+    }
+    
     public class SchedulerItem
     {
         /// <summary>
@@ -13,14 +20,14 @@ namespace Core
         /// <param name="repeat">重复次数。0为永久重复</param>
         /// <param name="delay">首次调用延迟 毫秒/帧</param>
         /// <param name="callback"></param>
-        /// <param name="isFrame"></param>
-        public SchedulerItem(long interval, uint repeat, long delay, Action<SchedulerItem> callback, bool isFrame = false)
+        /// <param name="schedulerType"></param>
+        public SchedulerItem(long interval, uint repeat, long delay, Action<SchedulerItem> callback, SchedulerType schedulerType)
         {
             _interval = interval;
             _repeat = repeat;
             _delay = delay;
             _callback = callback;
-            _isFrame = isFrame;
+            _schedulerType = schedulerType;
             
             CalculateNextTriggerTiming(true);
         }
@@ -40,7 +47,7 @@ namespace Core
             }
 
             var delay = isFirst ? _delay : _interval;
-            if (_isFrame)
+            if (_schedulerType == SchedulerType.Frame)
             {
                 _nextTriggerTiming = Time.frameCount + delay;
             }
@@ -55,9 +62,9 @@ namespace Core
             return _calledTimes;
         }
 
-        public bool IsFrame()
+        public SchedulerType GetSchedulerType()
         {
-            return _isFrame;
+            return _schedulerType;
         }
         
         public void Call()
@@ -101,7 +108,7 @@ namespace Core
         private readonly uint _repeat;
         private readonly long _delay;
         private readonly Action<SchedulerItem> _callback;
-        private readonly bool _isFrame;
+        private readonly SchedulerType _schedulerType;
 
         /// <summary>
         /// 已经调用次数
@@ -117,80 +124,55 @@ namespace Core
         {
             
             var nowFrame = Time.frameCount;
-            while (_frameQueue.GetSize() > 0)
+            var nowTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
+            using var enumerator= _queuesDic.GetEnumerator();
+            while (enumerator.MoveNext())
             {
-                var item = _frameQueue.Top();
-                if (item.IsFinished())
+                var type = enumerator.Current.Key;
+                var queue = enumerator.Current.Value;
+                while (queue.GetSize() > 0)
                 {
-                    _frameQueue.Pop();
-                    continue;
-                }
+                    var item = queue.Top();
+                    if (item.IsFinished())
+                    {
+                        queue.Pop();
+                        continue;
+                    }
 
-                if (item.IsCanceled())
-                {
-                    _frameQueue.Pop();
-                    continue;
-                }
+                    if (item.IsCanceled())
+                    {
+                        queue.Pop();
+                        continue;
+                    }
 
-                if (item.GetNextTriggerTiming() > nowFrame)
-                {
-                    break;
-                }
+                    if (item.GetNextTriggerTiming() > (type == SchedulerType.Frame? nowFrame:nowTime))
+                    {
+                        break;
+                    }
 
-                _frameQueue.Pop();
-                item.Call();
-                if (!item.IsFinished())
-                {
-                    _frameQueue.Push(item);
-                }
-            }
-            
-            var now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            while (_timerQueue.GetSize() > 0)
-            {
-                var item = _timerQueue.Top();
-                if (item.IsFinished())
-                {
-                    _timerQueue.Pop();
-                    continue;
-                }
-
-                if (item.IsCanceled())
-                {
-                    _timerQueue.Pop();
-                    continue;
-                }
-
-                if (item.GetNextTriggerTiming() > now)
-                {
-                    break;
-                }
-
-                _timerQueue.Pop();
-                item.Call();
-                if (!item.IsFinished())
-                {
-                    _timerQueue.Push(item);
-                }
+                    queue.Pop();
+                    item.Call();
+                    if (!item.IsFinished())
+                    {
+                        queue.Push(item);
+                    }
+                } 
             }
         }
 
         public void AddItem(SchedulerItem schedulerItem)
         {
-            if (schedulerItem.IsFrame())
-            {
-                _frameQueue.Push(schedulerItem);
-            }
-            else
-            {
-                _timerQueue.Push(schedulerItem);
-            }
+            _queuesDic[schedulerItem.GetSchedulerType()].Push(schedulerItem);
         }
 
         private Scheduler()
         {
-            _timerQueue = new PriorityQueue<SchedulerItem>(MinHeapCompare);
-            _frameQueue = new PriorityQueue<SchedulerItem>(MinHeapCompare);
+            _queuesDic = new Dictionary<SchedulerType, PriorityQueue<SchedulerItem>>
+            {
+                {SchedulerType.Frame, new PriorityQueue<SchedulerItem>(MinHeapCompare)},
+                {SchedulerType.Timer, new PriorityQueue<SchedulerItem>(MinHeapCompare)}
+            };
         }
 
         private long MinHeapCompare(SchedulerItem a, SchedulerItem b)
@@ -201,21 +183,19 @@ namespace Core
 
         public SchedulerItem CallLater(long delay, Action<SchedulerItem> callback)
         {
-            var timer = new SchedulerItem(0, 1, delay, callback);
+            var timer = new SchedulerItem(0, 1, delay, callback, SchedulerType.Timer);
             AddItem(timer);
             return timer;
         }
         
         public SchedulerItem CallLaterFrame(long delay, Action<SchedulerItem> callback)
         {
-            var frame = new SchedulerItem(0, 1, delay, callback, true);
+            var frame = new SchedulerItem(0, 1, delay, callback, SchedulerType.Frame);
             AddItem(frame);
             return frame;
         }
 
-        private readonly PriorityQueue<SchedulerItem> _timerQueue;
-        private readonly PriorityQueue<SchedulerItem> _frameQueue;
-
+        private readonly Dictionary<SchedulerType, PriorityQueue<SchedulerItem>> _queuesDic;
         private static Scheduler _instance;
         public static Scheduler Instance
         {
