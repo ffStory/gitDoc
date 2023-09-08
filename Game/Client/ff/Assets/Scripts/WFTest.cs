@@ -1,8 +1,16 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Text;
 using Core;
+using Google.Protobuf;
+using Google.Protobuf.Collections;
+using Google.Protobuf.Reflection;
 using UI;
 using UI.Views;
+using UnityEditor;
 using UnityEngine;
 
 public class Player : BasePlayer
@@ -37,47 +45,54 @@ public class Hero : BaseHero
 
 }
 
-
 public class WFTest : MonoBehaviour
 {
     
     // Start is called before the first frame update
     void Start()
     {
-        // var game = new Game();
-        // game.player.Exp = 200;
-        
-        // UIManager.Instance.JumpView(new BaseUISnapShoot("HeroListView", ViewType.HeroList));
-
-        Debug.Log(".....init:" + Time.frameCount);
-        var item1 = new SchedulerItem(0, 1, 5, item =>
+        Debug.Log(Type.GetType("String") == null);
+        var codePath = Path.Combine(Directory.GetCurrentDirectory(), "../../Resource/Data/Hero.byte");
+        using var stream2 = new FileStream(codePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+        var dic2 = HeroResMsgDic.Parser.ParseFrom(stream2);
+        int a = 0;
+        foreach (var item in dic2.Dic)
         {
-            Debug.Log(".....5s:" + item.GetCalledTimes() + " " + Time.frameCount);
-        }, true);
-        Scheduler.Instance.AddItem(item1);
+            Debug.Log("....." + item.Value.Id + " " + item.Value.Name + " " + item.Value.ItemType);
+            for (int i = 0; i < item.Value.Rewards.Count; i++)
+            {
+                Debug.Log(".......reward:" + item.Value.Rewards[i]);
+            }
+            for (int i = 0; i < item.Value.Rewards2.Count; i++)
+            {
+                a += item.Value.Rewards2[i];
+                Debug.Log(".......reward2:" + item.Value.Rewards2[i] + " " + a);
+            }
 
-        var item = new SchedulerItem(2, 4, 0, item =>
-        {
-            Debug.Log(".....2s:" + item.GetCalledTimes()  + " " + Time.frameCount);
-        }, true);
-        Scheduler.Instance.AddItem(item);
-        //
-        // Scheduler.Instance.CallLater(1000, timer =>
-        // {
-        //     Debug.Log("....1");
-        // });
-        //
-        // Scheduler.Instance.CallLater(3000, timer =>
-        // {
-        //     Debug.Log("....3");
-        // });
-        //
-        // Scheduler.Instance.CallLater(6000, timer =>
-        // {
-        //     Debug.Log("....6");
-        // });
+            foreach (var pair in item.Value.DicTest)
+            {
+                Debug.Log("...dic:" + pair.Key + " " + pair.Value);
+            }
+        }
     }
 
+    public Type GetType(string typeName)
+    {
+        switch (typeName)
+        {
+            case "String":
+            {
+                return typeof(string);
+            }
+            case "Int32":
+            {
+                return typeof(Int32);
+            }
+        }
+
+        return null;
+    }
+    
     // Update is called once per frame
     void Update()
     {

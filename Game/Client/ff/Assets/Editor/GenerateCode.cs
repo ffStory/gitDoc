@@ -12,12 +12,14 @@ public static class GenerateCode
     private static Dictionary<string, string> CSharpTypeMap = new Dictionary<string, string>() 
     {
         {"int", "int"},
+        {"uint", "uint"},
         {"string", "string"},
     };
 
     private static Dictionary<string, string> ProtoTypeMap = new Dictionary<string, string>()
     {
         {"int", "int32"},
+        {"uint", "uint32"},
         {"string", "string"},
     };
 
@@ -31,6 +33,8 @@ public static class GenerateCode
         ExportBaseObject();
         ExportProtoBase();
         ExportProtoEnum();
+
+        ExportProtoRes();
     }
 
     /// <summary>
@@ -117,6 +121,71 @@ public static class GenerateCode
         {
             UnityEngine.Debug.LogError(e);
         }
+    }
+
+    public static void ExportProtoRes()
+    {
+        try
+        {
+            var path = "../../Resource/Table";
+            var files = Directory.GetFiles(path);
+            var builder = new StringBuilder();
+            builder.Append("syntax = \"proto3\";\r\n");
+            builder.Append("import \"Enum.proto\";\r\n");
+            for (int i = 0; i < files.Length; i++)
+            {
+                var file = files[i];
+                AppendTableProto(file, builder);
+            }
+
+            var codePath = Path.Combine(Directory.GetCurrentDirectory(), "../../Proto/Auto/ObjectResMsg.proto");
+            using var stream = new FileStream(codePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
+            var data = Encoding.UTF8.GetBytes(builder.ToString());
+            stream.Write(data, 0, data.Length);
+            stream.Flush();
+            stream.Close();
+        }
+        catch (Exception e)
+        {
+            UnityEngine.Debug.LogError(e);
+        } 
+    }
+    
+    private static void AppendTableProto(string fullFile, StringBuilder builder)
+    {
+        var workBook = CreateWorkbook(fullFile);
+        var sheet = workBook.GetSheetAt(0);
+        var attrRow = sheet.GetRow(0);
+        var attrTypeRow = sheet.GetRow(1);
+        var filterRow = sheet.GetRow(2);
+        var fileName = Path.GetFileNameWithoutExtension(fullFile);
+        var protoName = fileName + "ResMsg";
+        builder.Append($"message {protoName}\r\n");
+        builder.Append("{\r\n");
+
+        string idType = "int32";
+        var index = 0;
+        for (int i = 0; i <= attrRow.Cells.Count; i++)
+        {
+
+            if (GetCellValue(filterRow.GetCell(i)) != "1") { continue; }
+            index++;
+            var attrName = attrRow.GetCell(i);
+            var attrType = attrTypeRow.GetCell(i);
+            var type = GetProtoAttrType(GetCellValue(attrType));
+            if (i == 0) { idType = type; }
+            
+            builder.Append($"    {type} {attrName} = {index};\r\n");
+        }
+        builder.Append("}\r\n");
+
+        builder.Append
+        (
+            $"message {protoName}Dic\r\n" +
+            "{\r\n" +
+            $"   map<{idType}, {protoName}> Dic = 1;\r\n" + 
+            "}\r\n"
+        );
     }
 
     private static void ExportProtoEnum()
@@ -300,7 +369,7 @@ public static class GenerateCode
                     "        {\r\n" +
                     $"            var old = {privateAttr};\r\n" +
                     $"            {privateAttr} = value;\r\n" +
-                    $"            PostAttrEvent(\"{attrName}\", old, {attrName});\r\n" +
+                    $"            PostAttrEvent(\"{attrName}\", old, {privateAttr});\r\n" +
                     "        }\r\n" +
                     "    }\r\n"
                     );

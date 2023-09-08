@@ -1,0 +1,28 @@
+syntax = "proto3";
+import "Enum.proto";
+message HeroResMsg
+{
+    uint32 Id = 1;
+    string Name = 2;
+    ItemType ItemType = 3;
+    repeated string Rewards = 4;
+    map<int32, string> DicTest = 5;
+    repeated int32 Rewards2 = 6;
+    repeated uint32 Rewards3 = 7;
+}
+message HeroResMsgDic
+{
+   map<uint32, HeroResMsg> Dic = 1;
+}
+message ItemResMsg
+{
+    int32 Id = 1;
+    string Name = 2;
+    ItemType ItemType = 3;
+    repeated string Rewards = 4;
+    map<int32, string> DicTest = 5;
+}
+message ItemResMsgDic
+{
+   map<int32, ItemResMsg> Dic = 1;
+}

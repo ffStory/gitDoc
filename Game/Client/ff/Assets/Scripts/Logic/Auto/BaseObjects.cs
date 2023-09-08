@@ -11,7 +11,7 @@ public abstract class BaseHero : BaseObject
         {
             var old = exp;
             exp = value;
-            PostAttrEvent("Exp", old, Exp);
+            PostAttrEvent("Exp", old, exp);
         }
     }
     public abstract int Level { get; }
@@ -23,7 +23,7 @@ public abstract class BaseHero : BaseObject
         {
             var old = name;
             name = value;
-            PostAttrEvent("Name", old, Name);
+            PostAttrEvent("Name", old, name);
         }
     }
     public override void LoadMsg(IMessage iMessage)
@@ -46,7 +46,7 @@ public abstract class BasePlayer : BaseObject
         {
             var old = exp;
             exp = value;
-            PostAttrEvent("Exp", old, Exp);
+            PostAttrEvent("Exp", old, exp);
         }
     }
     public abstract int Level { get; }
@@ -59,7 +59,7 @@ public abstract class BasePlayer : BaseObject
         {
             var old = gold;
             gold = value;
-            PostAttrEvent("Gold", old, Gold);
+            PostAttrEvent("Gold", old, gold);
         }
     }
     public List<Hero> Items;
@@ -74,7 +74,7 @@ public abstract class BasePlayer : BaseObject
         {
             var old = itemType;
             itemType = value;
-            PostAttrEvent("ItemType", old, ItemType);
+            PostAttrEvent("ItemType", old, itemType);
         }
     }
     public override void LoadMsg(IMessage iMessage)
