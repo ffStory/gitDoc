@@ -2,13 +2,13 @@ syntax = "proto3";
 import "Enum.proto";
 message HeroMsg
 {
-    int32 Id = 1;
+    uint32 Id = 1;
     int32 Exp = 2;
     string Name = 3;
 }
 message PlayerMsg
 {
-    int32 Id = 1;
+    uint32 Id = 1;
     int32 Exp = 2;
     map<int32, HeroMsg> Heroes = 3;
     int32 Gold = 4;

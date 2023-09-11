@@ -77,6 +77,17 @@ public abstract class BasePlayer : BaseObject
             PostAttrEvent("ItemType", old, itemType);
         }
     }
+    protected int attackBoost;
+    public int AttackBoost
+    {
+        get{return attackBoost;}
+        set
+        {
+            var old = attackBoost;
+            attackBoost = value;
+            PostAttrEvent("AttackBoost", old, attackBoost);
+        }
+    }
     public override void LoadMsg(IMessage iMessage)
     {
         var message = iMessage as PlayerMsg;

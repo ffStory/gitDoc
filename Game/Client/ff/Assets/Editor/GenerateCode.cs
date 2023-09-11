@@ -181,9 +181,9 @@ public static class GenerateCode
 
         builder.Append
         (
-            $"message {protoName}Dic\r\n" +
+            $"message {fileName}ResMapMsg\r\n" +
             "{\r\n" +
-            $"   map<{idType}, {protoName}> Dic = 1;\r\n" + 
+            $"   map<{idType}, {protoName}> Map = 1;\r\n" + 
             "}\r\n"
         );
     }

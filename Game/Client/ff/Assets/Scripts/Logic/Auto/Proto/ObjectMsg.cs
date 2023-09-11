@@ -23,8 +23,8 @@ public static partial class ObjectMsgReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Cg9PYmplY3RNc2cucHJvdG8aCkVudW0ucHJvdG8iMAoHSGVyb01zZxIKCgJJ",
-          "ZBgBIAEoBRILCgNFeHAYAiABKAUSDAoETmFtZRgDIAEoCSLEAgoJUGxheWVy",
-          "TXNnEgoKAklkGAEgASgFEgsKA0V4cBgCIAEoBRImCgZIZXJvZXMYAyADKAsy",
+          "ZBgBIAEoDRILCgNFeHAYAiABKAUSDAoETmFtZRgDIAEoCSLEAgoJUGxheWVy",
+          "TXNnEgoKAklkGAEgASgNEgsKA0V4cBgCIAEoBRImCgZIZXJvZXMYAyADKAsy",
           "Fi5QbGF5ZXJNc2cuSGVyb2VzRW50cnkSDAoER29sZBgEIAEoBRIXCgVJdGVt",
           "cxgFIAMoCzIILkhlcm9Nc2cSEAoISXRlbXNJbnQYBiADKAUSMgoMSGVyb2Vz",
           "RGljSW50GAcgAygLMhwuUGxheWVyTXNnLkhlcm9lc0RpY0ludEVudHJ5EhsK",
@@ -91,10 +91,10 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
 
   /// <summary>Field number for the "Id" field.</summary>
   public const int IdFieldNumber = 1;
-  private int id_;
+  private uint id_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int Id {
+  public uint Id {
     get { return id_; }
     set {
       id_ = value;
@@ -173,7 +173,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
   #else
     if (Id != 0) {
       output.WriteRawTag(8);
-      output.WriteInt32(Id);
+      output.WriteUInt32(Id);
     }
     if (Exp != 0) {
       output.WriteRawTag(16);
@@ -195,7 +195,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (Id != 0) {
       output.WriteRawTag(8);
-      output.WriteInt32(Id);
+      output.WriteUInt32(Id);
     }
     if (Exp != 0) {
       output.WriteRawTag(16);
@@ -216,7 +216,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
   public int CalculateSize() {
     int size = 0;
     if (Id != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Id);
     }
     if (Exp != 0) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
@@ -261,7 +261,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
         case 8: {
-          Id = input.ReadInt32();
+          Id = input.ReadUInt32();
           break;
         }
         case 16: {
@@ -288,7 +288,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
         case 8: {
-          Id = input.ReadInt32();
+          Id = input.ReadUInt32();
           break;
         }
         case 16: {
@@ -359,10 +359,10 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
 
   /// <summary>Field number for the "Id" field.</summary>
   public const int IdFieldNumber = 1;
-  private int id_;
+  private uint id_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int Id {
+  public uint Id {
     get { return id_; }
     set {
       id_ = value;
@@ -507,7 +507,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
   #else
     if (Id != 0) {
       output.WriteRawTag(8);
-      output.WriteInt32(Id);
+      output.WriteUInt32(Id);
     }
     if (Exp != 0) {
       output.WriteRawTag(16);
@@ -537,7 +537,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
     if (Id != 0) {
       output.WriteRawTag(8);
-      output.WriteInt32(Id);
+      output.WriteUInt32(Id);
     }
     if (Exp != 0) {
       output.WriteRawTag(16);
@@ -566,7 +566,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
   public int CalculateSize() {
     int size = 0;
     if (Id != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Id);
     }
     if (Exp != 0) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
@@ -625,7 +625,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
         case 8: {
-          Id = input.ReadInt32();
+          Id = input.ReadUInt32();
           break;
         }
         case 16: {
@@ -673,7 +673,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
         case 8: {
-          Id = input.ReadInt32();
+          Id = input.ReadUInt32();
           break;
         }
         case 16: {

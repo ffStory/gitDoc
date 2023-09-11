@@ -10,19 +10,19 @@ message HeroResMsg
     repeated int32 Rewards2 = 6;
     repeated uint32 Rewards3 = 7;
 }
-message HeroResMsgDic
+message HeroResMapMsg
 {
-   map<uint32, HeroResMsg> Dic = 1;
+   map<uint32, HeroResMsg> Map = 1;
 }
 message ItemResMsg
 {
-    int32 Id = 1;
+    uint32 Id = 1;
     string Name = 2;
     ItemType ItemType = 3;
     repeated string Rewards = 4;
     map<int32, string> DicTest = 5;
 }
-message ItemResMsgDic
+message ItemResMapMsg
 {
-   map<int32, ItemResMsg> Dic = 1;
+   map<uint32, ItemResMsg> Map = 1;
 }

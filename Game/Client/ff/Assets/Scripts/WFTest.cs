@@ -54,9 +54,9 @@ public class WFTest : MonoBehaviour
         Debug.Log(Type.GetType("String") == null);
         var codePath = Path.Combine(Directory.GetCurrentDirectory(), "../../Resource/Data/Hero.byte");
         using var stream2 = new FileStream(codePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
-        var dic2 = HeroResMsgDic.Parser.ParseFrom(stream2);
+        var dic2 = HeroResMapMsg.Parser.ParseFrom(stream2);
         int a = 0;
-        foreach (var item in dic2.Dic)
+        foreach (var item in dic2.Map)
         {
             Debug.Log("....." + item.Value.Id + " " + item.Value.Name + " " + item.Value.ItemType);
             for (int i = 0; i < item.Value.Rewards.Count; i++)

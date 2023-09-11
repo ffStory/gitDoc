@@ -32,6 +32,6 @@ public class BaseObject : EventTarget
     }
 
     public Game Game { get; private set; }
-    public int Id { get; set; }
+    public uint Id { get; set; }
     public ObjectType Type { get; set; }
 }
