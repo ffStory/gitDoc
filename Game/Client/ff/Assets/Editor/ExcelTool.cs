@@ -124,10 +124,10 @@ namespace Editor
                     if (methodInfo != null)
                     {
                         var array = value.Split('|');
-                        for (var i = 0; i < array.Length; i++)
+                        foreach (var t in array)
                         {
                             var args = new object[1];
-                            var temp =  array[i];
+                            var temp =  t;
                             if (typeName == "String")
                             {
                                 args[0] = temp;
