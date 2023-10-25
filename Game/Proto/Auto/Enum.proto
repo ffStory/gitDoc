@@ -1,4 +1,9 @@
 syntax = "proto3";
+enum CostItemType
+{
+    Consume = 0;
+    Between = 1;
+}
 enum ItemType
 {
     Resource = 0;
@@ -7,5 +12,5 @@ enum ItemType
 enum ObjectType
 {
     Player = 0;
-    Hero = 2;
+    Hero = 1;
 }

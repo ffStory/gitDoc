@@ -5,6 +5,8 @@ using System.Reflection;
 using NPOI.SS.UserModel;
 using UnityEditor;
 using Google.Protobuf;
+using Unity.Plastic.Newtonsoft.Json;
+using Unity.Plastic.Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace Editor
@@ -182,6 +184,37 @@ namespace Editor
                             methodInfo.Invoke(target, args);
                         }
                     }
+                }
+                else if (property.PropertyType.ToString() == "Cost")
+                {
+                    var json = (JArray)JsonConvert.DeserializeObject(value);
+                    var cost = new Cost();
+                    for (int i = 0; i < json.Count; i++)
+                    {
+                        var strType = json[i][0].ToString();
+                        var costItem = new CostItem();
+                        var costItemType = (CostItemType)System.Enum.Parse(typeof(CostItemType), strType);
+                        costItem.CostItemType = costItemType;
+                        switch (costItemType)
+                        {
+                            case CostItemType.Consume:
+                                costItem.Consume = new CostItemConsume()
+                                {
+                                    AttrName = "wff"
+                                };
+                                costItem.ObjectType = ObjectType.Hero;
+                                break;
+                            case CostItemType.Between:
+                                costItem.Between = new CostItemBetween
+                                {
+                                    AttrValue = "1"
+                                };
+                                costItem.ObjectType = ObjectType.Player;
+                                break; 
+                        }
+                        cost.Items.Add(costItem);
+                    }
+                    property.SetValue(obj, Convert.ChangeType(cost, property.PropertyType));
                 }
                 else
                 {

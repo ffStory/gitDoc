@@ -123,6 +123,7 @@ namespace Editor
                 var builder = new StringBuilder();
                 builder.Append("syntax = \"proto3\";\r\n");
                 builder.Append("import \"Enum.proto\";\r\n");
+                builder.Append("import \"Cost.proto\";\r\n");
                 foreach (var file in files)
                 {
                     AppendTableProto(file, builder);
@@ -219,11 +220,12 @@ namespace Editor
                     var directory = Path.GetDirectoryName(file);
                     var targetPath = Path.Combine(Directory.GetCurrentDirectory(), "Assets/Scripts/Logic/Auto/Proto");
                     var arguments = $" -I={directory} --csharp_out={targetPath} {fileName}";
+                    var protocPath = Path.Combine(Directory.GetCurrentDirectory(), "../../Tools/Protocbuf/bin/protoc.exe");
                     var process = new Process
                     {
                         StartInfo =
                         {
-                            FileName = "protoc.exe",
+                            FileName = protocPath,
                             Arguments = arguments,
                             UseShellExecute = false,
                             RedirectStandardOutput = true,

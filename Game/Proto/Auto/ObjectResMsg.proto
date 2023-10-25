@@ -1,5 +1,6 @@
 syntax = "proto3";
 import "Enum.proto";
+import "Cost.proto";
 message HeroResMsg
 {
     uint32 Id = 1;
@@ -9,6 +10,7 @@ message HeroResMsg
     map<int32, string> DicTest = 5;
     repeated int32 Rewards2 = 6;
     repeated uint32 Rewards3 = 7;
+    Cost UpgradeCost = 8;
 }
 message HeroResMapMsg
 {

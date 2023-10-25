@@ -22,17 +22,22 @@ public static partial class EnumReflection {
   static EnumReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CgpFbnVtLnByb3RvKiMKCEl0ZW1UeXBlEgwKCFJlc291cmNlEAASCQoFU3Bl",
-          "ZWQQAioiCgpPYmplY3RUeXBlEgoKBlBsYXllchAAEggKBEhlcm8QAmIGcHJv",
-          "dG8z"));
+          "CgpFbnVtLnByb3RvKigKDENvc3RJdGVtVHlwZRILCgdDb25zdW1lEAASCwoH",
+          "QmV0d2VlbhABKiMKCEl0ZW1UeXBlEgwKCFJlc291cmNlEAASCQoFU3BlZWQQ",
+          "AioiCgpPYmplY3RUeXBlEgoKBlBsYXllchAAEggKBEhlcm8QAWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::ItemType), typeof(global::ObjectType), }, null, null));
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::CostItemType), typeof(global::ItemType), typeof(global::ObjectType), }, null, null));
   }
   #endregion
 
 }
 #region Enums
+public enum CostItemType {
+  [pbr::OriginalName("Consume")] Consume = 0,
+  [pbr::OriginalName("Between")] Between = 1,
+}
+
 public enum ItemType {
   [pbr::OriginalName("Resource")] Resource = 0,
   [pbr::OriginalName("Speed")] Speed = 2,
@@ -40,7 +45,7 @@ public enum ItemType {
 
 public enum ObjectType {
   [pbr::OriginalName("Player")] Player = 0,
-  [pbr::OriginalName("Hero")] Hero = 2,
+  [pbr::OriginalName("Hero")] Hero = 1,
 }
 
 #endregion

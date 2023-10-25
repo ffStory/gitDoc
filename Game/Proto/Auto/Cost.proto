@@ -1,0 +1,30 @@
+syntax = "proto3";
+import "Enum.proto";
+
+
+message CostItemConsume
+{
+    string attrName = 1;
+}
+
+message CostItemBetween
+{
+    string attrValue = 1;
+}
+
+message CostItem
+{
+    CostItemType costItemType = 1;
+    ObjectType objectType = 2;
+    oneof item
+    {
+        CostItemBetween between = 3;
+        CostItemConsume consume = 4;
+    }
+
+}
+
+message Cost
+{
+    repeated CostItem items = 1;
+}

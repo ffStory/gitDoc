@@ -43,6 +43,7 @@ public static partial class ObjectMsgReflection {
 
 }
 #region Messages
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
@@ -306,6 +307,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
 
 }
 
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage

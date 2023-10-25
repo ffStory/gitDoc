@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using Core;
@@ -58,20 +59,20 @@ public class WFTest : MonoBehaviour
         int a = 0;
         foreach (var item in dic2.Map)
         {
-            Debug.Log("....." + item.Value.Id + " " + item.Value.Name + " " + item.Value.ItemType);
-            for (int i = 0; i < item.Value.Rewards.Count; i++)
+            var costItems = item.Value.UpgradeCost.Items;
+            for (int i = 0; i < costItems.Count; i++)
             {
-                Debug.Log(".......reward:" + item.Value.Rewards[i]);
-            }
-            for (int i = 0; i < item.Value.Rewards2.Count; i++)
-            {
-                a += item.Value.Rewards2[i];
-                Debug.Log(".......reward2:" + item.Value.Rewards2[i] + " " + a);
-            }
-
-            foreach (var pair in item.Value.DicTest)
-            {
-                Debug.Log("...dic:" + pair.Key + " " + pair.Value);
+                var costItem = costItems[i];
+                Debug.Log(" costItemType:" + costItem.CostItemType + " object:" + costItem.ObjectType);
+                switch (costItem.ItemCase)
+                {
+                    case CostItem.ItemOneofCase.Between:
+                    Debug.Log(" attrV:" + costItem.Between.AttrValue);
+                        break;
+                    case CostItem.ItemOneofCase.Consume:
+                    Debug.Log(" attrN:" + costItem.Consume.AttrName);
+                        break;
+                }
             }
         }
     }
