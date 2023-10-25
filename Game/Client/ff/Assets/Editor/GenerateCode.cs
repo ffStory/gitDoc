@@ -28,7 +28,6 @@ namespace Editor
 
         private static readonly List<string> ObjectTypeList = new List<string>();
 
-        [MenuItem("Tools/ExcelToProtoAndBaseCS")]
         public static void ExportResource()
         {
             LoadType();
@@ -208,7 +207,6 @@ namespace Editor
         /// <summary>
         /// proto 生成 cs文件
         /// </summary>
-        [MenuItem("Tools/ProtoToCS")]
         public static void ProtoToCs()
         {
             try

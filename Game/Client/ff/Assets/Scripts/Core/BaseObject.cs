@@ -7,6 +7,11 @@ public class BaseObject : EventTarget
         this.Game = game;
         this.Type = type;
     }
+    
+    public BaseObject()
+    {
+
+    }
 
     public string GetAttrEvent(string attrName)
     {

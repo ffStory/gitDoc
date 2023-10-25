@@ -2,29 +2,29 @@ syntax = "proto3";
 import "Enum.proto";
 
 
-message CostItemConsume
+message CostItemConsumeMsg
 {
     string attrName = 1;
 }
 
-message CostItemBetween
+message CostItemBetweenMsg
 {
     string attrValue = 1;
 }
 
-message CostItem
+message CostItemMsg
 {
     CostItemType costItemType = 1;
     ObjectType objectType = 2;
     oneof item
     {
-        CostItemBetween between = 3;
-        CostItemConsume consume = 4;
+        CostItemBetweenMsg between = 3;
+        CostItemConsumeMsg consume = 4;
     }
 
 }
 
-message Cost
+message CostMsg
 {
-    repeated CostItem items = 1;
+    repeated CostItemMsg items = 1;
 }

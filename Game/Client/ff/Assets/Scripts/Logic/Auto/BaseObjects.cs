@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Google.Protobuf;
+
 public abstract class BaseHero : BaseObject
 {
     public BaseHero(Game game) : base(game, ObjectType.Hero){}
@@ -26,15 +27,35 @@ public abstract class BaseHero : BaseObject
             PostAttrEvent("Name", old, name);
         }
     }
+    public Cost UpCost;
+    public List<Cost> UpCosts;
+    public Dictionary<string, Cost> UpCostDic;
     public override void LoadMsg(IMessage iMessage)
     {
         var message = iMessage as HeroMsg;
         Id = message.Id;
         Exp = message.Exp;
         Name = message.Name;
+        UpCost = new Cost();
+        UpCost.LoadMsg(message.UpCost);
+        UpCosts = new List<Cost>();
+        for (var i = 0; i < message.UpCosts.Count; i++)
+        {
+            var item = new Cost();
+            item.LoadMsg(message.UpCosts[i]);
+            UpCosts.Add(item);
+        }
+        UpCostDic = new Dictionary<string, Cost>();
+        foreach (var pair in message.UpCostDic)
+        {
+            var item = new Cost();
+            item.LoadMsg(pair.Value);
+            UpCostDic.Add(pair.Key, item);
+        }
         AfterLoadMsg();
     }
 }
+
 public abstract class BasePlayer : BaseObject
 {
     public BasePlayer(Game game) : base(game, ObjectType.Player){}

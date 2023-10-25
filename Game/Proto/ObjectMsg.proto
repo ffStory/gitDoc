@@ -1,11 +1,17 @@
 syntax = "proto3";
 import "Enum.proto";
+import "CostMsg.proto";
+
 message HeroMsg
 {
     uint32 Id = 1;
     int32 Exp = 2;
     string Name = 3;
+    CostMsg UpCost = 4;
+    repeated CostMsg UpCosts = 5;
+    map<string, CostMsg> UpCostDic = 6;
 }
+
 message PlayerMsg
 {
     uint32 Id = 1;

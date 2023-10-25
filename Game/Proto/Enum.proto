@@ -1,16 +1,26 @@
 syntax = "proto3";
+
 enum CostItemType
 {
     Consume = 0;
     Between = 1;
 }
+
 enum ItemType
 {
     Resource = 0;
     Speed = 2;
 }
+
 enum ObjectType
 {
     Player = 0;
     Hero = 1;
+    Card = 2;
+}
+
+enum TaskState
+{
+    Accept = 0;
+    Finished = 1;
 }

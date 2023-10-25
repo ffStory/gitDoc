@@ -22,20 +22,24 @@ public static partial class ObjectMsgReflection {
   static ObjectMsgReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg9PYmplY3RNc2cucHJvdG8aCkVudW0ucHJvdG8iMAoHSGVyb01zZxIKCgJJ",
-          "ZBgBIAEoDRILCgNFeHAYAiABKAUSDAoETmFtZRgDIAEoCSLEAgoJUGxheWVy",
-          "TXNnEgoKAklkGAEgASgNEgsKA0V4cBgCIAEoBRImCgZIZXJvZXMYAyADKAsy",
-          "Fi5QbGF5ZXJNc2cuSGVyb2VzRW50cnkSDAoER29sZBgEIAEoBRIXCgVJdGVt",
-          "cxgFIAMoCzIILkhlcm9Nc2cSEAoISXRlbXNJbnQYBiADKAUSMgoMSGVyb2Vz",
-          "RGljSW50GAcgAygLMhwuUGxheWVyTXNnLkhlcm9lc0RpY0ludEVudHJ5EhsK",
-          "CEl0ZW1UeXBlGAggASgOMgkuSXRlbVR5cGUaNwoLSGVyb2VzRW50cnkSCwoD",
-          "a2V5GAEgASgFEhcKBXZhbHVlGAIgASgLMgguSGVyb01zZzoCOAEaMwoRSGVy",
-          "b2VzRGljSW50RW50cnkSCwoDa2V5GAEgASgFEg0KBXZhbHVlGAIgASgFOgI4",
-          "AWIGcHJvdG8z"));
+          "Cg9PYmplY3RNc2cucHJvdG8aCkVudW0ucHJvdG8aDUNvc3RNc2cucHJvdG8i",
+          "zQEKB0hlcm9Nc2cSCgoCSWQYASABKA0SCwoDRXhwGAIgASgFEgwKBE5hbWUY",
+          "AyABKAkSGAoGVXBDb3N0GAQgASgLMgguQ29zdE1zZxIZCgdVcENvc3RzGAUg",
+          "AygLMgguQ29zdE1zZxIqCglVcENvc3REaWMYBiADKAsyFy5IZXJvTXNnLlVw",
+          "Q29zdERpY0VudHJ5GjoKDlVwQ29zdERpY0VudHJ5EgsKA2tleRgBIAEoCRIX",
+          "CgV2YWx1ZRgCIAEoCzIILkNvc3RNc2c6AjgBIsQCCglQbGF5ZXJNc2cSCgoC",
+          "SWQYASABKA0SCwoDRXhwGAIgASgFEiYKBkhlcm9lcxgDIAMoCzIWLlBsYXll",
+          "ck1zZy5IZXJvZXNFbnRyeRIMCgRHb2xkGAQgASgFEhcKBUl0ZW1zGAUgAygL",
+          "MgguSGVyb01zZxIQCghJdGVtc0ludBgGIAMoBRIyCgxIZXJvZXNEaWNJbnQY",
+          "ByADKAsyHC5QbGF5ZXJNc2cuSGVyb2VzRGljSW50RW50cnkSGwoISXRlbVR5",
+          "cGUYCCABKA4yCS5JdGVtVHlwZRo3CgtIZXJvZXNFbnRyeRILCgNrZXkYASAB",
+          "KAUSFwoFdmFsdWUYAiABKAsyCC5IZXJvTXNnOgI4ARozChFIZXJvZXNEaWNJ",
+          "bnRFbnRyeRILCgNrZXkYASABKAUSDQoFdmFsdWUYAiABKAU6AjgBYgZwcm90",
+          "bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::EnumReflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::EnumReflection.Descriptor, global::CostMsgReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::HeroMsg), global::HeroMsg.Parser, new[]{ "Id", "Exp", "Name" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::HeroMsg), global::HeroMsg.Parser, new[]{ "Id", "Exp", "Name", "UpCost", "UpCosts", "UpCostDic" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerMsg), global::PlayerMsg.Parser, new[]{ "Id", "Exp", "Heroes", "Gold", "Items", "ItemsInt", "HeroesDicInt", "ItemType" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, })
         }));
   }
@@ -81,6 +85,9 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     id_ = other.id_;
     exp_ = other.exp_;
     name_ = other.name_;
+    upCost_ = other.upCost_ != null ? other.upCost_.Clone() : null;
+    upCosts_ = other.upCosts_.Clone();
+    upCostDic_ = other.upCostDic_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -126,6 +133,40 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     }
   }
 
+  /// <summary>Field number for the "UpCost" field.</summary>
+  public const int UpCostFieldNumber = 4;
+  private global::CostMsg upCost_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::CostMsg UpCost {
+    get { return upCost_; }
+    set {
+      upCost_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "UpCosts" field.</summary>
+  public const int UpCostsFieldNumber = 5;
+  private static readonly pb::FieldCodec<global::CostMsg> _repeated_upCosts_codec
+      = pb::FieldCodec.ForMessage(42, global::CostMsg.Parser);
+  private readonly pbc::RepeatedField<global::CostMsg> upCosts_ = new pbc::RepeatedField<global::CostMsg>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::CostMsg> UpCosts {
+    get { return upCosts_; }
+  }
+
+  /// <summary>Field number for the "UpCostDic" field.</summary>
+  public const int UpCostDicFieldNumber = 6;
+  private static readonly pbc::MapField<string, global::CostMsg>.Codec _map_upCostDic_codec
+      = new pbc::MapField<string, global::CostMsg>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForMessage(18, global::CostMsg.Parser), 50);
+  private readonly pbc::MapField<string, global::CostMsg> upCostDic_ = new pbc::MapField<string, global::CostMsg>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::MapField<string, global::CostMsg> UpCostDic {
+    get { return upCostDic_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -144,6 +185,9 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     if (Id != other.Id) return false;
     if (Exp != other.Exp) return false;
     if (Name != other.Name) return false;
+    if (!object.Equals(UpCost, other.UpCost)) return false;
+    if(!upCosts_.Equals(other.upCosts_)) return false;
+    if (!UpCostDic.Equals(other.UpCostDic)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -154,6 +198,9 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     if (Id != 0) hash ^= Id.GetHashCode();
     if (Exp != 0) hash ^= Exp.GetHashCode();
     if (Name.Length != 0) hash ^= Name.GetHashCode();
+    if (upCost_ != null) hash ^= UpCost.GetHashCode();
+    hash ^= upCosts_.GetHashCode();
+    hash ^= UpCostDic.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -184,6 +231,12 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
       output.WriteRawTag(26);
       output.WriteString(Name);
     }
+    if (upCost_ != null) {
+      output.WriteRawTag(34);
+      output.WriteMessage(UpCost);
+    }
+    upCosts_.WriteTo(output, _repeated_upCosts_codec);
+    upCostDic_.WriteTo(output, _map_upCostDic_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -206,6 +259,12 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
       output.WriteRawTag(26);
       output.WriteString(Name);
     }
+    if (upCost_ != null) {
+      output.WriteRawTag(34);
+      output.WriteMessage(UpCost);
+    }
+    upCosts_.WriteTo(ref output, _repeated_upCosts_codec);
+    upCostDic_.WriteTo(ref output, _map_upCostDic_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -225,6 +284,11 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     if (Name.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
     }
+    if (upCost_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(UpCost);
+    }
+    size += upCosts_.CalculateSize(_repeated_upCosts_codec);
+    size += upCostDic_.CalculateSize(_map_upCostDic_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -246,6 +310,14 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     if (other.Name.Length != 0) {
       Name = other.Name;
     }
+    if (other.upCost_ != null) {
+      if (upCost_ == null) {
+        UpCost = new global::CostMsg();
+      }
+      UpCost.MergeFrom(other.UpCost);
+    }
+    upCosts_.Add(other.upCosts_);
+    upCostDic_.MergeFrom(other.upCostDic_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -273,6 +345,21 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
           Name = input.ReadString();
           break;
         }
+        case 34: {
+          if (upCost_ == null) {
+            UpCost = new global::CostMsg();
+          }
+          input.ReadMessage(UpCost);
+          break;
+        }
+        case 42: {
+          upCosts_.AddEntriesFrom(input, _repeated_upCosts_codec);
+          break;
+        }
+        case 50: {
+          upCostDic_.AddEntriesFrom(input, _map_upCostDic_codec);
+          break;
+        }
       }
     }
   #endif
@@ -298,6 +385,21 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
         }
         case 26: {
           Name = input.ReadString();
+          break;
+        }
+        case 34: {
+          if (upCost_ == null) {
+            UpCost = new global::CostMsg();
+          }
+          input.ReadMessage(UpCost);
+          break;
+        }
+        case 42: {
+          upCosts_.AddEntriesFrom(ref input, _repeated_upCosts_codec);
+          break;
+        }
+        case 50: {
+          upCostDic_.AddEntriesFrom(ref input, _map_upCostDic_codec);
           break;
         }
       }

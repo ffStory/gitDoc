@@ -9,10 +9,12 @@ using Core;
 using Google.Protobuf;
 using Google.Protobuf.Collections;
 using Google.Protobuf.Reflection;
+using NPOI.SS.Formula.Functions;
 using UI;
 using UI.Views;
 using UnityEditor;
 using UnityEngine;
+using Util;
 
 public class Player : BasePlayer
 {
@@ -46,12 +48,18 @@ public class Hero : BaseHero
 
 }
 
+public class Cost :BaseObject
+{
+
+}
+
 public class WFTest : MonoBehaviour
 {
     
     // Start is called before the first frame update
     void Start()
     {
+        
         Debug.Log(Type.GetType("String") == null);
         var codePath = Path.Combine(Directory.GetCurrentDirectory(), "../../Resource/Data/Hero.byte");
         using var stream2 = new FileStream(codePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
@@ -66,10 +74,10 @@ public class WFTest : MonoBehaviour
                 Debug.Log(" costItemType:" + costItem.CostItemType + " object:" + costItem.ObjectType);
                 switch (costItem.ItemCase)
                 {
-                    case CostItem.ItemOneofCase.Between:
+                    case CostItemMsg.ItemOneofCase.Between:
                     Debug.Log(" attrV:" + costItem.Between.AttrValue);
                         break;
-                    case CostItem.ItemOneofCase.Consume:
+                    case CostItemMsg.ItemOneofCase.Consume:
                     Debug.Log(" attrN:" + costItem.Consume.AttrName);
                         break;
                 }

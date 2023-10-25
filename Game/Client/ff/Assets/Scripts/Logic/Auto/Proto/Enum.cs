@@ -24,10 +24,12 @@ public static partial class EnumReflection {
         string.Concat(
           "CgpFbnVtLnByb3RvKigKDENvc3RJdGVtVHlwZRILCgdDb25zdW1lEAASCwoH",
           "QmV0d2VlbhABKiMKCEl0ZW1UeXBlEgwKCFJlc291cmNlEAASCQoFU3BlZWQQ",
-          "AioiCgpPYmplY3RUeXBlEgoKBlBsYXllchAAEggKBEhlcm8QAWIGcHJvdG8z"));
+          "AiosCgpPYmplY3RUeXBlEgoKBlBsYXllchAAEggKBEhlcm8QARIICgRDYXJk",
+          "EAIqJQoJVGFza1N0YXRlEgoKBkFjY2VwdBAAEgwKCEZpbmlzaGVkEAFiBnBy",
+          "b3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::CostItemType), typeof(global::ItemType), typeof(global::ObjectType), }, null, null));
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::CostItemType), typeof(global::ItemType), typeof(global::ObjectType), typeof(global::TaskState), }, null, null));
   }
   #endregion
 
@@ -46,6 +48,12 @@ public enum ItemType {
 public enum ObjectType {
   [pbr::OriginalName("Player")] Player = 0,
   [pbr::OriginalName("Hero")] Hero = 1,
+  [pbr::OriginalName("Card")] Card = 2,
+}
+
+public enum TaskState {
+  [pbr::OriginalName("Accept")] Accept = 0,
+  [pbr::OriginalName("Finished")] Finished = 1,
 }
 
 #endregion

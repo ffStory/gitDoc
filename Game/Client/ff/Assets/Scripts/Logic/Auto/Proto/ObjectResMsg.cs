@@ -22,26 +22,30 @@ public static partial class ObjectResMsgReflection {
   static ObjectResMsgReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "ChJPYmplY3RSZXNNc2cucHJvdG8aCkVudW0ucHJvdG8aCkNvc3QucHJvdG8i",
-          "7wEKCkhlcm9SZXNNc2cSCgoCSWQYASABKA0SDAoETmFtZRgCIAEoCRIbCghJ",
-          "dGVtVHlwZRgDIAEoDjIJLkl0ZW1UeXBlEg8KB1Jld2FyZHMYBCADKAkSKQoH",
-          "RGljVGVzdBgFIAMoCzIYLkhlcm9SZXNNc2cuRGljVGVzdEVudHJ5EhAKCFJl",
-          "d2FyZHMyGAYgAygFEhAKCFJld2FyZHMzGAcgAygNEhoKC1VwZ3JhZGVDb3N0",
-          "GAggASgLMgUuQ29zdBouCgxEaWNUZXN0RW50cnkSCwoDa2V5GAEgASgFEg0K",
-          "BXZhbHVlGAIgASgJOgI4ASJuCg1IZXJvUmVzTWFwTXNnEiQKA01hcBgBIAMo",
-          "CzIXLkhlcm9SZXNNYXBNc2cuTWFwRW50cnkaNwoITWFwRW50cnkSCwoDa2V5",
-          "GAEgASgNEhoKBXZhbHVlGAIgASgLMgsuSGVyb1Jlc01zZzoCOAEirwEKCkl0",
-          "ZW1SZXNNc2cSCgoCSWQYASABKA0SDAoETmFtZRgCIAEoCRIbCghJdGVtVHlw",
-          "ZRgDIAEoDjIJLkl0ZW1UeXBlEg8KB1Jld2FyZHMYBCADKAkSKQoHRGljVGVz",
-          "dBgFIAMoCzIYLkl0ZW1SZXNNc2cuRGljVGVzdEVudHJ5Gi4KDERpY1Rlc3RF",
-          "bnRyeRILCgNrZXkYASABKAUSDQoFdmFsdWUYAiABKAk6AjgBIm4KDUl0ZW1S",
-          "ZXNNYXBNc2cSJAoDTWFwGAEgAygLMhcuSXRlbVJlc01hcE1zZy5NYXBFbnRy",
-          "eRo3CghNYXBFbnRyeRILCgNrZXkYASABKA0SGgoFdmFsdWUYAiABKAsyCy5J",
-          "dGVtUmVzTXNnOgI4AWIGcHJvdG8z"));
+          "ChJPYmplY3RSZXNNc2cucHJvdG8aCkVudW0ucHJvdG8aDUNvc3RNc2cucHJv",
+          "dG8ijAMKCkhlcm9SZXNNc2cSCgoCSWQYASABKA0SDAoETmFtZRgCIAEoCRIb",
+          "CghJdGVtVHlwZRgDIAEoDjIJLkl0ZW1UeXBlEg8KB1Jld2FyZHMYBCADKAkS",
+          "KQoHRGljVGVzdBgFIAMoCzIYLkhlcm9SZXNNc2cuRGljVGVzdEVudHJ5EhAK",
+          "CFJld2FyZHMyGAYgAygFEhAKCFJld2FyZHMzGAcgAygNEh0KC1VwZ3JhZGVD",
+          "b3N0GAggASgLMgguQ29zdE1zZxIeCgxVcGdyYWRlQ29zdHMYCSADKAsyCC5D",
+          "b3N0TXNnEjcKDlVwZ3JhZGVDb3N0RGljGAogAygLMh8uSGVyb1Jlc01zZy5V",
+          "cGdyYWRlQ29zdERpY0VudHJ5Gi4KDERpY1Rlc3RFbnRyeRILCgNrZXkYASAB",
+          "KAUSDQoFdmFsdWUYAiABKAk6AjgBGj8KE1VwZ3JhZGVDb3N0RGljRW50cnkS",
+          "CwoDa2V5GAEgASgJEhcKBXZhbHVlGAIgASgLMgguQ29zdE1zZzoCOAEibgoN",
+          "SGVyb1Jlc01hcE1zZxIkCgNNYXAYASADKAsyFy5IZXJvUmVzTWFwTXNnLk1h",
+          "cEVudHJ5GjcKCE1hcEVudHJ5EgsKA2tleRgBIAEoDRIaCgV2YWx1ZRgCIAEo",
+          "CzILLkhlcm9SZXNNc2c6AjgBIq8BCgpJdGVtUmVzTXNnEgoKAklkGAEgASgN",
+          "EgwKBE5hbWUYAiABKAkSGwoISXRlbVR5cGUYAyABKA4yCS5JdGVtVHlwZRIP",
+          "CgdSZXdhcmRzGAQgAygJEikKB0RpY1Rlc3QYBSADKAsyGC5JdGVtUmVzTXNn",
+          "LkRpY1Rlc3RFbnRyeRouCgxEaWNUZXN0RW50cnkSCwoDa2V5GAEgASgFEg0K",
+          "BXZhbHVlGAIgASgJOgI4ASJuCg1JdGVtUmVzTWFwTXNnEiQKA01hcBgBIAMo",
+          "CzIXLkl0ZW1SZXNNYXBNc2cuTWFwRW50cnkaNwoITWFwRW50cnkSCwoDa2V5",
+          "GAEgASgNEhoKBXZhbHVlGAIgASgLMgsuSXRlbVJlc01zZzoCOAFiBnByb3Rv",
+          "Mw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::EnumReflection.Descriptor, global::CostReflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::EnumReflection.Descriptor, global::CostMsgReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::HeroResMsg), global::HeroResMsg.Parser, new[]{ "Id", "Name", "ItemType", "Rewards", "DicTest", "Rewards2", "Rewards3", "UpgradeCost" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::HeroResMsg), global::HeroResMsg.Parser, new[]{ "Id", "Name", "ItemType", "Rewards", "DicTest", "Rewards2", "Rewards3", "UpgradeCost", "UpgradeCosts", "UpgradeCostDic" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::HeroResMapMsg), global::HeroResMapMsg.Parser, new[]{ "Map" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::ItemResMsg), global::ItemResMsg.Parser, new[]{ "Id", "Name", "ItemType", "Rewards", "DicTest" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::ItemResMapMsg), global::ItemResMapMsg.Parser, new[]{ "Map" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
@@ -94,6 +98,8 @@ public sealed partial class HeroResMsg : pb::IMessage<HeroResMsg>
     rewards2_ = other.rewards2_.Clone();
     rewards3_ = other.rewards3_.Clone();
     upgradeCost_ = other.upgradeCost_ != null ? other.upgradeCost_.Clone() : null;
+    upgradeCosts_ = other.upgradeCosts_.Clone();
+    upgradeCostDic_ = other.upgradeCostDic_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -185,14 +191,36 @@ public sealed partial class HeroResMsg : pb::IMessage<HeroResMsg>
 
   /// <summary>Field number for the "UpgradeCost" field.</summary>
   public const int UpgradeCostFieldNumber = 8;
-  private global::Cost upgradeCost_;
+  private global::CostMsg upgradeCost_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public global::Cost UpgradeCost {
+  public global::CostMsg UpgradeCost {
     get { return upgradeCost_; }
     set {
       upgradeCost_ = value;
     }
+  }
+
+  /// <summary>Field number for the "UpgradeCosts" field.</summary>
+  public const int UpgradeCostsFieldNumber = 9;
+  private static readonly pb::FieldCodec<global::CostMsg> _repeated_upgradeCosts_codec
+      = pb::FieldCodec.ForMessage(74, global::CostMsg.Parser);
+  private readonly pbc::RepeatedField<global::CostMsg> upgradeCosts_ = new pbc::RepeatedField<global::CostMsg>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::CostMsg> UpgradeCosts {
+    get { return upgradeCosts_; }
+  }
+
+  /// <summary>Field number for the "UpgradeCostDic" field.</summary>
+  public const int UpgradeCostDicFieldNumber = 10;
+  private static readonly pbc::MapField<string, global::CostMsg>.Codec _map_upgradeCostDic_codec
+      = new pbc::MapField<string, global::CostMsg>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForMessage(18, global::CostMsg.Parser), 82);
+  private readonly pbc::MapField<string, global::CostMsg> upgradeCostDic_ = new pbc::MapField<string, global::CostMsg>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::MapField<string, global::CostMsg> UpgradeCostDic {
+    get { return upgradeCostDic_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -218,6 +246,8 @@ public sealed partial class HeroResMsg : pb::IMessage<HeroResMsg>
     if(!rewards2_.Equals(other.rewards2_)) return false;
     if(!rewards3_.Equals(other.rewards3_)) return false;
     if (!object.Equals(UpgradeCost, other.UpgradeCost)) return false;
+    if(!upgradeCosts_.Equals(other.upgradeCosts_)) return false;
+    if (!UpgradeCostDic.Equals(other.UpgradeCostDic)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -233,6 +263,8 @@ public sealed partial class HeroResMsg : pb::IMessage<HeroResMsg>
     hash ^= rewards2_.GetHashCode();
     hash ^= rewards3_.GetHashCode();
     if (upgradeCost_ != null) hash ^= UpgradeCost.GetHashCode();
+    hash ^= upgradeCosts_.GetHashCode();
+    hash ^= UpgradeCostDic.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -271,6 +303,8 @@ public sealed partial class HeroResMsg : pb::IMessage<HeroResMsg>
       output.WriteRawTag(66);
       output.WriteMessage(UpgradeCost);
     }
+    upgradeCosts_.WriteTo(output, _repeated_upgradeCosts_codec);
+    upgradeCostDic_.WriteTo(output, _map_upgradeCostDic_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -301,6 +335,8 @@ public sealed partial class HeroResMsg : pb::IMessage<HeroResMsg>
       output.WriteRawTag(66);
       output.WriteMessage(UpgradeCost);
     }
+    upgradeCosts_.WriteTo(ref output, _repeated_upgradeCosts_codec);
+    upgradeCostDic_.WriteTo(ref output, _map_upgradeCostDic_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -327,6 +363,8 @@ public sealed partial class HeroResMsg : pb::IMessage<HeroResMsg>
     if (upgradeCost_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(UpgradeCost);
     }
+    size += upgradeCosts_.CalculateSize(_repeated_upgradeCosts_codec);
+    size += upgradeCostDic_.CalculateSize(_map_upgradeCostDic_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -354,10 +392,12 @@ public sealed partial class HeroResMsg : pb::IMessage<HeroResMsg>
     rewards3_.Add(other.rewards3_);
     if (other.upgradeCost_ != null) {
       if (upgradeCost_ == null) {
-        UpgradeCost = new global::Cost();
+        UpgradeCost = new global::CostMsg();
       }
       UpgradeCost.MergeFrom(other.UpgradeCost);
     }
+    upgradeCosts_.Add(other.upgradeCosts_);
+    upgradeCostDic_.MergeFrom(other.upgradeCostDic_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -405,9 +445,17 @@ public sealed partial class HeroResMsg : pb::IMessage<HeroResMsg>
         }
         case 66: {
           if (upgradeCost_ == null) {
-            UpgradeCost = new global::Cost();
+            UpgradeCost = new global::CostMsg();
           }
           input.ReadMessage(UpgradeCost);
+          break;
+        }
+        case 74: {
+          upgradeCosts_.AddEntriesFrom(input, _repeated_upgradeCosts_codec);
+          break;
+        }
+        case 82: {
+          upgradeCostDic_.AddEntriesFrom(input, _map_upgradeCostDic_codec);
           break;
         }
       }
@@ -457,9 +505,17 @@ public sealed partial class HeroResMsg : pb::IMessage<HeroResMsg>
         }
         case 66: {
           if (upgradeCost_ == null) {
-            UpgradeCost = new global::Cost();
+            UpgradeCost = new global::CostMsg();
           }
           input.ReadMessage(UpgradeCost);
+          break;
+        }
+        case 74: {
+          upgradeCosts_.AddEntriesFrom(ref input, _repeated_upgradeCosts_codec);
+          break;
+        }
+        case 82: {
+          upgradeCostDic_.AddEntriesFrom(ref input, _map_upgradeCostDic_codec);
           break;
         }
       }

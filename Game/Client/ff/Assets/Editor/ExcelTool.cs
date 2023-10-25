@@ -8,6 +8,7 @@ using Google.Protobuf;
 using Unity.Plastic.Newtonsoft.Json;
 using Unity.Plastic.Newtonsoft.Json.Linq;
 using UnityEngine;
+using Util;
 
 namespace Editor
 {
@@ -34,7 +35,7 @@ namespace Editor
 
         private static void ExcelToByte(string fullFile)
         {
-            var workBook = GenerateCode.CreateWorkbook(fullFile);
+            var workBook = Utility.CreateWorkbook(fullFile);
             var sheet = workBook.GetSheetAt(0);
             var fileName = Path.GetFileNameWithoutExtension(fullFile);
             var dicType = _assembly.GetType(fileName + "ResMapMsg");
@@ -144,6 +145,12 @@ namespace Editor
                                 uint.TryParse(temp, out uint v);
                                 args[0] = v;
                             } 
+                            else if (typeName == "CostMsg")
+                            {
+                                uint.TryParse(temp, out uint v);
+                                args[0] = new CostMsg();
+                            } 
+                            
                             methodInfo.Invoke(target, args);
                         }
                     }
@@ -180,32 +187,37 @@ namespace Editor
                                     uint.TryParse(temp, out uint v);
                                     args[j] = v;
                                 }  
+                                else if (typeName == "CostMsg")
+                                {
+                                    args[j] = new CostMsg();
+                                }  
                             }
+                            
                             methodInfo.Invoke(target, args);
                         }
                     }
                 }
-                else if (property.PropertyType.ToString() == "Cost")
+                else if (property.PropertyType.ToString() == "CostMsg")
                 {
                     var json = (JArray)JsonConvert.DeserializeObject(value);
-                    var cost = new Cost();
+                    var cost = new CostMsg();
                     for (int i = 0; i < json.Count; i++)
                     {
                         var strType = json[i][0].ToString();
-                        var costItem = new CostItem();
+                        var costItem = new CostItemMsg();
                         var costItemType = (CostItemType)System.Enum.Parse(typeof(CostItemType), strType);
                         costItem.CostItemType = costItemType;
                         switch (costItemType)
                         {
                             case CostItemType.Consume:
-                                costItem.Consume = new CostItemConsume()
+                                costItem.Consume = new CostItemConsumeMsg()
                                 {
                                     AttrName = "wff"
                                 };
                                 costItem.ObjectType = ObjectType.Hero;
                                 break;
                             case CostItemType.Between:
-                                costItem.Between = new CostItemBetween
+                                costItem.Between = new CostItemBetweenMsg()
                                 {
                                     AttrValue = "1"
                                 };
