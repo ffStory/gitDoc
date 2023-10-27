@@ -1,5 +1,64 @@
 using System.Collections.Generic;
 using Google.Protobuf;
+using Logic.Object;
+
+public abstract class BaseCostItem : BaseObject
+{
+    public BaseCostItem(Game game) : base(game, ObjectType.CostItem){}
+    protected CostItemType costType;
+    public CostItemType CostType
+    {
+        get{return costType;}
+        set
+        {
+            var old = costType;
+            costType = value;
+            PostAttrEvent("CostType", old, costType);
+        }
+    }
+    protected ObjectType objType;
+    public ObjectType ObjType
+    {
+        get{return objType;}
+        set
+        {
+            var old = objType;
+            objType = value;
+            PostAttrEvent("ObjType", old, objType);
+        }
+    }
+    protected string attrName;
+    public string AttrName
+    {
+        get{return attrName;}
+        set
+        {
+            var old = attrName;
+            attrName = value;
+            PostAttrEvent("AttrName", old, attrName);
+        }
+    }
+    protected uint attrValue;
+    public uint AttrValue
+    {
+        get{return attrValue;}
+        set
+        {
+            var old = attrValue;
+            attrValue = value;
+            PostAttrEvent("AttrValue", old, attrValue);
+        }
+    }
+    public override void LoadMsg(IMessage iMessage)
+    {
+        var message = iMessage as CostItemMsg;
+        CostType = message.CostType;
+        ObjType = message.ObjType;
+        AttrName = message.AttrName;
+        AttrValue = message.AttrValue;
+        AfterLoadMsg();
+    }
+}
 
 public abstract class BaseHero : BaseObject
 {
@@ -27,31 +86,12 @@ public abstract class BaseHero : BaseObject
             PostAttrEvent("Name", old, name);
         }
     }
-    public Cost UpCost;
-    public List<Cost> UpCosts;
-    public Dictionary<string, Cost> UpCostDic;
     public override void LoadMsg(IMessage iMessage)
     {
         var message = iMessage as HeroMsg;
         Id = message.Id;
         Exp = message.Exp;
         Name = message.Name;
-        UpCost = new Cost();
-        UpCost.LoadMsg(message.UpCost);
-        UpCosts = new List<Cost>();
-        for (var i = 0; i < message.UpCosts.Count; i++)
-        {
-            var item = new Cost();
-            item.LoadMsg(message.UpCosts[i]);
-            UpCosts.Add(item);
-        }
-        UpCostDic = new Dictionary<string, Cost>();
-        foreach (var pair in message.UpCostDic)
-        {
-            var item = new Cost();
-            item.LoadMsg(pair.Value);
-            UpCostDic.Add(pair.Key, item);
-        }
         AfterLoadMsg();
     }
 }

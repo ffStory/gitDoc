@@ -1,6 +1,18 @@
 syntax = "proto3";
 import "Enum.proto";
-import "CostMsg.proto";
+
+message CostConfigResMsg
+{
+    uint32 Id = 1;
+    CostItemType CostType = 2;
+    ObjectType ObjType = 3;
+    string AttrName = 4;
+    uint32 AttrValue = 5;
+}
+message CostConfigResMapMsg
+{
+   map<uint32, CostConfigResMsg> Map = 1;
+}
 
 message HeroResMsg
 {
@@ -11,9 +23,6 @@ message HeroResMsg
     map<int32, string> DicTest = 5;
     repeated int32 Rewards2 = 6;
     repeated uint32 Rewards3 = 7;
-    CostMsg UpgradeCost = 8;
-    repeated CostMsg UpgradeCosts = 9;
-    map<string, CostMsg> UpgradeCostDic = 10;
 }
 message HeroResMapMsg
 {
@@ -31,19 +40,6 @@ message ItemResMsg
 message ItemResMapMsg
 {
    map<uint32, ItemResMsg> Map = 1;
-}
-
-message StageResMsg
-{
-    string Id = 1;
-    string Name = 2;
-    ItemType ItemType = 3;
-    repeated string Rewards = 4;
-    map<int32, string> DicTest = 5;
-}
-message StageResMapMsg
-{
-   map<string, StageResMsg> Map = 1;
 }
 
 message ViewConfigResMsg

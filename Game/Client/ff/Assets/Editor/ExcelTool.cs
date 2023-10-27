@@ -5,8 +5,6 @@ using System.Reflection;
 using NPOI.SS.UserModel;
 using UnityEditor;
 using Google.Protobuf;
-using Unity.Plastic.Newtonsoft.Json;
-using Unity.Plastic.Newtonsoft.Json.Linq;
 using UnityEngine;
 using Util;
 
@@ -65,7 +63,7 @@ namespace Editor
                     var attrToIndex = new Dictionary<string, int>();
                     for (var i = 0; i < attrRow.Cells.Count; i++)
                     {
-                        attrToIndex.Add(GenerateCode.GetCellValue(attrRow.GetCell(i)), i);
+                        attrToIndex.Add(Utility.GetCellValue(attrRow.GetCell(i)), i);
                     }
                     
                     for (var i = 4; i <= rows; i++)
@@ -116,8 +114,9 @@ namespace Editor
             {
                 var attrIndex = attrToIndex[property.Name];
                 var cell = row.GetCell(attrIndex);
-                var value = GenerateCode.GetCellValue(cell);
+                var value = Utility.GetCellValue(cell);
                 id ??= value;
+                if (string.IsNullOrEmpty(value)){continue;}
                 if (property.PropertyType.IsEnum)
                 {
                     property.SetValue(obj, Enum.Parse(property.PropertyType, value));
@@ -151,10 +150,10 @@ namespace Editor
                                 uint.TryParse(temp, out uint v);
                                 args[0] = v;
                             } 
-                            else if (typeName == "CostMsg")
-                            {
-                                args[0] = ParseCost(temp);
-                            } 
+                            // else if (typeName == "CostMsg")
+                            // {
+                            //     args[0] = ParseCost(temp);
+                            // } 
                             
                             methodInfo.Invoke(target, args);
                         }
@@ -192,20 +191,20 @@ namespace Editor
                                     uint.TryParse(temp, out uint v);
                                     args[j] = v;
                                 }  
-                                else if (typeName == "CostMsg")
-                                {
-                                    args[j] = ParseCost(temp);
-                                }  
+                                // else if (typeName == "CostMsg")
+                                // {
+                                //     args[j] = ParseCost(temp);
+                                // }  
                             }
                             
                             methodInfo.Invoke(target, args);
                         }
                     }
                 }
-                else if (property.PropertyType.ToString() == "CostMsg")
-                {
-                    property.SetValue(obj, Convert.ChangeType(ParseCost(value), property.PropertyType));
-                }
+                // else if (property.PropertyType.ToString() == "CostMsg")
+                // {
+                //     // property.SetValue(obj, Convert.ChangeType(ParseCost(value), property.PropertyType));
+                // }
                 else
                 {
                     property.SetValue(obj, Convert.ChangeType(value, property.PropertyType));
@@ -215,41 +214,41 @@ namespace Editor
             return id;
         }
 
-        private static CostMsg ParseCost(string value)
-        {
-            var json = (JArray)JsonConvert.DeserializeObject(value);
-            var cost = new CostMsg();
-            for (var i = 0; i < json.Count; i++)
-            {
-                var strType = json[i][0]?.ToString();
-                var costItem = new CostItemMsg();
-                if (strType == null){continue;}
-                var costItemType = (CostItemType)Enum.Parse(typeof(CostItemType), strType);
-                costItem.CostItemType = costItemType;
-                var strObjectType = json[i][1]?.ToString();
-                var objectType = strObjectType == null? ObjectType.Player : (ObjectType)Enum.Parse(typeof(ObjectType), strObjectType);
-                costItem.ObjectType = objectType;
-                
-                switch (costItemType)
-                {
-                    case CostItemType.Consume:
-                        costItem.Consume = new CostItemConsumeMsg()
-                        {
-                            AttrName = json[i][3]?.ToString()
-                        };
-                        break;
-                    case CostItemType.Between:
-                        costItem.Between = new CostItemBetweenMsg()
-                        {
-                            AttrValue = (uint)json[i][3]
-                        };
-                        break; 
-                }
-                cost.Items.Add(costItem);
-            }
-
-            return cost;
-        }
+        // private static CostMsg ParseCost(string value)
+        // {
+        //     var json = (JArray)JsonConvert.DeserializeObject(value);
+        //     var cost = new CostMsg();
+        //     for (var i = 0; i < json.Count; i++)
+        //     {
+        //         var strType = json[i][0]?.ToString();
+        //         var costItem = new CostItemMsg();
+        //         if (strType == null){continue;}
+        //         var costItemType = (CostItemType)Enum.Parse(typeof(CostItemType), strType);
+        //         costItem.CostItemType = costItemType;
+        //         var strObjectType = json[i][1]?.ToString();
+        //         var objectType = strObjectType == null? ObjectType.Player : (ObjectType)Enum.Parse(typeof(ObjectType), strObjectType);
+        //         costItem.ObjectType = objectType;
+        //         
+        //         switch (costItemType)
+        //         {
+        //             case CostItemType.Consume:
+        //                 costItem.Consume = new CostItemConsumeMsg()
+        //                 {
+        //                     AttrName = json[i][3]?.ToString()
+        //                 };
+        //                 break;
+        //             case CostItemType.Between:
+        //                 costItem.Between = new CostItemBetweenMsg()
+        //                 {
+        //                     AttrValue = (uint)json[i][3]
+        //                 };
+        //                 break; 
+        //         }
+        //         cost.Items.Add(costItem);
+        //     }
+        //
+        //     return cost;
+        // }
 
         private static Type GetTypeByStr(string typeName)
         {

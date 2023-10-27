@@ -26,7 +26,6 @@ namespace Editor
         };
 
         private static readonly List<string> ObjectTypeList = new List<string>();
-        private static readonly List<string> CustomObjectTypeList = new List<string> {"Cost"};
         
         
         /// <summary>
@@ -84,7 +83,6 @@ namespace Editor
                 var builder = new StringBuilder();
                 builder.Append("syntax = \"proto3\";\r\n");
                 builder.Append("import \"Enum.proto\";\r\n");
-                builder.Append("import \"CostMsg.proto\";\r\n");
                 var path = "../../Resource/Table";
                 var files = Directory.GetFiles(path);
                 foreach (var file in files)
@@ -118,7 +116,6 @@ namespace Editor
                 var builder = new StringBuilder();
                 builder.Append("syntax = \"proto3\";\r\n");
                 builder.Append("import \"Enum.proto\";\r\n");
-                builder.Append("import \"CostMsg.proto\";\r\n");
                 var path = "../../Resource/Object";
                 var files = Directory.GetFiles(path);
                 foreach (var file in files)
@@ -153,6 +150,7 @@ namespace Editor
                 var builder = new StringBuilder();
                 builder.Append("using System.Collections.Generic;\r\n");
                 builder.Append("using Google.Protobuf;\r\n");
+                builder.Append("using Logic.Object;\r\n");
                 var path = "../../Resource/Object";
                 var files = Directory.GetFiles(path);
                 foreach (var t in files)
@@ -369,7 +367,7 @@ namespace Editor
                 {
                     builder.Append($"    public abstract {type} {attrName} {{ get; }}\r\n");
                 }
-                else if (type.StartsWith("List") || type.StartsWith("Dictionary") || ObjectTypeList.Contains(type) || CustomObjectTypeList.Contains(type))
+                else if (type.StartsWith("List") || type.StartsWith("Dictionary") || ObjectTypeList.Contains(type))
                 {
                     builder.Append($"    public {type} {attrName};\r\n");
                 }
@@ -426,19 +424,6 @@ namespace Editor
                             "        }\r\n"
                         );
                     }
-                    else if (CustomObjectTypeList.Contains(dicPair.Value))
-                    {
-                        builder.Append
-                        (
-                            $"        {attrName} = new {type}();\r\n" +
-                            $"        foreach (var pair in message.{attrName})\r\n" +
-                            "        {\r\n" +
-                            $"            var item = new {dicPair.Value}();\r\n" +
-                            "            item.LoadMsg(pair.Value);\r\n" +
-                            $"            {attrName}.Add(pair.Key, item);\r\n" +
-                            "        }\r\n"
-                        ); 
-                    }
                     else
                     {
                         builder.Append($"        {attrName} = new {type}(message.{attrName});\r\n");
@@ -461,19 +446,6 @@ namespace Editor
                             "        }\r\n"
                         );
                     }
-                    else if (CustomObjectTypeList.Contains(listType))
-                    {
-                        builder.Append
-                        (
-                            $"        {attrName} = new {type}();\r\n" +
-                            $"        for (var i = 0; i < message.{attrName}.Count; i++)\r\n" +
-                            "        {\r\n" +
-                            $"            var item = new {listType}();\r\n" +
-                            $"            item.LoadMsg(message.{attrName}[i]);\r\n" +
-                            $"            {attrName}.Add(item);\r\n" +
-                            "        }\r\n"
-                        ); 
-                    }
                     else
                     {
                         builder.Append($"        {attrName} = new {type}(message.{attrName});\r\n");
@@ -488,14 +460,6 @@ namespace Editor
                             $"        {attrName} = new {type}(this);\r\n" +
                             $"        {attrName}.LoadMsg(message.{attrName});\r\n"
                         );  
-                    }
-                    else if (CustomObjectTypeList.Contains(type))
-                    {
-                        builder.Append
-                        (
-                            $"        {attrName} = new {type}();\r\n" +
-                            $"        {attrName}.LoadMsg(message.{attrName});\r\n"
-                        ); 
                     }
                     else
                     {
@@ -522,7 +486,7 @@ namespace Editor
             var bracketIndex = typeStr.IndexOf('<');
             if (bracketIndex == -1)
             {
-                if (ObjectTypeList.Contains(typeStr) || CustomObjectTypeList.Contains(typeStr))
+                if (ObjectTypeList.Contains(typeStr))
                 {
                     return typeStr + "Msg";
                 }

@@ -24,10 +24,10 @@ public static partial class EnumReflection {
         string.Concat(
           "CgpFbnVtLnByb3RvKigKDENvc3RJdGVtVHlwZRILCgdDb25zdW1lEAASCwoH",
           "QmV0d2VlbhABKiMKCEl0ZW1UeXBlEgwKCFJlc291cmNlEAASCQoFU3BlZWQQ",
-          "Aio2CgpPYmplY3RUeXBlEgoKBlBsYXllchAAEggKBEhlcm8QARIICgRDYXJk",
-          "EAISCAoESXRlbRADKiUKCVRhc2tTdGF0ZRIKCgZBY2NlcHQQABIMCghGaW5p",
-          "c2hlZBABKjAKBlVJVHlwZRIKCgZVSUhlcm8QABIOCgpVSUJ1aWxkaW5nEAES",
-          "CgoGVUlDaGF0EAJiBnByb3RvMw=="));
+          "AipECgpPYmplY3RUeXBlEgoKBlBsYXllchAAEggKBEhlcm8QARIICgRDYXJk",
+          "EAISCAoESXRlbRADEgwKCENvc3RJdGVtEAQqJQoJVGFza1N0YXRlEgoKBkFj",
+          "Y2VwdBAAEgwKCEZpbmlzaGVkEAEqMAoGVUlUeXBlEgoKBlVJSGVybxAAEg4K",
+          "ClVJQnVpbGRpbmcQARIKCgZVSUNoYXQQAmIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::CostItemType), typeof(global::ItemType), typeof(global::ObjectType), typeof(global::TaskState), typeof(global::UIType), }, null, null));
@@ -51,6 +51,7 @@ public enum ObjectType {
   [pbr::OriginalName("Hero")] Hero = 1,
   [pbr::OriginalName("Card")] Card = 2,
   [pbr::OriginalName("Item")] Item = 3,
+  [pbr::OriginalName("CostItem")] CostItem = 4,
 }
 
 public enum TaskState {

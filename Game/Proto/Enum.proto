@@ -18,6 +18,7 @@ enum ObjectType
     Hero = 1;
     Card = 2;
     Item = 3;
+    CostItem = 4;
 }
 
 enum TaskState
