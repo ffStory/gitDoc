@@ -9,7 +9,7 @@ message CostItemConsumeMsg
 
 message CostItemBetweenMsg
 {
-    string attrValue = 1;
+    uint32 attrValue = 1;
 }
 
 message CostItemMsg

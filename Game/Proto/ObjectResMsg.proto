@@ -32,3 +32,26 @@ message ItemResMapMsg
 {
    map<uint32, ItemResMsg> Map = 1;
 }
+
+message StageResMsg
+{
+    string Id = 1;
+    string Name = 2;
+    ItemType ItemType = 3;
+    repeated string Rewards = 4;
+    map<int32, string> DicTest = 5;
+}
+message StageResMapMsg
+{
+   map<string, StageResMsg> Map = 1;
+}
+
+message ViewConfigResMsg
+{
+    string Type = 1;
+    string Name = 2;
+}
+message ViewConfigResMapMsg
+{
+   map<string, ViewConfigResMsg> Map = 1;
+}

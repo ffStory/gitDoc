@@ -28,7 +28,15 @@ namespace Editor
             Debug.Log("ExcelTool.ExcelToByte 导表开始");
             foreach (var t in files)
             {
-                ExcelToByte(t);
+                try
+                {
+                    ExcelToByte(t);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
             }
             Debug.Log("ExcelTool.ExcelToByte 导表结束");
         }
@@ -49,7 +57,7 @@ namespace Editor
                 var arguments = propertyInfo.PropertyType.GetGenericArguments();
                 var kType = GetTypeByStr(arguments[0].Name);
                 var vType = GetTypeByStr(arguments[1].Name);
-                var methodInfo = target.GetType().GetMethod("Add", new []{kType, vType});
+                var methodInfo = target.GetType().GetMethod("Add", new[]{kType, vType});
                 if (methodInfo != null)
                 {
                     var rows = sheet.LastRowNum;
@@ -65,7 +73,8 @@ namespace Editor
                         var type = _assembly.GetType(fileName + "ResMsg");
                         var obj = Activator.CreateInstance(type); 
                         var id = ProcessExcelRow(sheet.GetRow(i), type, obj, attrToIndex);
-                        methodInfo.Invoke(target, new []{id, obj});
+                        var key = Convert.ChangeType(id, kType);
+                        methodInfo.Invoke(target, new[]{key, obj});
                     }
                 }
 
@@ -99,19 +108,16 @@ namespace Editor
             return flatArray;
         }
 
-        private static uint ProcessExcelRow(IRow row, Type type, object obj, Dictionary<string, int> attrToIndex)
+        private static object ProcessExcelRow(IRow row, Type type, object obj, Dictionary<string, int> attrToIndex)
         {
-            uint id = 0;
+            object id = null;
             var properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
             foreach (var property in properties)
             {
                 var attrIndex = attrToIndex[property.Name];
                 var cell = row.GetCell(attrIndex);
                 var value = GenerateCode.GetCellValue(cell);
-                if (property.Name == "Id")
-                {
-                    id = uint.Parse(value);
-                }
+                id ??= value;
                 if (property.PropertyType.IsEnum)
                 {
                     property.SetValue(obj, Enum.Parse(property.PropertyType, value));
@@ -147,8 +153,7 @@ namespace Editor
                             } 
                             else if (typeName == "CostMsg")
                             {
-                                uint.TryParse(temp, out uint v);
-                                args[0] = new CostMsg();
+                                args[0] = ParseCost(temp);
                             } 
                             
                             methodInfo.Invoke(target, args);
@@ -189,7 +194,7 @@ namespace Editor
                                 }  
                                 else if (typeName == "CostMsg")
                                 {
-                                    args[j] = new CostMsg();
+                                    args[j] = ParseCost(temp);
                                 }  
                             }
                             
@@ -199,34 +204,7 @@ namespace Editor
                 }
                 else if (property.PropertyType.ToString() == "CostMsg")
                 {
-                    var json = (JArray)JsonConvert.DeserializeObject(value);
-                    var cost = new CostMsg();
-                    for (int i = 0; i < json.Count; i++)
-                    {
-                        var strType = json[i][0].ToString();
-                        var costItem = new CostItemMsg();
-                        var costItemType = (CostItemType)System.Enum.Parse(typeof(CostItemType), strType);
-                        costItem.CostItemType = costItemType;
-                        switch (costItemType)
-                        {
-                            case CostItemType.Consume:
-                                costItem.Consume = new CostItemConsumeMsg()
-                                {
-                                    AttrName = "wff"
-                                };
-                                costItem.ObjectType = ObjectType.Hero;
-                                break;
-                            case CostItemType.Between:
-                                costItem.Between = new CostItemBetweenMsg()
-                                {
-                                    AttrValue = "1"
-                                };
-                                costItem.ObjectType = ObjectType.Player;
-                                break; 
-                        }
-                        cost.Items.Add(costItem);
-                    }
-                    property.SetValue(obj, Convert.ChangeType(cost, property.PropertyType));
+                    property.SetValue(obj, Convert.ChangeType(ParseCost(value), property.PropertyType));
                 }
                 else
                 {
@@ -235,6 +213,42 @@ namespace Editor
             }
 
             return id;
+        }
+
+        private static CostMsg ParseCost(string value)
+        {
+            var json = (JArray)JsonConvert.DeserializeObject(value);
+            var cost = new CostMsg();
+            for (var i = 0; i < json.Count; i++)
+            {
+                var strType = json[i][0]?.ToString();
+                var costItem = new CostItemMsg();
+                if (strType == null){continue;}
+                var costItemType = (CostItemType)Enum.Parse(typeof(CostItemType), strType);
+                costItem.CostItemType = costItemType;
+                var strObjectType = json[i][1]?.ToString();
+                var objectType = strObjectType == null? ObjectType.Player : (ObjectType)Enum.Parse(typeof(ObjectType), strObjectType);
+                costItem.ObjectType = objectType;
+                
+                switch (costItemType)
+                {
+                    case CostItemType.Consume:
+                        costItem.Consume = new CostItemConsumeMsg()
+                        {
+                            AttrName = json[i][3]?.ToString()
+                        };
+                        break;
+                    case CostItemType.Between:
+                        costItem.Between = new CostItemBetweenMsg()
+                        {
+                            AttrValue = (uint)json[i][3]
+                        };
+                        break; 
+                }
+                cost.Items.Add(costItem);
+            }
+
+            return cost;
         }
 
         private static Type GetTypeByStr(string typeName)

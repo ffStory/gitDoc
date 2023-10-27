@@ -1,20 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using Core;
-using Google.Protobuf;
-using Google.Protobuf.Collections;
-using Google.Protobuf.Reflection;
-using NPOI.SS.Formula.Functions;
-using UI;
-using UI.Views;
-using UnityEditor;
 using UnityEngine;
-using Util;
 
 public class Player : BasePlayer
 {
@@ -61,28 +49,11 @@ public class WFTest : MonoBehaviour
     {
         
         Debug.Log(Type.GetType("String") == null);
-        var codePath = Path.Combine(Directory.GetCurrentDirectory(), "../../Resource/Data/Hero.byte");
+        var codePath = Path.Combine(Directory.GetCurrentDirectory(), "../../Resource/Data/Stage.byte");
         using var stream2 = new FileStream(codePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
-        var dic2 = HeroResMapMsg.Parser.ParseFrom(stream2);
-        int a = 0;
-        foreach (var item in dic2.Map)
-        {
-            var costItems = item.Value.UpgradeCost.Items;
-            for (int i = 0; i < costItems.Count; i++)
-            {
-                var costItem = costItems[i];
-                Debug.Log(" costItemType:" + costItem.CostItemType + " object:" + costItem.ObjectType);
-                switch (costItem.ItemCase)
-                {
-                    case CostItemMsg.ItemOneofCase.Between:
-                    Debug.Log(" attrV:" + costItem.Between.AttrValue);
-                        break;
-                    case CostItemMsg.ItemOneofCase.Consume:
-                    Debug.Log(" attrN:" + costItem.Consume.AttrName);
-                        break;
-                }
-            }
-        }
+        var dic2 = StageResMapMsg.Parser.ParseFrom(stream2);
+
+        Debug.Log(dic2);
     }
 
     public Type GetType(string typeName)

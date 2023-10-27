@@ -17,10 +17,18 @@ enum ObjectType
     Player = 0;
     Hero = 1;
     Card = 2;
+    Item = 3;
 }
 
 enum TaskState
 {
     Accept = 0;
     Finished = 1;
+}
+
+enum UIType
+{
+    UIHero = 0;
+    UIBuilding = 1;
+    UIChat = 2;
 }

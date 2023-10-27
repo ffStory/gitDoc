@@ -24,7 +24,7 @@ public static partial class CostMsgReflection {
         string.Concat(
           "Cg1Db3N0TXNnLnByb3RvGgpFbnVtLnByb3RvIiYKEkNvc3RJdGVtQ29uc3Vt",
           "ZU1zZxIQCghhdHRyTmFtZRgBIAEoCSInChJDb3N0SXRlbUJldHdlZW5Nc2cS",
-          "EQoJYXR0clZhbHVlGAEgASgJIqsBCgtDb3N0SXRlbU1zZxIjCgxjb3N0SXRl",
+          "EQoJYXR0clZhbHVlGAEgASgNIqsBCgtDb3N0SXRlbU1zZxIjCgxjb3N0SXRl",
           "bVR5cGUYASABKA4yDS5Db3N0SXRlbVR5cGUSHwoKb2JqZWN0VHlwZRgCIAEo",
           "DjILLk9iamVjdFR5cGUSJgoHYmV0d2VlbhgDIAEoCzITLkNvc3RJdGVtQmV0",
           "d2Vlbk1zZ0gAEiYKB2NvbnN1bWUYBCABKAsyEy5Db3N0SXRlbUNvbnN1bWVN",
@@ -280,13 +280,13 @@ public sealed partial class CostItemBetweenMsg : pb::IMessage<CostItemBetweenMsg
 
   /// <summary>Field number for the "attrValue" field.</summary>
   public const int AttrValueFieldNumber = 1;
-  private string attrValue_ = "";
+  private uint attrValue_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public string AttrValue {
+  public uint AttrValue {
     get { return attrValue_; }
     set {
-      attrValue_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      attrValue_ = value;
     }
   }
 
@@ -313,7 +313,7 @@ public sealed partial class CostItemBetweenMsg : pb::IMessage<CostItemBetweenMsg
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
-    if (AttrValue.Length != 0) hash ^= AttrValue.GetHashCode();
+    if (AttrValue != 0) hash ^= AttrValue.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -332,9 +332,9 @@ public sealed partial class CostItemBetweenMsg : pb::IMessage<CostItemBetweenMsg
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
-    if (AttrValue.Length != 0) {
-      output.WriteRawTag(10);
-      output.WriteString(AttrValue);
+    if (AttrValue != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(AttrValue);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -346,9 +346,9 @@ public sealed partial class CostItemBetweenMsg : pb::IMessage<CostItemBetweenMsg
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (AttrValue.Length != 0) {
-      output.WriteRawTag(10);
-      output.WriteString(AttrValue);
+    if (AttrValue != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(AttrValue);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -360,8 +360,8 @@ public sealed partial class CostItemBetweenMsg : pb::IMessage<CostItemBetweenMsg
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
-    if (AttrValue.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeStringSize(AttrValue);
+    if (AttrValue != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(AttrValue);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -375,7 +375,7 @@ public sealed partial class CostItemBetweenMsg : pb::IMessage<CostItemBetweenMsg
     if (other == null) {
       return;
     }
-    if (other.AttrValue.Length != 0) {
+    if (other.AttrValue != 0) {
       AttrValue = other.AttrValue;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -393,8 +393,8 @@ public sealed partial class CostItemBetweenMsg : pb::IMessage<CostItemBetweenMsg
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
-        case 10: {
-          AttrValue = input.ReadString();
+        case 8: {
+          AttrValue = input.ReadUInt32();
           break;
         }
       }
@@ -412,8 +412,8 @@ public sealed partial class CostItemBetweenMsg : pb::IMessage<CostItemBetweenMsg
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
-        case 10: {
-          AttrValue = input.ReadString();
+        case 8: {
+          AttrValue = input.ReadUInt32();
           break;
         }
       }
