@@ -1,15 +1,13 @@
+using System.Linq;
+using Logic.Manager;
 using UnityEngine.UI;
 
 namespace UI.Views
 {
     public class HeroListView : BaseView
     {
-        public static string Name = "HeroListView";
-        public static string Path = "UI/Prefab/Views/HeroListView";
-        public static UILayer Layer = UILayer.Middle;
-        public static ViewCloseType CloseType = ViewCloseType.Disable;
-
-
+        public static readonly string Path = "UI/Prefab/Views/HeroListView";
+        public static string Name => Path.Split('/').Last();
         public override void Open(BaseUISnapShoot snapShoot)
         {
             base.Open(snapShoot);
@@ -17,10 +15,11 @@ namespace UI.Views
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(delegate
             {
-                UIManager.Instance.JumpView(new BaseUISnapShoot(HeroInfoView.Name, ViewType.HeroInfo));
+                UIManager.Instance.JumpView(new BaseUISnapShoot(UIType.HeroInfo){ViewJumpCloseType = ViewCloseType.None, ViewBackCloseType = ViewCloseType.Destroy});
+                // Jump(UIType.HeroInfo);
             });
             
-            RefreshView(snapShoot.GetTopView());
+            RefreshView();
         }
     }
 }

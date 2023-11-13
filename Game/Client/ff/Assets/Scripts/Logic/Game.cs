@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Logic.Manager;
 using Logic.Object;
 
 public class Game
@@ -10,5 +11,10 @@ public class Game
         var protocol = new PlayerMsg();
         protocol.Exp = 100;
         player.LoadMsg(protocol);
+    }
+
+    public void Init()
+    {
+        ResManager.Instance.Init();
     }
 }

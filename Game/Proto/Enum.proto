@@ -1,5 +1,15 @@
 syntax = "proto3";
 
+enum AttrFormat
+{
+    Number = 0;
+    Level = 1;
+    Amount = 2;
+    Duration = 3;
+    Percentage = 4;
+    Days = 5;
+}
+
 enum CostItemType
 {
     Consume = 0;
@@ -29,7 +39,22 @@ enum TaskState
 
 enum UIType
 {
-    UIHero = 0;
-    UIBuilding = 1;
-    UIChat = 2;
+    HeroInfo = 0;
+    HeroList = 1;
+    HeroInfoSub = 2;
+    HeroListSub = 3;
+}
+
+enum ViewCloseType
+{
+    None = 0;
+    Destroy = 1;
+    Hide = 2;
+}
+
+enum ViewLayer
+{
+    Bottom = 0;
+    Middle = 1;
+    Top = 2;
 }

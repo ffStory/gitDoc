@@ -12,14 +12,13 @@ namespace Editor
 {
     public static class ExcelTool
     {
-        private static Assembly _assembly;
+        private static List<Assembly> _assemblyList;
         /// <summary>
         /// excel表导出二进制数据 并本地存储
         /// </summary>
         [MenuItem("Tools/ExcelToByte")]
         public static void ExcelToByte()
         {
-            _assembly =  Assembly.Load("Assembly-CSharp");
             var path = Path.Combine(Directory.GetCurrentDirectory(), "../../Resource/Table");
             var files = Directory.GetFiles(path);
             
@@ -44,7 +43,7 @@ namespace Editor
             var workBook = Utility.CreateWorkbook(fullFile);
             var sheet = workBook.GetSheetAt(0);
             var fileName = Path.GetFileNameWithoutExtension(fullFile);
-            var dicType = _assembly.GetType(fileName + "ResMapMsg");
+            var dicType = GetTypeByStr(fileName + "ResMapMsg");
             if (dicType != null)
             {
                 var dicObj =  Activator.CreateInstance(dicType);
@@ -68,7 +67,7 @@ namespace Editor
                     
                     for (var i = 4; i <= rows; i++)
                     {
-                        var type = _assembly.GetType(fileName + "ResMsg");
+                        var type = GetTypeByStr(fileName + "ResMsg");
                         var obj = Activator.CreateInstance(type); 
                         var id = ProcessExcelRow(sheet.GetRow(i), type, obj, attrToIndex);
                         var key = Convert.ChangeType(id, kType);
@@ -134,27 +133,8 @@ namespace Editor
                         var array = value.Split('|');
                         foreach (var t in array)
                         {
-                            var args = new object[1];
-                            var temp =  t;
-                            if (typeName == "String")
-                            {
-                                args[0] = temp;
-                            }
-                            else if (typeName == "Int32")
-                            {
-                                int.TryParse(temp, out int v);
-                                args[0] = v;
-                            }
-                            else if (typeName == "UInt32")
-                            {
-                                uint.TryParse(temp, out uint v);
-                                args[0] = v;
-                            } 
-                            // else if (typeName == "CostMsg")
-                            // {
-                            //     args[0] = ParseCost(temp);
-                            // } 
-                            
+                            var args = new object[1]; 
+                            args[0] = Convert.ChangeType(t, itemType);
                             methodInfo.Invoke(target, args);
                         }
                     }
@@ -173,38 +153,13 @@ namespace Editor
                         {
                             var args = new object[2];
                             var pair = t.Split('=');
-                            for (var j = 0; j < args.Length; j++)
-                            {
-                                var temp =  pair[j];
-                                var typeName = arguments[j].Name;
-                                if (typeName == "String")
-                                {
-                                    args[j] = temp;
-                                }
-                                else if (typeName == "Int32")
-                                {
-                                    int.TryParse(temp, out int v);
-                                    args[j] = v;
-                                }
-                                else if (typeName == "UInt32")
-                                {
-                                    uint.TryParse(temp, out uint v);
-                                    args[j] = v;
-                                }  
-                                // else if (typeName == "CostMsg")
-                                // {
-                                //     args[j] = ParseCost(temp);
-                                // }  
-                            }
-                            
+                            args[0] = Convert.ChangeType(pair[0], kType);
+                            args[1] = Convert.ChangeType(pair[1], vType);
+ 
                             methodInfo.Invoke(target, args);
                         }
                     }
                 }
-                // else if (property.PropertyType.ToString() == "CostMsg")
-                // {
-                //     // property.SetValue(obj, Convert.ChangeType(ParseCost(value), property.PropertyType));
-                // }
                 else
                 {
                     property.SetValue(obj, Convert.ChangeType(value, property.PropertyType));
@@ -214,56 +169,29 @@ namespace Editor
             return id;
         }
 
-        // private static CostMsg ParseCost(string value)
-        // {
-        //     var json = (JArray)JsonConvert.DeserializeObject(value);
-        //     var cost = new CostMsg();
-        //     for (var i = 0; i < json.Count; i++)
-        //     {
-        //         var strType = json[i][0]?.ToString();
-        //         var costItem = new CostItemMsg();
-        //         if (strType == null){continue;}
-        //         var costItemType = (CostItemType)Enum.Parse(typeof(CostItemType), strType);
-        //         costItem.CostItemType = costItemType;
-        //         var strObjectType = json[i][1]?.ToString();
-        //         var objectType = strObjectType == null? ObjectType.Player : (ObjectType)Enum.Parse(typeof(ObjectType), strObjectType);
-        //         costItem.ObjectType = objectType;
-        //         
-        //         switch (costItemType)
-        //         {
-        //             case CostItemType.Consume:
-        //                 costItem.Consume = new CostItemConsumeMsg()
-        //                 {
-        //                     AttrName = json[i][3]?.ToString()
-        //                 };
-        //                 break;
-        //             case CostItemType.Between:
-        //                 costItem.Between = new CostItemBetweenMsg()
-        //                 {
-        //                     AttrValue = (uint)json[i][3]
-        //                 };
-        //                 break; 
-        //         }
-        //         cost.Items.Add(costItem);
-        //     }
-        //
-        //     return cost;
-        // }
-
         private static Type GetTypeByStr(string typeName)
         {
-            switch (typeName)
+            if (_assemblyList == null)
             {
-                case "String":
-                    return typeof(String);
-                case "Int32":
-                    return typeof(Int32);
-                case "UInt32":
-                    return typeof(UInt32);
-                default:
-                    return _assembly.GetType(typeName);
-
+                _assemblyList ??= new List<Assembly>();
+                _assemblyList.Add(Assembly.Load("Assembly-CSharp")); //包含自定义类型
+                _assemblyList.Add(Assembly.Load("mscorlib")); //基础库，包含内置类型
             }
+
+            for (var i = 0; i < _assemblyList.Count; ++i)
+            {
+                var typeArray = _assemblyList[i].GetTypes();
+                var typeArrayLength = typeArray.Length;
+                for (var j = 0; j < typeArrayLength; ++j)
+                {
+                    if (typeArray[j].Name.Equals(typeName))
+                    {
+                        return typeArray[j];
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

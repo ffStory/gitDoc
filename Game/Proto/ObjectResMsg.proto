@@ -42,12 +42,13 @@ message ItemResMapMsg
    map<uint32, ItemResMsg> Map = 1;
 }
 
-message ViewConfigResMsg
+message UIConfigResMsg
 {
     string Type = 1;
-    string Name = 2;
+    string Title = 2;
+    string View = 3;
 }
-message ViewConfigResMapMsg
+message UIConfigResMapMsg
 {
-   map<string, ViewConfigResMsg> Map = 1;
+   map<string, UIConfigResMsg> Map = 1;
 }

@@ -42,11 +42,11 @@ public static partial class ObjectResMsgReflection {
           "dHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoCToCOAEibgoNSXRlbVJl",
           "c01hcE1zZxIkCgNNYXAYASADKAsyFy5JdGVtUmVzTWFwTXNnLk1hcEVudHJ5",
           "GjcKCE1hcEVudHJ5EgsKA2tleRgBIAEoDRIaCgV2YWx1ZRgCIAEoCzILLkl0",
-          "ZW1SZXNNc2c6AjgBIi4KEFZpZXdDb25maWdSZXNNc2cSDAoEVHlwZRgBIAEo",
-          "CRIMCgROYW1lGAIgASgJIoABChNWaWV3Q29uZmlnUmVzTWFwTXNnEioKA01h",
-          "cBgBIAMoCzIdLlZpZXdDb25maWdSZXNNYXBNc2cuTWFwRW50cnkaPQoITWFw",
-          "RW50cnkSCwoDa2V5GAEgASgJEiAKBXZhbHVlGAIgASgLMhEuVmlld0NvbmZp",
-          "Z1Jlc01zZzoCOAFiBnByb3RvMw=="));
+          "ZW1SZXNNc2c6AjgBIjsKDlVJQ29uZmlnUmVzTXNnEgwKBFR5cGUYASABKAkS",
+          "DQoFVGl0bGUYAiABKAkSDAoEVmlldxgDIAEoCSJ6ChFVSUNvbmZpZ1Jlc01h",
+          "cE1zZxIoCgNNYXAYASADKAsyGy5VSUNvbmZpZ1Jlc01hcE1zZy5NYXBFbnRy",
+          "eRo7CghNYXBFbnRyeRILCgNrZXkYASABKAkSHgoFdmFsdWUYAiABKAsyDy5V",
+          "SUNvbmZpZ1Jlc01zZzoCOAFiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::EnumReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -56,8 +56,8 @@ public static partial class ObjectResMsgReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::HeroResMapMsg), global::HeroResMapMsg.Parser, new[]{ "Map" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::ItemResMsg), global::ItemResMsg.Parser, new[]{ "Id", "Name", "ItemType", "Rewards", "DicTest" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::ItemResMapMsg), global::ItemResMapMsg.Parser, new[]{ "Map" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ViewConfigResMsg), global::ViewConfigResMsg.Parser, new[]{ "Type", "Name" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ViewConfigResMapMsg), global::ViewConfigResMapMsg.Parser, new[]{ "Map" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
+          new pbr::GeneratedClrTypeInfo(typeof(global::UIConfigResMsg), global::UIConfigResMsg.Parser, new[]{ "Type", "Title", "View" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::UIConfigResMapMsg), global::UIConfigResMapMsg.Parser, new[]{ "Map" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
         }));
   }
   #endregion
@@ -1628,16 +1628,16 @@ public sealed partial class ItemResMapMsg : pb::IMessage<ItemResMapMsg>
 }
 
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
+public sealed partial class UIConfigResMsg : pb::IMessage<UIConfigResMsg>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
 #endif
 {
-  private static readonly pb::MessageParser<ViewConfigResMsg> _parser = new pb::MessageParser<ViewConfigResMsg>(() => new ViewConfigResMsg());
+  private static readonly pb::MessageParser<UIConfigResMsg> _parser = new pb::MessageParser<UIConfigResMsg>(() => new UIConfigResMsg());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<ViewConfigResMsg> Parser { get { return _parser; } }
+  public static pb::MessageParser<UIConfigResMsg> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1653,7 +1653,7 @@ public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ViewConfigResMsg() {
+  public UIConfigResMsg() {
     OnConstruction();
   }
 
@@ -1661,16 +1661,17 @@ public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ViewConfigResMsg(ViewConfigResMsg other) : this() {
+  public UIConfigResMsg(UIConfigResMsg other) : this() {
     type_ = other.type_;
-    name_ = other.name_;
+    title_ = other.title_;
+    view_ = other.view_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ViewConfigResMsg Clone() {
-    return new ViewConfigResMsg(this);
+  public UIConfigResMsg Clone() {
+    return new UIConfigResMsg(this);
   }
 
   /// <summary>Field number for the "Type" field.</summary>
@@ -1685,27 +1686,39 @@ public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
     }
   }
 
-  /// <summary>Field number for the "Name" field.</summary>
-  public const int NameFieldNumber = 2;
-  private string name_ = "";
+  /// <summary>Field number for the "Title" field.</summary>
+  public const int TitleFieldNumber = 2;
+  private string title_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public string Name {
-    get { return name_; }
+  public string Title {
+    get { return title_; }
     set {
-      name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      title_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "View" field.</summary>
+  public const int ViewFieldNumber = 3;
+  private string view_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string View {
+    get { return view_; }
+    set {
+      view_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
     }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
-    return Equals(other as ViewConfigResMsg);
+    return Equals(other as UIConfigResMsg);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(ViewConfigResMsg other) {
+  public bool Equals(UIConfigResMsg other) {
     if (ReferenceEquals(other, null)) {
       return false;
     }
@@ -1713,7 +1726,8 @@ public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
       return true;
     }
     if (Type != other.Type) return false;
-    if (Name != other.Name) return false;
+    if (Title != other.Title) return false;
+    if (View != other.View) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1722,7 +1736,8 @@ public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
   public override int GetHashCode() {
     int hash = 1;
     if (Type.Length != 0) hash ^= Type.GetHashCode();
-    if (Name.Length != 0) hash ^= Name.GetHashCode();
+    if (Title.Length != 0) hash ^= Title.GetHashCode();
+    if (View.Length != 0) hash ^= View.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1745,9 +1760,13 @@ public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
       output.WriteRawTag(10);
       output.WriteString(Type);
     }
-    if (Name.Length != 0) {
+    if (Title.Length != 0) {
       output.WriteRawTag(18);
-      output.WriteString(Name);
+      output.WriteString(Title);
+    }
+    if (View.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(View);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -1763,9 +1782,13 @@ public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
       output.WriteRawTag(10);
       output.WriteString(Type);
     }
-    if (Name.Length != 0) {
+    if (Title.Length != 0) {
       output.WriteRawTag(18);
-      output.WriteString(Name);
+      output.WriteString(Title);
+    }
+    if (View.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(View);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -1780,8 +1803,11 @@ public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
     if (Type.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
     }
-    if (Name.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+    if (Title.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Title);
+    }
+    if (View.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(View);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1791,15 +1817,18 @@ public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(ViewConfigResMsg other) {
+  public void MergeFrom(UIConfigResMsg other) {
     if (other == null) {
       return;
     }
     if (other.Type.Length != 0) {
       Type = other.Type;
     }
-    if (other.Name.Length != 0) {
-      Name = other.Name;
+    if (other.Title.Length != 0) {
+      Title = other.Title;
+    }
+    if (other.View.Length != 0) {
+      View = other.View;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1821,7 +1850,11 @@ public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
           break;
         }
         case 18: {
-          Name = input.ReadString();
+          Title = input.ReadString();
+          break;
+        }
+        case 26: {
+          View = input.ReadString();
           break;
         }
       }
@@ -1844,7 +1877,11 @@ public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
           break;
         }
         case 18: {
-          Name = input.ReadString();
+          Title = input.ReadString();
+          break;
+        }
+        case 26: {
+          View = input.ReadString();
           break;
         }
       }
@@ -1855,16 +1892,16 @@ public sealed partial class ViewConfigResMsg : pb::IMessage<ViewConfigResMsg>
 }
 
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-public sealed partial class ViewConfigResMapMsg : pb::IMessage<ViewConfigResMapMsg>
+public sealed partial class UIConfigResMapMsg : pb::IMessage<UIConfigResMapMsg>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
 #endif
 {
-  private static readonly pb::MessageParser<ViewConfigResMapMsg> _parser = new pb::MessageParser<ViewConfigResMapMsg>(() => new ViewConfigResMapMsg());
+  private static readonly pb::MessageParser<UIConfigResMapMsg> _parser = new pb::MessageParser<UIConfigResMapMsg>(() => new UIConfigResMapMsg());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<ViewConfigResMapMsg> Parser { get { return _parser; } }
+  public static pb::MessageParser<UIConfigResMapMsg> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1880,7 +1917,7 @@ public sealed partial class ViewConfigResMapMsg : pb::IMessage<ViewConfigResMapM
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ViewConfigResMapMsg() {
+  public UIConfigResMapMsg() {
     OnConstruction();
   }
 
@@ -1888,37 +1925,37 @@ public sealed partial class ViewConfigResMapMsg : pb::IMessage<ViewConfigResMapM
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ViewConfigResMapMsg(ViewConfigResMapMsg other) : this() {
+  public UIConfigResMapMsg(UIConfigResMapMsg other) : this() {
     map_ = other.map_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ViewConfigResMapMsg Clone() {
-    return new ViewConfigResMapMsg(this);
+  public UIConfigResMapMsg Clone() {
+    return new UIConfigResMapMsg(this);
   }
 
   /// <summary>Field number for the "Map" field.</summary>
   public const int MapFieldNumber = 1;
-  private static readonly pbc::MapField<string, global::ViewConfigResMsg>.Codec _map_map_codec
-      = new pbc::MapField<string, global::ViewConfigResMsg>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForMessage(18, global::ViewConfigResMsg.Parser), 10);
-  private readonly pbc::MapField<string, global::ViewConfigResMsg> map_ = new pbc::MapField<string, global::ViewConfigResMsg>();
+  private static readonly pbc::MapField<string, global::UIConfigResMsg>.Codec _map_map_codec
+      = new pbc::MapField<string, global::UIConfigResMsg>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForMessage(18, global::UIConfigResMsg.Parser), 10);
+  private readonly pbc::MapField<string, global::UIConfigResMsg> map_ = new pbc::MapField<string, global::UIConfigResMsg>();
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pbc::MapField<string, global::ViewConfigResMsg> Map {
+  public pbc::MapField<string, global::UIConfigResMsg> Map {
     get { return map_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
-    return Equals(other as ViewConfigResMapMsg);
+    return Equals(other as UIConfigResMapMsg);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(ViewConfigResMapMsg other) {
+  public bool Equals(UIConfigResMapMsg other) {
     if (ReferenceEquals(other, null)) {
       return false;
     }
@@ -1983,7 +2020,7 @@ public sealed partial class ViewConfigResMapMsg : pb::IMessage<ViewConfigResMapM
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(ViewConfigResMapMsg other) {
+  public void MergeFrom(UIConfigResMapMsg other) {
     if (other == null) {
       return;
     }

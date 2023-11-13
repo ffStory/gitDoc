@@ -22,20 +22,34 @@ public static partial class EnumReflection {
   static EnumReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CgpFbnVtLnByb3RvKigKDENvc3RJdGVtVHlwZRILCgdDb25zdW1lEAASCwoH",
-          "QmV0d2VlbhABKiMKCEl0ZW1UeXBlEgwKCFJlc291cmNlEAASCQoFU3BlZWQQ",
-          "AipECgpPYmplY3RUeXBlEgoKBlBsYXllchAAEggKBEhlcm8QARIICgRDYXJk",
-          "EAISCAoESXRlbRADEgwKCENvc3RJdGVtEAQqJQoJVGFza1N0YXRlEgoKBkFj",
-          "Y2VwdBAAEgwKCEZpbmlzaGVkEAEqMAoGVUlUeXBlEgoKBlVJSGVybxAAEg4K",
-          "ClVJQnVpbGRpbmcQARIKCgZVSUNoYXQQAmIGcHJvdG8z"));
+          "CgpFbnVtLnByb3RvKlcKCkF0dHJGb3JtYXQSCgoGTnVtYmVyEAASCQoFTGV2",
+          "ZWwQARIKCgZBbW91bnQQAhIMCghEdXJhdGlvbhADEg4KClBlcmNlbnRhZ2UQ",
+          "BBIICgREYXlzEAUqKAoMQ29zdEl0ZW1UeXBlEgsKB0NvbnN1bWUQABILCgdC",
+          "ZXR3ZWVuEAEqIwoISXRlbVR5cGUSDAoIUmVzb3VyY2UQABIJCgVTcGVlZBAC",
+          "KkQKCk9iamVjdFR5cGUSCgoGUGxheWVyEAASCAoESGVybxABEggKBENhcmQQ",
+          "AhIICgRJdGVtEAMSDAoIQ29zdEl0ZW0QBColCglUYXNrU3RhdGUSCgoGQWNj",
+          "ZXB0EAASDAoIRmluaXNoZWQQASpGCgZVSVR5cGUSDAoISGVyb0luZm8QABIM",
+          "CghIZXJvTGlzdBABEg8KC0hlcm9JbmZvU3ViEAISDwoLSGVyb0xpc3RTdWIQ",
+          "AyowCg1WaWV3Q2xvc2VUeXBlEggKBE5vbmUQABILCgdEZXN0cm95EAESCAoE",
+          "SGlkZRACKiwKCVZpZXdMYXllchIKCgZCb3R0b20QABIKCgZNaWRkbGUQARIH",
+          "CgNUb3AQAmIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::CostItemType), typeof(global::ItemType), typeof(global::ObjectType), typeof(global::TaskState), typeof(global::UIType), }, null, null));
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::AttrFormat), typeof(global::CostItemType), typeof(global::ItemType), typeof(global::ObjectType), typeof(global::TaskState), typeof(global::UIType), typeof(global::ViewCloseType), typeof(global::ViewLayer), }, null, null));
   }
   #endregion
 
 }
 #region Enums
+public enum AttrFormat {
+  [pbr::OriginalName("Number")] Number = 0,
+  [pbr::OriginalName("Level")] Level = 1,
+  [pbr::OriginalName("Amount")] Amount = 2,
+  [pbr::OriginalName("Duration")] Duration = 3,
+  [pbr::OriginalName("Percentage")] Percentage = 4,
+  [pbr::OriginalName("Days")] Days = 5,
+}
+
 public enum CostItemType {
   [pbr::OriginalName("Consume")] Consume = 0,
   [pbr::OriginalName("Between")] Between = 1,
@@ -60,9 +74,22 @@ public enum TaskState {
 }
 
 public enum UIType {
-  [pbr::OriginalName("UIHero")] Uihero = 0,
-  [pbr::OriginalName("UIBuilding")] Uibuilding = 1,
-  [pbr::OriginalName("UIChat")] Uichat = 2,
+  [pbr::OriginalName("HeroInfo")] HeroInfo = 0,
+  [pbr::OriginalName("HeroList")] HeroList = 1,
+  [pbr::OriginalName("HeroInfoSub")] HeroInfoSub = 2,
+  [pbr::OriginalName("HeroListSub")] HeroListSub = 3,
+}
+
+public enum ViewCloseType {
+  [pbr::OriginalName("None")] None = 0,
+  [pbr::OriginalName("Destroy")] Destroy = 1,
+  [pbr::OriginalName("Hide")] Hide = 2,
+}
+
+public enum ViewLayer {
+  [pbr::OriginalName("Bottom")] Bottom = 0,
+  [pbr::OriginalName("Middle")] Middle = 1,
+  [pbr::OriginalName("Top")] Top = 2,
 }
 
 #endregion

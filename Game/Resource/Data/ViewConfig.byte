@@ -1,7 +1,7 @@
 
-
-Chat
-Chat聊天弹框
-$
-Building
-Building建筑界面
+>
+HeroInfoView.
+HeroInfoViewUI/Prefab/Views/HeroInfoView
+>
+HeroListView.
+HeroListViewUI/Prefab/Views/HeroListView
