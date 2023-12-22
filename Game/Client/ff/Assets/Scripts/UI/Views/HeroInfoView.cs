@@ -16,7 +16,7 @@ namespace UI.Views
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(delegate
             {
-                UIManager.Instance.JumpView(new BaseUISnapShoot(UIType.HeroList){ViewJumpCloseType = ViewCloseType.Hide, ViewBackCloseType = ViewCloseType.Hide});
+                UIManager.Instance.PushView(new BaseUISnapShoot(UIType.HeroList){ViewDeActivePushType = ViewDeActiveType.Disable, ViewDeActiveBackType = ViewDeActiveType.Disable});
                 // Replace(ViewType.HeroList1);
             });
             RefreshView();

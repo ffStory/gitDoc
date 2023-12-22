@@ -22,6 +22,7 @@ namespace UI.Item
         public void Refresh(UIConfigResMsg config)
         {
             txtTitle.text = config.Title;
+            btnBack.gameObject.SetActive(!UIManager.Instance.CheckLastUI());
         }
     }
 }

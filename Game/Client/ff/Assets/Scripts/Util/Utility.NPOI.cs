@@ -32,6 +32,20 @@ namespace Util
             fs.Flush();
             fs.Close();
         }
+
+        public static ISheet GetSheetByName(IWorkbook workbook, string name)
+        {
+            for (int i = 0; i < workbook.NumberOfSheets; i++)
+            {
+                var sheet = workbook.GetSheetAt(i);
+                if (sheet.SheetName == name)
+                {
+                    return sheet;
+                }
+            }
+
+            return null;
+        }
         
         /// <summary>
         /// 获得单元格的值
@@ -75,6 +89,19 @@ namespace Util
             }
 
             return index;
+        }
+        
+        public static ICell GetCellByName(IRow row, string name)
+        {
+            foreach (var cell in row.Cells)
+            {
+                if (cell.StringCellValue == name)
+                {
+                    return cell;
+                }
+            }
+
+            return null;
         }
     }
 }

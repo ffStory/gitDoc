@@ -12,6 +12,7 @@ namespace Logic.Manager
         public void Init()
         {
             UIConfigResMapMsg = UIConfigResMapMsg.Parser.ParseFrom(LoadByte("UIConfig"));
+            CostItemResMapMsg = CostItemResMapMsg.Parser.ParseFrom(LoadByte("CostItem"));
         }
 
         private FileStream LoadByte(string fileName)
@@ -21,6 +22,7 @@ namespace Logic.Manager
         }
 
         public UIConfigResMapMsg UIConfigResMapMsg;
+        public CostItemResMapMsg CostItemResMapMsg;
         private static ResManager _instance;
         public static ResManager Instance => _instance ??= new ResManager();
     }

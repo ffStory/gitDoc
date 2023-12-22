@@ -12,7 +12,7 @@ message CostItemMsg
 message HeroMsg
 {
     uint32 Id = 1;
-    int32 Exp = 2;
+    uint32 Exp = 2;
     string Name = 3;
 }
 
@@ -20,7 +20,7 @@ message PlayerMsg
 {
     uint32 Id = 1;
     int32 Exp = 2;
-    map<int32, HeroMsg> Heroes = 3;
+    map<uint32, HeroMsg> Heroes = 3;
     int32 Gold = 4;
     repeated HeroMsg Items = 5;
     repeated int32 ItemsInt = 6;

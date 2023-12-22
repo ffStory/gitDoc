@@ -22,36 +22,37 @@ public static partial class ObjectResMsgReflection {
   static ObjectResMsgReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "ChJPYmplY3RSZXNNc2cucHJvdG8aCkVudW0ucHJvdG8iggEKEENvc3RDb25m",
-          "aWdSZXNNc2cSCgoCSWQYASABKA0SHwoIQ29zdFR5cGUYAiABKA4yDS5Db3N0",
-          "SXRlbVR5cGUSHAoHT2JqVHlwZRgDIAEoDjILLk9iamVjdFR5cGUSEAoIQXR0",
-          "ck5hbWUYBCABKAkSEQoJQXR0clZhbHVlGAUgASgNIoABChNDb3N0Q29uZmln",
-          "UmVzTWFwTXNnEioKA01hcBgBIAMoCzIdLkNvc3RDb25maWdSZXNNYXBNc2cu",
-          "TWFwRW50cnkaPQoITWFwRW50cnkSCwoDa2V5GAEgASgNEiAKBXZhbHVlGAIg",
-          "ASgLMhEuQ29zdENvbmZpZ1Jlc01zZzoCOAEi0wEKCkhlcm9SZXNNc2cSCgoC",
-          "SWQYASABKA0SDAoETmFtZRgCIAEoCRIbCghJdGVtVHlwZRgDIAEoDjIJLkl0",
-          "ZW1UeXBlEg8KB1Jld2FyZHMYBCADKAkSKQoHRGljVGVzdBgFIAMoCzIYLkhl",
-          "cm9SZXNNc2cuRGljVGVzdEVudHJ5EhAKCFJld2FyZHMyGAYgAygFEhAKCFJl",
-          "d2FyZHMzGAcgAygNGi4KDERpY1Rlc3RFbnRyeRILCgNrZXkYASABKAUSDQoF",
-          "dmFsdWUYAiABKAk6AjgBIm4KDUhlcm9SZXNNYXBNc2cSJAoDTWFwGAEgAygL",
-          "MhcuSGVyb1Jlc01hcE1zZy5NYXBFbnRyeRo3CghNYXBFbnRyeRILCgNrZXkY",
-          "ASABKA0SGgoFdmFsdWUYAiABKAsyCy5IZXJvUmVzTXNnOgI4ASKvAQoKSXRl",
-          "bVJlc01zZxIKCgJJZBgBIAEoDRIMCgROYW1lGAIgASgJEhsKCEl0ZW1UeXBl",
-          "GAMgASgOMgkuSXRlbVR5cGUSDwoHUmV3YXJkcxgEIAMoCRIpCgdEaWNUZXN0",
-          "GAUgAygLMhguSXRlbVJlc01zZy5EaWNUZXN0RW50cnkaLgoMRGljVGVzdEVu",
-          "dHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoCToCOAEibgoNSXRlbVJl",
-          "c01hcE1zZxIkCgNNYXAYASADKAsyFy5JdGVtUmVzTWFwTXNnLk1hcEVudHJ5",
-          "GjcKCE1hcEVudHJ5EgsKA2tleRgBIAEoDRIaCgV2YWx1ZRgCIAEoCzILLkl0",
-          "ZW1SZXNNc2c6AjgBIjsKDlVJQ29uZmlnUmVzTXNnEgwKBFR5cGUYASABKAkS",
-          "DQoFVGl0bGUYAiABKAkSDAoEVmlldxgDIAEoCSJ6ChFVSUNvbmZpZ1Jlc01h",
-          "cE1zZxIoCgNNYXAYASADKAsyGy5VSUNvbmZpZ1Jlc01hcE1zZy5NYXBFbnRy",
-          "eRo7CghNYXBFbnRyeRILCgNrZXkYASABKAkSHgoFdmFsdWUYAiABKAsyDy5V",
-          "SUNvbmZpZ1Jlc01zZzoCOAFiBnByb3RvMw=="));
+          "ChJPYmplY3RSZXNNc2cucHJvdG8aCkVudW0ucHJvdG8ingEKDkNvc3RJdGVt",
+          "UmVzTXNnEgoKAklkGAEgASgNEh8KCENvc3RUeXBlGAIgASgOMg0uQ29zdEl0",
+          "ZW1UeXBlEhwKB09ialR5cGUYAyABKA4yCy5PYmplY3RUeXBlEg0KBU9iaklk",
+          "GAQgASgNEhAKCEF0dHJOYW1lGAUgASgJEhEKCUF0dHJWYWx1ZRgGIAEoDRIN",
+          "CgVUaXBpcxgHIAEoCSJ6ChFDb3N0SXRlbVJlc01hcE1zZxIoCgNNYXAYASAD",
+          "KAsyGy5Db3N0SXRlbVJlc01hcE1zZy5NYXBFbnRyeRo7CghNYXBFbnRyeRIL",
+          "CgNrZXkYASABKA0SHgoFdmFsdWUYAiABKAsyDy5Db3N0SXRlbVJlc01zZzoC",
+          "OAEi0wEKCkhlcm9SZXNNc2cSCgoCSWQYASABKA0SDAoETmFtZRgCIAEoCRIb",
+          "CghJdGVtVHlwZRgDIAEoDjIJLkl0ZW1UeXBlEg8KB1Jld2FyZHMYBCADKAkS",
+          "KQoHRGljVGVzdBgFIAMoCzIYLkhlcm9SZXNNc2cuRGljVGVzdEVudHJ5EhAK",
+          "CFJld2FyZHMyGAYgAygFEhAKCFJld2FyZHMzGAcgAygNGi4KDERpY1Rlc3RF",
+          "bnRyeRILCgNrZXkYASABKAUSDQoFdmFsdWUYAiABKAk6AjgBIm4KDUhlcm9S",
+          "ZXNNYXBNc2cSJAoDTWFwGAEgAygLMhcuSGVyb1Jlc01hcE1zZy5NYXBFbnRy",
+          "eRo3CghNYXBFbnRyeRILCgNrZXkYASABKA0SGgoFdmFsdWUYAiABKAsyCy5I",
+          "ZXJvUmVzTXNnOgI4ASKvAQoKSXRlbVJlc01zZxIKCgJJZBgBIAEoDRIMCgRO",
+          "YW1lGAIgASgJEhsKCEl0ZW1UeXBlGAMgASgOMgkuSXRlbVR5cGUSDwoHUmV3",
+          "YXJkcxgEIAMoCRIpCgdEaWNUZXN0GAUgAygLMhguSXRlbVJlc01zZy5EaWNU",
+          "ZXN0RW50cnkaLgoMRGljVGVzdEVudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1",
+          "ZRgCIAEoCToCOAEibgoNSXRlbVJlc01hcE1zZxIkCgNNYXAYASADKAsyFy5J",
+          "dGVtUmVzTWFwTXNnLk1hcEVudHJ5GjcKCE1hcEVudHJ5EgsKA2tleRgBIAEo",
+          "DRIaCgV2YWx1ZRgCIAEoCzILLkl0ZW1SZXNNc2c6AjgBIjsKDlVJQ29uZmln",
+          "UmVzTXNnEgwKBFR5cGUYASABKAkSDQoFVGl0bGUYAiABKAkSDAoEVmlldxgD",
+          "IAEoCSJ6ChFVSUNvbmZpZ1Jlc01hcE1zZxIoCgNNYXAYASADKAsyGy5VSUNv",
+          "bmZpZ1Jlc01hcE1zZy5NYXBFbnRyeRo7CghNYXBFbnRyeRILCgNrZXkYASAB",
+          "KAkSHgoFdmFsdWUYAiABKAsyDy5VSUNvbmZpZ1Jlc01zZzoCOAFiBnByb3Rv",
+          "Mw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::EnumReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::CostConfigResMsg), global::CostConfigResMsg.Parser, new[]{ "Id", "CostType", "ObjType", "AttrName", "AttrValue" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::CostConfigResMapMsg), global::CostConfigResMapMsg.Parser, new[]{ "Map" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CostItemResMsg), global::CostItemResMsg.Parser, new[]{ "Id", "CostType", "ObjType", "ObjId", "AttrName", "AttrValue", "Tipis" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CostItemResMapMsg), global::CostItemResMapMsg.Parser, new[]{ "Map" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::HeroResMsg), global::HeroResMsg.Parser, new[]{ "Id", "Name", "ItemType", "Rewards", "DicTest", "Rewards2", "Rewards3" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::HeroResMapMsg), global::HeroResMapMsg.Parser, new[]{ "Map" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::ItemResMsg), global::ItemResMsg.Parser, new[]{ "Id", "Name", "ItemType", "Rewards", "DicTest" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
@@ -65,16 +66,16 @@ public static partial class ObjectResMsgReflection {
 }
 #region Messages
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
+public sealed partial class CostItemResMsg : pb::IMessage<CostItemResMsg>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
 #endif
 {
-  private static readonly pb::MessageParser<CostConfigResMsg> _parser = new pb::MessageParser<CostConfigResMsg>(() => new CostConfigResMsg());
+  private static readonly pb::MessageParser<CostItemResMsg> _parser = new pb::MessageParser<CostItemResMsg>(() => new CostItemResMsg());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<CostConfigResMsg> Parser { get { return _parser; } }
+  public static pb::MessageParser<CostItemResMsg> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -90,7 +91,7 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public CostConfigResMsg() {
+  public CostItemResMsg() {
     OnConstruction();
   }
 
@@ -98,19 +99,21 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public CostConfigResMsg(CostConfigResMsg other) : this() {
+  public CostItemResMsg(CostItemResMsg other) : this() {
     id_ = other.id_;
     costType_ = other.costType_;
     objType_ = other.objType_;
+    objId_ = other.objId_;
     attrName_ = other.attrName_;
     attrValue_ = other.attrValue_;
+    tipis_ = other.tipis_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public CostConfigResMsg Clone() {
-    return new CostConfigResMsg(this);
+  public CostItemResMsg Clone() {
+    return new CostItemResMsg(this);
   }
 
   /// <summary>Field number for the "Id" field.</summary>
@@ -149,8 +152,20 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
     }
   }
 
+  /// <summary>Field number for the "ObjId" field.</summary>
+  public const int ObjIdFieldNumber = 4;
+  private uint objId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ObjId {
+    get { return objId_; }
+    set {
+      objId_ = value;
+    }
+  }
+
   /// <summary>Field number for the "AttrName" field.</summary>
-  public const int AttrNameFieldNumber = 4;
+  public const int AttrNameFieldNumber = 5;
   private string attrName_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -162,7 +177,7 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
   }
 
   /// <summary>Field number for the "AttrValue" field.</summary>
-  public const int AttrValueFieldNumber = 5;
+  public const int AttrValueFieldNumber = 6;
   private uint attrValue_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -173,15 +188,27 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
     }
   }
 
+  /// <summary>Field number for the "Tipis" field.</summary>
+  public const int TipisFieldNumber = 7;
+  private string tipis_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override bool Equals(object other) {
-    return Equals(other as CostConfigResMsg);
+  public string Tipis {
+    get { return tipis_; }
+    set {
+      tipis_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(CostConfigResMsg other) {
+  public override bool Equals(object other) {
+    return Equals(other as CostItemResMsg);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(CostItemResMsg other) {
     if (ReferenceEquals(other, null)) {
       return false;
     }
@@ -191,8 +218,10 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
     if (Id != other.Id) return false;
     if (CostType != other.CostType) return false;
     if (ObjType != other.ObjType) return false;
+    if (ObjId != other.ObjId) return false;
     if (AttrName != other.AttrName) return false;
     if (AttrValue != other.AttrValue) return false;
+    if (Tipis != other.Tipis) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -203,8 +232,10 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
     if (Id != 0) hash ^= Id.GetHashCode();
     if (CostType != global::CostItemType.Consume) hash ^= CostType.GetHashCode();
     if (ObjType != global::ObjectType.Player) hash ^= ObjType.GetHashCode();
+    if (ObjId != 0) hash ^= ObjId.GetHashCode();
     if (AttrName.Length != 0) hash ^= AttrName.GetHashCode();
     if (AttrValue != 0) hash ^= AttrValue.GetHashCode();
+    if (Tipis.Length != 0) hash ^= Tipis.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -235,13 +266,21 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
       output.WriteRawTag(24);
       output.WriteEnum((int) ObjType);
     }
+    if (ObjId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(ObjId);
+    }
     if (AttrName.Length != 0) {
-      output.WriteRawTag(34);
+      output.WriteRawTag(42);
       output.WriteString(AttrName);
     }
     if (AttrValue != 0) {
-      output.WriteRawTag(40);
+      output.WriteRawTag(48);
       output.WriteUInt32(AttrValue);
+    }
+    if (Tipis.Length != 0) {
+      output.WriteRawTag(58);
+      output.WriteString(Tipis);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -265,13 +304,21 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
       output.WriteRawTag(24);
       output.WriteEnum((int) ObjType);
     }
+    if (ObjId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(ObjId);
+    }
     if (AttrName.Length != 0) {
-      output.WriteRawTag(34);
+      output.WriteRawTag(42);
       output.WriteString(AttrName);
     }
     if (AttrValue != 0) {
-      output.WriteRawTag(40);
+      output.WriteRawTag(48);
       output.WriteUInt32(AttrValue);
+    }
+    if (Tipis.Length != 0) {
+      output.WriteRawTag(58);
+      output.WriteString(Tipis);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -292,11 +339,17 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
     if (ObjType != global::ObjectType.Player) {
       size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ObjType);
     }
+    if (ObjId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ObjId);
+    }
     if (AttrName.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(AttrName);
     }
     if (AttrValue != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(AttrValue);
+    }
+    if (Tipis.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Tipis);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -306,7 +359,7 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(CostConfigResMsg other) {
+  public void MergeFrom(CostItemResMsg other) {
     if (other == null) {
       return;
     }
@@ -319,11 +372,17 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
     if (other.ObjType != global::ObjectType.Player) {
       ObjType = other.ObjType;
     }
+    if (other.ObjId != 0) {
+      ObjId = other.ObjId;
+    }
     if (other.AttrName.Length != 0) {
       AttrName = other.AttrName;
     }
     if (other.AttrValue != 0) {
       AttrValue = other.AttrValue;
+    }
+    if (other.Tipis.Length != 0) {
+      Tipis = other.Tipis;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -352,12 +411,20 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
           ObjType = (global::ObjectType) input.ReadEnum();
           break;
         }
-        case 34: {
+        case 32: {
+          ObjId = input.ReadUInt32();
+          break;
+        }
+        case 42: {
           AttrName = input.ReadString();
           break;
         }
-        case 40: {
+        case 48: {
           AttrValue = input.ReadUInt32();
+          break;
+        }
+        case 58: {
+          Tipis = input.ReadString();
           break;
         }
       }
@@ -387,12 +454,20 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
           ObjType = (global::ObjectType) input.ReadEnum();
           break;
         }
-        case 34: {
+        case 32: {
+          ObjId = input.ReadUInt32();
+          break;
+        }
+        case 42: {
           AttrName = input.ReadString();
           break;
         }
-        case 40: {
+        case 48: {
           AttrValue = input.ReadUInt32();
+          break;
+        }
+        case 58: {
+          Tipis = input.ReadString();
           break;
         }
       }
@@ -403,16 +478,16 @@ public sealed partial class CostConfigResMsg : pb::IMessage<CostConfigResMsg>
 }
 
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-public sealed partial class CostConfigResMapMsg : pb::IMessage<CostConfigResMapMsg>
+public sealed partial class CostItemResMapMsg : pb::IMessage<CostItemResMapMsg>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
 #endif
 {
-  private static readonly pb::MessageParser<CostConfigResMapMsg> _parser = new pb::MessageParser<CostConfigResMapMsg>(() => new CostConfigResMapMsg());
+  private static readonly pb::MessageParser<CostItemResMapMsg> _parser = new pb::MessageParser<CostItemResMapMsg>(() => new CostItemResMapMsg());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<CostConfigResMapMsg> Parser { get { return _parser; } }
+  public static pb::MessageParser<CostItemResMapMsg> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -428,7 +503,7 @@ public sealed partial class CostConfigResMapMsg : pb::IMessage<CostConfigResMapM
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public CostConfigResMapMsg() {
+  public CostItemResMapMsg() {
     OnConstruction();
   }
 
@@ -436,37 +511,37 @@ public sealed partial class CostConfigResMapMsg : pb::IMessage<CostConfigResMapM
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public CostConfigResMapMsg(CostConfigResMapMsg other) : this() {
+  public CostItemResMapMsg(CostItemResMapMsg other) : this() {
     map_ = other.map_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public CostConfigResMapMsg Clone() {
-    return new CostConfigResMapMsg(this);
+  public CostItemResMapMsg Clone() {
+    return new CostItemResMapMsg(this);
   }
 
   /// <summary>Field number for the "Map" field.</summary>
   public const int MapFieldNumber = 1;
-  private static readonly pbc::MapField<uint, global::CostConfigResMsg>.Codec _map_map_codec
-      = new pbc::MapField<uint, global::CostConfigResMsg>.Codec(pb::FieldCodec.ForUInt32(8, 0), pb::FieldCodec.ForMessage(18, global::CostConfigResMsg.Parser), 10);
-  private readonly pbc::MapField<uint, global::CostConfigResMsg> map_ = new pbc::MapField<uint, global::CostConfigResMsg>();
+  private static readonly pbc::MapField<uint, global::CostItemResMsg>.Codec _map_map_codec
+      = new pbc::MapField<uint, global::CostItemResMsg>.Codec(pb::FieldCodec.ForUInt32(8, 0), pb::FieldCodec.ForMessage(18, global::CostItemResMsg.Parser), 10);
+  private readonly pbc::MapField<uint, global::CostItemResMsg> map_ = new pbc::MapField<uint, global::CostItemResMsg>();
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pbc::MapField<uint, global::CostConfigResMsg> Map {
+  public pbc::MapField<uint, global::CostItemResMsg> Map {
     get { return map_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
-    return Equals(other as CostConfigResMapMsg);
+    return Equals(other as CostItemResMapMsg);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(CostConfigResMapMsg other) {
+  public bool Equals(CostItemResMapMsg other) {
     if (ReferenceEquals(other, null)) {
       return false;
     }
@@ -531,7 +606,7 @@ public sealed partial class CostConfigResMapMsg : pb::IMessage<CostConfigResMapM
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(CostConfigResMapMsg other) {
+  public void MergeFrom(CostItemResMapMsg other) {
     if (other == null) {
       return;
     }

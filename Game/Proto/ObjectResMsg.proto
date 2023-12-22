@@ -1,17 +1,19 @@
 syntax = "proto3";
 import "Enum.proto";
 
-message CostConfigResMsg
+message CostItemResMsg
 {
     uint32 Id = 1;
     CostItemType CostType = 2;
     ObjectType ObjType = 3;
-    string AttrName = 4;
-    uint32 AttrValue = 5;
+    uint32 ObjId = 4;
+    string AttrName = 5;
+    uint32 AttrValue = 6;
+    string Tipis = 7;
 }
-message CostConfigResMapMsg
+message CostItemResMapMsg
 {
-   map<uint32, CostConfigResMsg> Map = 1;
+   map<uint32, CostItemResMsg> Map = 1;
 }
 
 message HeroResMsg

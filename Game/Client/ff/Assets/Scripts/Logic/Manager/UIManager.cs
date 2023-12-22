@@ -22,8 +22,8 @@ namespace Logic.Manager
     
     public class BaseUISnapShoot
     {
-        public ViewCloseType ViewJumpCloseType = ViewCloseType.Destroy; // A跳转B界面 A的关闭方式
-        public ViewCloseType ViewBackCloseType = ViewCloseType.Destroy;// A跳转B界面 B返回关闭方式
+        public ViewDeActiveType ViewDeActivePushType = ViewDeActiveType.Destroy; // A跳转B界面 A的关闭方式
+        public ViewDeActiveType ViewDeActiveBackType = ViewDeActiveType.Destroy;// A跳转B界面 B返回关闭方式
         private readonly Stack<UIType> _uiList;
         private readonly ViewConfig _viewConfig;
 
@@ -40,7 +40,7 @@ namespace Logic.Manager
             PushUI(type);
         }
 
-        public ViewConfig GetConfig()
+        public ViewConfig GetViewConfig()
         {
             return _viewConfig;
         }
@@ -67,9 +67,14 @@ namespace Logic.Manager
             return _uiList.Peek();
         }
 
-        public int GetViewCount()
+        public int GetUICount()
         {
             return _uiList.Count;
+        }
+
+        public bool CheckLastUI()
+        {
+            return GetUICount() == 1;
         }
     }
 
@@ -120,21 +125,50 @@ namespace Logic.Manager
         /// ui快照入栈
         /// </summary>
         /// <param name="snapShoot"></param>
-        public void JumpView(BaseUISnapShoot snapShoot)
+        public void PushView(BaseUISnapShoot snapShoot)
         {
+            //上个UI的处理方式，根据ViewDeActivePushType
             if (_snapShoots.Count > 0)
             {
-                CloseView(_snapShoots.Peek().GetConfig().Name, snapShoot.ViewJumpCloseType);
+                DeActiveView(_snapShoots.Peek().GetViewConfig().Name, snapShoot.ViewDeActivePushType);
             }
             
             _snapShoots.Push(snapShoot);
-            OpenView(snapShoot);
+            ShowView(snapShoot);
         }
 
-        private void OpenView(BaseUISnapShoot snapShoot)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="viewName"></param>
+        /// <param name="closeType"></param>
+        private void DeActiveView(string viewName, ViewDeActiveType closeType)
         {
-            var config = snapShoot.GetConfig();
+            _cacheViews.TryGetValue(viewName, out BaseView viewBase);
+            if (viewBase == null){return;} 
+            switch (closeType)
+            {
+                case ViewDeActiveType.Destroy:
+                case ViewDeActiveType.Disable:
+                    CloseView(viewName, closeType);
+                    break;
+                case ViewDeActiveType.None:
+                    viewBase.Dropdown();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="snapShoot"></param>
+        private void ShowView(BaseUISnapShoot snapShoot)
+        {
+            var config = snapShoot.GetViewConfig();
             _cacheViews.TryGetValue(config.Name, out BaseView baseView);
+            var isActive = baseView != null && baseView.gameObject.activeSelf;
             if (baseView == null)
             {
                 var prefab = Resources.Load<Transform>(config.Path);
@@ -142,22 +176,41 @@ namespace Logic.Manager
                 tfm.name = config.Name;
                 baseView = tfm.GetComponent<BaseView>();
                 _cacheViews.Add(config.Name, baseView);
+                baseView.Create(snapShoot);
             }
             baseView.transform.SetAsLastSibling();
             baseView.gameObject.SetActive(true);
-            baseView.Open(snapShoot); 
+            if (!isActive)
+            {
+                baseView.Open(snapShoot); 
+            }
+            else
+            {
+                baseView.RaiseUp();
+            }
         }
 
+        private bool CheckLastView()
+        {
+            return _snapShoots.Count == 1;
+        }
+
+        public bool CheckLastUI()
+        {
+            return CheckLastView() && GetTopSnapShoot().CheckLastUI();
+        }
+        
         public void BackView()
         {
-            if (_snapShoots.Count == 1 && _snapShoots.Peek().GetViewCount() == 1){return;}
-            var snapShoot = _snapShoots.Peek();
-            if (snapShoot.GetViewCount() <= 1)
+            //最后的UI 没有返回键
+            if (CheckLastUI()){return;}
+            var topSnap = GetTopSnapShoot();
+            if (topSnap.CheckLastUI())
             {
-                var config = _snapShoots.Peek().GetConfig();
-                CloseView(config.Name, snapShoot.ViewBackCloseType);
+                var config = _snapShoots.Peek().GetViewConfig();
+                DeActiveView(config.Name, topSnap.ViewDeActiveBackType);
                 _snapShoots.Pop();
-                OpenView(_snapShoots.Peek()); 
+                ShowView(_snapShoots.Peek()); 
             }
             else
             {
@@ -166,30 +219,35 @@ namespace Logic.Manager
             }
         }
 
+        public BaseUISnapShoot GetTopSnapShoot()
+        {
+            return _snapShoots.Peek();
+        }
+
         public BaseView GetTopView()
         {
             if (_snapShoots.Count <= 0){return null;}
 
             var topSnapShoot = _snapShoots.Peek();
-            _cacheViews.TryGetValue(topSnapShoot.GetConfig().Name, out BaseView viewBase);
+            _cacheViews.TryGetValue(topSnapShoot.GetViewConfig().Name, out BaseView viewBase);
             return viewBase;
         }
 
-        private void CloseView(string viewName, ViewCloseType closeType)
+        private void CloseView(string viewName, ViewDeActiveType closeType)
         {
             _cacheViews.TryGetValue(viewName, out BaseView viewBase);
             if (viewBase == null){return;}
             viewBase.Close();
             switch (closeType)
             {
-                case ViewCloseType.Destroy:
+                case ViewDeActiveType.Destroy:
+                    viewBase.Destroy();
                     _cacheViews.Remove(viewName);
                     UnityEngine.Object.Destroy(viewBase.gameObject);
                     break;
-                case ViewCloseType.Hide:
+                case ViewDeActiveType.Disable:
+                    viewBase.Disable();
                     viewBase.gameObject.SetActive(false);
-                    break;
-                case ViewCloseType.None:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

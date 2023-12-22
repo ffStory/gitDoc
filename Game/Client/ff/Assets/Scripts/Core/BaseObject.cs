@@ -1,5 +1,7 @@
 using Google.Protobuf;
 using System;
+using Logic;
+
 public class BaseObject : EventTarget
 {
     public BaseObject(Game game, ObjectType type)

@@ -15,11 +15,12 @@ namespace UI.Views
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(delegate
             {
-                UIManager.Instance.JumpView(new BaseUISnapShoot(UIType.HeroInfo){ViewJumpCloseType = ViewCloseType.None, ViewBackCloseType = ViewCloseType.Destroy});
+                UIManager.Instance.PushView(new BaseUISnapShoot(UIType.HeroInfo){ViewDeActivePushType = ViewDeActiveType.None, ViewDeActiveBackType = ViewDeActiveType.Destroy});
                 // Jump(UIType.HeroInfo);
             });
             
             RefreshView();
         }
+        
     }
 }

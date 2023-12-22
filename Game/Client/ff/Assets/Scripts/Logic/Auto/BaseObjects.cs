@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Google.Protobuf;
+using Logic;
 using Logic.Object;
 
 public abstract class BaseCostItem : BaseObject
@@ -63,8 +64,8 @@ public abstract class BaseCostItem : BaseObject
 public abstract class BaseHero : BaseObject
 {
     public BaseHero(Game game) : base(game, ObjectType.Hero){}
-    protected int exp;
-    public int Exp
+    protected uint exp;
+    public uint Exp
     {
         get{return exp;}
         set
@@ -74,7 +75,7 @@ public abstract class BaseHero : BaseObject
             PostAttrEvent("Exp", old, exp);
         }
     }
-    public abstract int Level { get; }
+    public abstract uint Level { get; }
     protected string name;
     public string Name
     {
@@ -84,6 +85,17 @@ public abstract class BaseHero : BaseObject
             var old = name;
             name = value;
             PostAttrEvent("Name", old, name);
+        }
+    }
+    protected HeroState state;
+    public HeroState State
+    {
+        get{return state;}
+        set
+        {
+            var old = state;
+            state = value;
+            PostAttrEvent("State", old, state);
         }
     }
     public override void LoadMsg(IMessage iMessage)
@@ -111,7 +123,7 @@ public abstract class BasePlayer : BaseObject
         }
     }
     public abstract int Level { get; }
-    public Dictionary<int, Hero> Heroes;
+    public Dictionary<uint, Hero> Heroes;
     protected int gold;
     public int Gold
     {
@@ -154,7 +166,7 @@ public abstract class BasePlayer : BaseObject
         var message = iMessage as PlayerMsg;
         Id = message.Id;
         Exp = message.Exp;
-        Heroes = new Dictionary<int, Hero>();
+        Heroes = new Dictionary<uint, Hero>();
         foreach (var pair in message.Heroes)
         {
             var item = new Hero(this);

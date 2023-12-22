@@ -25,13 +25,13 @@ public static partial class ObjectMsgReflection {
           "Cg9PYmplY3RNc2cucHJvdG8aCkVudW0ucHJvdG8icQoLQ29zdEl0ZW1Nc2cS",
           "HwoIQ29zdFR5cGUYASABKA4yDS5Db3N0SXRlbVR5cGUSHAoHT2JqVHlwZRgC",
           "IAEoDjILLk9iamVjdFR5cGUSEAoIQXR0ck5hbWUYAyABKAkSEQoJQXR0clZh",
-          "bHVlGAQgASgNIjAKB0hlcm9Nc2cSCgoCSWQYASABKA0SCwoDRXhwGAIgASgF",
+          "bHVlGAQgASgNIjAKB0hlcm9Nc2cSCgoCSWQYASABKA0SCwoDRXhwGAIgASgN",
           "EgwKBE5hbWUYAyABKAkixAIKCVBsYXllck1zZxIKCgJJZBgBIAEoDRILCgNF",
           "eHAYAiABKAUSJgoGSGVyb2VzGAMgAygLMhYuUGxheWVyTXNnLkhlcm9lc0Vu",
           "dHJ5EgwKBEdvbGQYBCABKAUSFwoFSXRlbXMYBSADKAsyCC5IZXJvTXNnEhAK",
           "CEl0ZW1zSW50GAYgAygFEjIKDEhlcm9lc0RpY0ludBgHIAMoCzIcLlBsYXll",
           "ck1zZy5IZXJvZXNEaWNJbnRFbnRyeRIbCghJdGVtVHlwZRgIIAEoDjIJLkl0",
-          "ZW1UeXBlGjcKC0hlcm9lc0VudHJ5EgsKA2tleRgBIAEoBRIXCgV2YWx1ZRgC",
+          "ZW1UeXBlGjcKC0hlcm9lc0VudHJ5EgsKA2tleRgBIAEoDRIXCgV2YWx1ZRgC",
           "IAEoCzIILkhlcm9Nc2c6AjgBGjMKEUhlcm9lc0RpY0ludEVudHJ5EgsKA2tl",
           "eRgBIAEoBRINCgV2YWx1ZRgCIAEoBToCOAFiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
@@ -408,10 +408,10 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
 
   /// <summary>Field number for the "Exp" field.</summary>
   public const int ExpFieldNumber = 2;
-  private int exp_;
+  private uint exp_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int Exp {
+  public uint Exp {
     get { return exp_; }
     set {
       exp_ = value;
@@ -482,7 +482,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     }
     if (Exp != 0) {
       output.WriteRawTag(16);
-      output.WriteInt32(Exp);
+      output.WriteUInt32(Exp);
     }
     if (Name.Length != 0) {
       output.WriteRawTag(26);
@@ -504,7 +504,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     }
     if (Exp != 0) {
       output.WriteRawTag(16);
-      output.WriteInt32(Exp);
+      output.WriteUInt32(Exp);
     }
     if (Name.Length != 0) {
       output.WriteRawTag(26);
@@ -524,7 +524,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Id);
     }
     if (Exp != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Exp);
     }
     if (Name.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
@@ -570,7 +570,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
           break;
         }
         case 16: {
-          Exp = input.ReadInt32();
+          Exp = input.ReadUInt32();
           break;
         }
         case 26: {
@@ -597,7 +597,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
           break;
         }
         case 16: {
-          Exp = input.ReadInt32();
+          Exp = input.ReadUInt32();
           break;
         }
         case 26: {
@@ -689,12 +689,12 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
 
   /// <summary>Field number for the "Heroes" field.</summary>
   public const int HeroesFieldNumber = 3;
-  private static readonly pbc::MapField<int, global::HeroMsg>.Codec _map_heroes_codec
-      = new pbc::MapField<int, global::HeroMsg>.Codec(pb::FieldCodec.ForInt32(8, 0), pb::FieldCodec.ForMessage(18, global::HeroMsg.Parser), 26);
-  private readonly pbc::MapField<int, global::HeroMsg> heroes_ = new pbc::MapField<int, global::HeroMsg>();
+  private static readonly pbc::MapField<uint, global::HeroMsg>.Codec _map_heroes_codec
+      = new pbc::MapField<uint, global::HeroMsg>.Codec(pb::FieldCodec.ForUInt32(8, 0), pb::FieldCodec.ForMessage(18, global::HeroMsg.Parser), 26);
+  private readonly pbc::MapField<uint, global::HeroMsg> heroes_ = new pbc::MapField<uint, global::HeroMsg>();
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pbc::MapField<int, global::HeroMsg> Heroes {
+  public pbc::MapField<uint, global::HeroMsg> Heroes {
     get { return heroes_; }
   }
 
