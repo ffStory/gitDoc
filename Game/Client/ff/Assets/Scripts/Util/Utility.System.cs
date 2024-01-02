@@ -1,5 +1,6 @@
 using System;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace Util
 {
@@ -26,69 +27,26 @@ namespace Util
         }
 
         /// <summary>
-        /// 使用表达式树获取对象的属性类型和值
+        /// 反射获得属性值
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="propertyName"></param>
-        /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static (Type type, object value) GetPropertyInfo<T>(T obj, string propertyName)
+        /// <exception cref="ArgumentException"></exception>
+        static public object GetPropertyValue(object obj, string propertyName)
         {
-            // 创建参数表达式
-            ParameterExpression param = Expression.Parameter(typeof(T), "x");
+            Type type = obj.GetType();
 
-            // 创建属性访问表达式
-            MemberExpression memberExpression = Expression.Property(param, propertyName);
+            // 获取属性信息
+            var property = type.GetProperty(propertyName);
 
-            var constructor = typeof(ValueTuple<Type, object>).GetConstructor(new[] {typeof(Type), typeof(object)});
-            if (constructor == null)
+            if (property != null)
             {
-                return (null, null);
+                // 获取属性值
+                return property.GetValue(obj);
             }
-            // 创建 Lambda 表达式
-            Expression<Func<T, (Type type, object value)>> lambda =
-                Expression.Lambda<Func<T, (Type type, object value)>>(
-                    Expression.New(
-                        constructor,
-                        Expression.Constant(memberExpression.Type),
-                        Expression.Convert(memberExpression, typeof(object))
-                    ),
-                    param
-                );
 
-            // 编译 Lambda 表达式并获取委托
-            Func<T, (Type type, object value)> func = lambda.Compile();
-
-            // 调用委托获取属性类型和值
-            return func(obj);
-        }
-        
-        /// <summary>
-        /// 表达式树获得属性值
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="propertyName"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public static object GetPropertyValue<T>(T obj, string propertyName)
-        {
-            // 创建参数表达式
-            ParameterExpression param = Expression.Parameter(typeof(T), "x");
-
-            // 创建属性访问表达式
-            MemberExpression memberExpression = Expression.Property(param, propertyName);
-
-            // 创建 Lambda 表达式
-            Expression<Func<T, object>> lambda = Expression.Lambda<Func<T, object>>(
-                Expression.Convert(memberExpression, typeof(object)),
-                param
-            );
-
-            // 编译 Lambda 表达式并获取委托
-            Func<T, object> func = lambda.Compile();
-
-            // 调用委托获取属性值
-            return func(obj);
+            throw new ArgumentException($"Property '{propertyName}' not found on type '{type}'.");
         }
         
         /// <summary>
@@ -125,64 +83,24 @@ namespace Util
         /// <param name="obj"></param>
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TValue"></typeparam>
-        static public void SetProperty<T, TValue>(T obj, string propertyName, TValue value)
+        public static void SetProperty(object obj, string propertyName, object value)
         {
-            // 创建参数表达式
-            ParameterExpression param = Expression.Parameter(typeof(T), "x");
+            // 获取对象的类型
+            Type type = obj.GetType();
 
-            // 创建属性访问表达式
-            MemberExpression propertyExpression = Expression.Property(param, propertyName);
+            // 获取属性信息
+            PropertyInfo propertyInfo = type.GetProperty(propertyName);
 
-            // 创建值表达式
-            ConstantExpression valueExpression = Expression.Constant(value, typeof(TValue));
-
-            // 创建赋值表达式
-            BinaryExpression assignmentExpression = Expression.Assign(propertyExpression, valueExpression);
-
-            // 创建 Lambda 表达式
-            Expression<Action<T>> lambda = Expression.Lambda<Action<T>>(assignmentExpression, param);
-
-            // 编译 Lambda 表达式并获取委托
-            Action<T> setPropertyAction = lambda.Compile();
-
-            // 调用委托设置属性值
-            setPropertyAction(obj);
-        }
-        
-        /// <summary>
-        /// 表达式树加法
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="propertyName"></param>
-        /// <param name="operand"></param>
-        /// <typeparam name="T"></typeparam>
-        static public void PropertyAddition<T>(T obj, string propertyName, long operand)
-        {
-            // 创建参数表达式
-            ParameterExpression param = Expression.Parameter(typeof(T), "x");
-
-            // 创建属性访问表达式
-            MemberExpression propertyExpression = Expression.Property(param, propertyName);
-
-            // 创建常量表达式
-            ConstantExpression operandExpression = Expression.Constant(operand, typeof(long));
-
-            // 创建加法操作表达式
-            BinaryExpression additionExpression = Expression.Add(propertyExpression, operandExpression);
-
-            // 创建 Lambda 表达式
-            Expression<Action<T>> lambda = Expression.Lambda<Action<T>>(
-                Expression.Assign(propertyExpression, additionExpression),
-                param
-            );
-
-            // 编译 Lambda 表达式并获取委托
-            Action<T> performAdditionAction = lambda.Compile();
-
-            // 调用委托执行加法操作
-            performAdditionAction(obj);
+            // 检查属性是否存在
+            if (propertyInfo != null)
+            {
+                // 设置属性值
+                propertyInfo.SetValue(obj, value);
+            }
+            else
+            {
+                Console.WriteLine($"Property '{propertyName}' not found.");
+            }
         }
     }
 }
