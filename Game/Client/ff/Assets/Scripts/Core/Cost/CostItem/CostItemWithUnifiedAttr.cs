@@ -26,6 +26,11 @@ namespace Core.Cost.CostItem
             _unifiedAttr.Add(game, value, targetContext);
         }
 
+        public override string GetEvent(Game game, TargetContext optContext)
+        {
+            return _unifiedAttr.GetEvent(game, optContext);
+        }
+
         protected readonly string AttrValue;
         private readonly Core.UnifiedAttr.UnifiedAttr _unifiedAttr;
     }

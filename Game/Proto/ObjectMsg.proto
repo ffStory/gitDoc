@@ -1,29 +1,27 @@
 syntax = "proto3";
 import "Enum.proto";
 
-message CostItemMsg
-{
-    CostItemType CostType = 1;
-    ObjectType ObjType = 2;
-    string AttrName = 3;
-    uint32 AttrValue = 4;
-}
-
 message HeroMsg
 {
     uint32 Id = 1;
     uint32 Exp = 2;
     string Name = 3;
+    uint64 OwnTime = 4;
+}
+
+message ItemMsg
+{
+    uint32 Id = 1;
+    uint32 Num = 2;
+    ItemType Type = 3;
+    uint64 OwnTime = 4;
 }
 
 message PlayerMsg
 {
     uint32 Id = 1;
-    int32 Exp = 2;
+    uint32 Exp = 2;
     map<uint32, HeroMsg> Heroes = 3;
-    int32 Gold = 4;
-    repeated HeroMsg Items = 5;
-    repeated int32 ItemsInt = 6;
-    map<int32, int32> HeroesDicInt = 7;
-    ItemType ItemType = 8;
+    uint32 Gold = 4;
+    map<uint32, ItemMsg> Items = 5;
 }

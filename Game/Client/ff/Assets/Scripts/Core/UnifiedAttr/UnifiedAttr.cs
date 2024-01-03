@@ -18,14 +18,7 @@ namespace Core.UnifiedAttr
 
         public abstract object GetTarget(Game game, TargetContext optContext);
 
-
         public abstract void Add(Game game, long value, TargetContext optContext);
-        
-
-        public virtual bool IsConsumable()
-        {
-            return true;
-        }
 
         /// <summary>
         /// 图标
@@ -56,5 +49,8 @@ namespace Core.UnifiedAttr
             }
             return null;
         }
+
+        public abstract string GetEvent(Game game, TargetContext optContext);
+
     }
 }

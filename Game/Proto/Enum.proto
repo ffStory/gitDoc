@@ -27,7 +27,7 @@ enum HeroState
 enum ItemType
 {
     Resource = 0;
-    Speed = 2;
+    Speed = 1;
 }
 
 enum ObjectType

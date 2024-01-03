@@ -21,7 +21,7 @@ namespace Core.Cost
     {
         public Cost(List<uint> ids)
         {
-            _items = new List<CostItem.CostItem>();
+            Items = new List<CostItem.CostItem>();
             
             if (ids is null){return;}
 
@@ -29,7 +29,7 @@ namespace Core.Cost
             {
                 if (ResManager.Instance.CostItemResMapMsg.Map.TryGetValue(id, out CostItemResMsg costItemResMsg))
                 {
-                    _items.Add(CostItem.CostItem.CreateCostItem(costItemResMsg));
+                    Items.Add(CostItem.CostItem.CreateCostItem(costItemResMsg));
                 }
             }
         }
@@ -37,7 +37,7 @@ namespace Core.Cost
         public CostCheckResult Check(Game game, TargetContext tartContext, bool isCheckAll = false)
         {
             var result = new CostCheckResult();
-            foreach (var costItem in _items)
+            foreach (var costItem in Items)
             {
                 costItem.Check(game, out CostItemCheckResult itemResult, tartContext);
                 if (itemResult.IsSuccess){continue;}
@@ -49,7 +49,7 @@ namespace Core.Cost
 
         public void Consume(Game game, TargetContext tartContext)
         {
-            foreach (var costItem in _items)
+            foreach (var costItem in Items)
             {
                 if (costItem.IsConsume())
                 {
@@ -61,14 +61,14 @@ namespace Core.Cost
         public Cost Multiply(uint times)
         {
             var newCost = new Cost(null);
-            foreach (var item in _items)
+            foreach (var item in Items)
             {
-                newCost._items.Add(item.IsMultiply() ? item.Multiply(times) : item.Copy());
+                newCost.Items.Add(item.IsMultiply() ? item.Multiply(times) : item.Copy());
             }
 
             return newCost;
         }
 
-        private readonly List<CostItem.CostItem> _items;
+        public readonly List<CostItem.CostItem> Items;
     }
 }

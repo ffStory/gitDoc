@@ -18,14 +18,5 @@ namespace Core.Cost.CostItem
                 Enum.Parse(tuple.Type, AttrValue).Equals(tuple.Value) : 
                 tuple.Value.Equals(Convert.ChangeType(AttrValue, tuple.Type));
         }
-        
-        public override void Consume(Game game, TargetContext optContext)
-        {
-        }
-
-        public override bool IsConsume()
-        {
-            return false;
-        }
     }
 }

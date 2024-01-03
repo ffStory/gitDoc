@@ -1,73 +1,16 @@
 using System.Collections.Generic;
+using Core;
 using Google.Protobuf;
-using Logic;
 using Logic.Object;
-
-public abstract class BaseCostItem : BaseObject
-{
-    public BaseCostItem(Game game) : base(game, ObjectType.CostItem){}
-    protected CostItemType costType;
-    public CostItemType CostType
-    {
-        get{return costType;}
-        set
-        {
-            var old = costType;
-            costType = value;
-            PostAttrEvent("CostType", old, costType);
-        }
-    }
-    protected ObjectType objType;
-    public ObjectType ObjType
-    {
-        get{return objType;}
-        set
-        {
-            var old = objType;
-            objType = value;
-            PostAttrEvent("ObjType", old, objType);
-        }
-    }
-    protected string attrName;
-    public string AttrName
-    {
-        get{return attrName;}
-        set
-        {
-            var old = attrName;
-            attrName = value;
-            PostAttrEvent("AttrName", old, attrName);
-        }
-    }
-    protected uint attrValue;
-    public uint AttrValue
-    {
-        get{return attrValue;}
-        set
-        {
-            var old = attrValue;
-            attrValue = value;
-            PostAttrEvent("AttrValue", old, attrValue);
-        }
-    }
-    public override void LoadMsg(IMessage iMessage)
-    {
-        var message = iMessage as CostItemMsg;
-        CostType = message.CostType;
-        ObjType = message.ObjType;
-        AttrName = message.AttrName;
-        AttrValue = message.AttrValue;
-        AfterLoadMsg();
-    }
-}
+using Logic;
 
 public abstract class BaseHero : BaseObject
 {
     public BaseHero(Game game) : base(game, ObjectType.Hero){}
     protected uint exp;
-    public uint Exp
+    public virtual uint Exp
     {
-        get{return exp;}
+        get => exp;
         set
         {
             var old = exp;
@@ -77,9 +20,9 @@ public abstract class BaseHero : BaseObject
     }
     public abstract uint Level { get; }
     protected string name;
-    public string Name
+    public virtual string Name
     {
-        get{return name;}
+        get => name;
         set
         {
             var old = name;
@@ -88,9 +31,9 @@ public abstract class BaseHero : BaseObject
         }
     }
     protected HeroState state;
-    public HeroState State
+    public virtual HeroState State
     {
-        get{return state;}
+        get => state;
         set
         {
             var old = state;
@@ -98,12 +41,73 @@ public abstract class BaseHero : BaseObject
             PostAttrEvent("State", old, state);
         }
     }
+    protected ulong ownTime;
+    public virtual ulong OwnTime
+    {
+        get => ownTime;
+        set
+        {
+            var old = ownTime;
+            ownTime = value;
+            PostAttrEvent("OwnTime", old, ownTime);
+        }
+    }
     public override void LoadMsg(IMessage iMessage)
     {
         var message = iMessage as HeroMsg;
+        if (message is null) {return;}
         Id = message.Id;
         Exp = message.Exp;
         Name = message.Name;
+        OwnTime = message.OwnTime;
+        AfterLoadMsg();
+    }
+}
+
+public abstract class BaseItem : BaseObject
+{
+    public BaseItem(Game game) : base(game, ObjectType.Item){}
+    protected uint num;
+    public virtual uint Num
+    {
+        get => num;
+        set
+        {
+            var old = num;
+            num = value;
+            PostAttrEvent("Num", old, num);
+        }
+    }
+    protected ItemType type;
+    public virtual ItemType Type
+    {
+        get => type;
+        set
+        {
+            var old = type;
+            type = value;
+            PostAttrEvent("Type", old, type);
+        }
+    }
+    protected ulong ownTime;
+    public virtual ulong OwnTime
+    {
+        get => ownTime;
+        set
+        {
+            var old = ownTime;
+            ownTime = value;
+            PostAttrEvent("OwnTime", old, ownTime);
+        }
+    }
+    public override void LoadMsg(IMessage iMessage)
+    {
+        var message = iMessage as ItemMsg;
+        if (message is null) {return;}
+        Id = message.Id;
+        Num = message.Num;
+        Type = message.Type;
+        OwnTime = message.OwnTime;
         AfterLoadMsg();
     }
 }
@@ -111,10 +115,10 @@ public abstract class BaseHero : BaseObject
 public abstract class BasePlayer : BaseObject
 {
     public BasePlayer(Game game) : base(game, ObjectType.Player){}
-    protected int exp;
-    public int Exp
+    protected uint exp;
+    public virtual uint Exp
     {
-        get{return exp;}
+        get => exp;
         set
         {
             var old = exp;
@@ -122,12 +126,12 @@ public abstract class BasePlayer : BaseObject
             PostAttrEvent("Exp", old, exp);
         }
     }
-    public abstract int Level { get; }
+    public abstract uint Level { get; }
     public Dictionary<uint, Hero> Heroes;
-    protected int gold;
-    public int Gold
+    protected uint gold;
+    public virtual uint Gold
     {
-        get{return gold;}
+        get => gold;
         set
         {
             var old = gold;
@@ -135,35 +139,11 @@ public abstract class BasePlayer : BaseObject
             PostAttrEvent("Gold", old, gold);
         }
     }
-    public List<Hero> Items;
-    public List<int> ItemsInt;
-    public Dictionary<int, int> HeroesDicInt;
-    public abstract int Power { get; }
-    protected ItemType itemType;
-    public ItemType ItemType
-    {
-        get{return itemType;}
-        set
-        {
-            var old = itemType;
-            itemType = value;
-            PostAttrEvent("ItemType", old, itemType);
-        }
-    }
-    protected int attackBoost;
-    public int AttackBoost
-    {
-        get{return attackBoost;}
-        set
-        {
-            var old = attackBoost;
-            attackBoost = value;
-            PostAttrEvent("AttackBoost", old, attackBoost);
-        }
-    }
+    public Dictionary<uint, Item> Items;
     public override void LoadMsg(IMessage iMessage)
     {
         var message = iMessage as PlayerMsg;
+        if (message is null) {return;}
         Id = message.Id;
         Exp = message.Exp;
         Heroes = new Dictionary<uint, Hero>();
@@ -174,16 +154,13 @@ public abstract class BasePlayer : BaseObject
             Heroes.Add(pair.Key, item);
         }
         Gold = message.Gold;
-        Items = new List<Hero>();
-        for (var i = 0; i < message.Items.Count; i++)
+        Items = new Dictionary<uint, Item>();
+        foreach (var pair in message.Items)
         {
-            var item = new Hero(this);
-            item.LoadMsg(message.Items[i]);
-            Items.Add(item);
+            var item = new Item(this);
+            item.LoadMsg(pair.Value);
+            Items.Add(pair.Key, item);
         }
-        ItemsInt = new List<int>(message.ItemsInt);
-        HeroesDicInt = new Dictionary<int, int>(message.HeroesDicInt);
-        ItemType = message.ItemType;
         AfterLoadMsg();
     }
 }

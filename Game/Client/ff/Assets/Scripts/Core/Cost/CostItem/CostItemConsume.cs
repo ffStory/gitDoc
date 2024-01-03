@@ -23,11 +23,5 @@ namespace Core.Cost.CostItem
             var value = long.Parse(AttrValue);
             AddValue(game, -value, optContext);
         }
-
-        public override bool IsConsume()
-        {
-            //根据属性判断，一些状态类型的返回false
-            return true;
-        }
     }
 }

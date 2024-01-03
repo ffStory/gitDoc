@@ -15,6 +15,7 @@ namespace Editor
         {
             {"int", "int"},
             {"uint", "uint"},
+            {"ulong", "ulong"},
             {"string", "string"},
         };
 
@@ -22,6 +23,7 @@ namespace Editor
         {
             {"int", "int32"},
             {"uint", "uint32"},
+            {"ulong", "uint64"},
             {"string", "string"},
         };
 
@@ -151,6 +153,7 @@ namespace Editor
                 builder.Append("using System.Collections.Generic;\r\n");
                 builder.Append("using Google.Protobuf;\r\n");
                 builder.Append("using Logic.Object;\r\n");
+                builder.Append("using Logic;\r\n");
                 var path = "../../Resource/Object";
                 var files = Directory.GetFiles(path);
                 foreach (var t in files)
@@ -377,9 +380,9 @@ namespace Editor
                     builder.Append
                     (
                         $"    protected {type} {privateAttr};\r\n" +
-                        $"    public {type} {attrName}\r\n" +
+                        $"    public virtual {type} {attrName}\r\n" +
                         "    {\r\n" +
-                        $"        get{{return {privateAttr};}}\r\n" +
+                        $"        get => {privateAttr};\r\n" +
                         "        set\r\n" +
                         "        {\r\n" +
                         $"            var old = {privateAttr};\r\n" +
@@ -394,6 +397,7 @@ namespace Editor
             builder.Append("    public override void LoadMsg(IMessage iMessage)\r\n");
             builder.Append("    {\r\n");
             builder.Append($"        var message = iMessage as {fileName}Msg;\r\n");
+            builder.Append($"        if (message is null) {{return;}}\r\n");
             for (int i = 4; i <= rows; i++)
             {
                 var row = sheet.GetRow(i);

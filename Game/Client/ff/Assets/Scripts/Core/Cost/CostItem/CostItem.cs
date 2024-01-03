@@ -1,5 +1,6 @@
 using System;
 using Logic;
+using Logic.Manager;
 
 namespace Core.Cost.CostItem
 {
@@ -33,10 +34,18 @@ namespace Core.Cost.CostItem
                 Id = _id
             };
         }
-        public abstract void Consume(Game game, TargetContext optContext);
 
-        public abstract bool IsConsume();
+        public virtual void Consume(Game game, TargetContext optContext)
+        {
+            
+        }
 
+        public bool IsConsume()
+        {
+            return _type == CostItemType.Consume;
+        }
+
+        public abstract string GetEvent(Game game, TargetContext optContext);
 
         public virtual bool IsMultiply()
         {
@@ -47,7 +56,7 @@ namespace Core.Cost.CostItem
         {
             return Copy();
         }
-
+        
         public virtual CostItem Copy()
         {
             var item = (CostItem) MemberwiseClone();

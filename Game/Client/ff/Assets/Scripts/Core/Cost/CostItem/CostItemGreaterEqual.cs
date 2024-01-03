@@ -18,14 +18,5 @@ namespace Core.Cost.CostItem
             var targetV = Convert.ChangeType(AttrValue, tuple.Type);
             if (curV != null) checkResult.IsSuccess = curV.CompareTo(targetV) >= 0;
         }
-
-        public override void Consume(Game game, TargetContext optContext)
-        {
-        }
-
-        public override bool IsConsume()
-        {
-            return false;
-        }
     }
 }

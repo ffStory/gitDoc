@@ -1,44 +1,43 @@
-using Google.Protobuf;
 using System;
+using Google.Protobuf;
 using Logic;
 
-public class BaseObject : EventTarget
+namespace Core
 {
-    public BaseObject(Game game, ObjectType type)
+    public class BaseObject : EventTarget
     {
-        this.Game = game;
-        this.Type = type;
-    }
-    
-    public BaseObject()
-    {
+        protected BaseObject(Game game, ObjectType type)
+        {
+            Game = game;
+            Type = type;
+        }
 
-    }
+        public string GetAttrEvent(string attrName)
+        {
+            return Type.ToString() + '-' + attrName + "-" + Id;
+        }
 
-    public string GetAttrEvent(string attrName)
-    {
-        return Type.ToString() + '-' + attrName + "-" + Id;
-    }
-    public void PostAttrEvent(string attrName, object oldV = null, object newV = null)
-    {
-        var eventArgs = new EventDispatcherArgs(GetAttrEvent(attrName), oldV, newV);
-        EventPost(eventArgs);
-    }
+        protected void PostAttrEvent(string attrName, object oldV = null, object newV = null)
+        {
+            var eventArgs = new EventDispatcherArgs(GetAttrEvent(attrName), oldV, newV);
+            Post(eventArgs);
+        }
 
-    public void RegisterAttrEvent(string attrName, Action<EventDispatcherArgs> callBack)
-    {
-        EventRegister(GetAttrEvent(attrName), callBack, this);
-    }
+        protected void RegisterAttrEvent(string attrName, Action<EventDispatcherArgs> callBack)
+        {
+            Register(GetAttrEvent(attrName), callBack, this);
+        }
 
-    public virtual void LoadMsg(IMessage iMessage)
-    {
-    }
+        public virtual void LoadMsg(IMessage iMessage)
+        {
+        }
 
-    public virtual void AfterLoadMsg()
-    {
-    }
+        public virtual void AfterLoadMsg()
+        {
+        }
 
-    public Game Game { get; private set; }
-    public uint Id { get; set; }
-    public ObjectType Type { get; set; }
+        public Game Game { get; private set; }
+        public uint Id { get; set; }
+        public ObjectType Type { get;}
+    }
 }

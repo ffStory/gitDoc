@@ -76,5 +76,16 @@ namespace Core.UnifiedAttr
             
             Utility.SetProperty(hero, _attrName, result);
         }
+
+        public override string GetEvent(Game game, TargetContext optContext)
+        {
+            var target = GetTarget(game, optContext);
+            if (target is Hero hero)
+            {
+                return hero.GetAttrEvent(_attrName);
+            }
+
+            return string.Empty;
+        }
     }
 }

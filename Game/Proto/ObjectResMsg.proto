@@ -25,6 +25,7 @@ message HeroResMsg
     map<int32, string> DicTest = 5;
     repeated int32 Rewards2 = 6;
     repeated uint32 Rewards3 = 7;
+    repeated uint32 UpgradeCost = 8;
 }
 message HeroResMapMsg
 {

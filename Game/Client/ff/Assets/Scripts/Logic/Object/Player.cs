@@ -1,3 +1,4 @@
+using Core;
 using UnityEngine;
 
 namespace Logic.Object
@@ -16,8 +17,6 @@ namespace Logic.Object
             Debug.Log(".......changed:" + args.OldValue + " " + args.NewValue);
         }
 
-        public override int Level { get => Exp / 10; }
-
-        public override int Power => throw new System.NotImplementedException();
+        public override uint Level { get => Exp / 10; }
     }
 }

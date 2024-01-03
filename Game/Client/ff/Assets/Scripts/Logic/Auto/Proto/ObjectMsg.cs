@@ -22,331 +22,28 @@ public static partial class ObjectMsgReflection {
   static ObjectMsgReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg9PYmplY3RNc2cucHJvdG8aCkVudW0ucHJvdG8icQoLQ29zdEl0ZW1Nc2cS",
-          "HwoIQ29zdFR5cGUYASABKA4yDS5Db3N0SXRlbVR5cGUSHAoHT2JqVHlwZRgC",
-          "IAEoDjILLk9iamVjdFR5cGUSEAoIQXR0ck5hbWUYAyABKAkSEQoJQXR0clZh",
-          "bHVlGAQgASgNIjAKB0hlcm9Nc2cSCgoCSWQYASABKA0SCwoDRXhwGAIgASgN",
-          "EgwKBE5hbWUYAyABKAkixAIKCVBsYXllck1zZxIKCgJJZBgBIAEoDRILCgNF",
-          "eHAYAiABKAUSJgoGSGVyb2VzGAMgAygLMhYuUGxheWVyTXNnLkhlcm9lc0Vu",
-          "dHJ5EgwKBEdvbGQYBCABKAUSFwoFSXRlbXMYBSADKAsyCC5IZXJvTXNnEhAK",
-          "CEl0ZW1zSW50GAYgAygFEjIKDEhlcm9lc0RpY0ludBgHIAMoCzIcLlBsYXll",
-          "ck1zZy5IZXJvZXNEaWNJbnRFbnRyeRIbCghJdGVtVHlwZRgIIAEoDjIJLkl0",
-          "ZW1UeXBlGjcKC0hlcm9lc0VudHJ5EgsKA2tleRgBIAEoDRIXCgV2YWx1ZRgC",
-          "IAEoCzIILkhlcm9Nc2c6AjgBGjMKEUhlcm9lc0RpY0ludEVudHJ5EgsKA2tl",
-          "eRgBIAEoBRINCgV2YWx1ZRgCIAEoBToCOAFiBnByb3RvMw=="));
+          "Cg9PYmplY3RNc2cucHJvdG8aCkVudW0ucHJvdG8iQQoHSGVyb01zZxIKCgJJ",
+          "ZBgBIAEoDRILCgNFeHAYAiABKA0SDAoETmFtZRgDIAEoCRIPCgdPd25UaW1l",
+          "GAQgASgEIkwKB0l0ZW1Nc2cSCgoCSWQYASABKA0SCwoDTnVtGAIgASgNEhcK",
+          "BFR5cGUYAyABKA4yCS5JdGVtVHlwZRIPCgdPd25UaW1lGAQgASgEIvEBCglQ",
+          "bGF5ZXJNc2cSCgoCSWQYASABKA0SCwoDRXhwGAIgASgNEiYKBkhlcm9lcxgD",
+          "IAMoCzIWLlBsYXllck1zZy5IZXJvZXNFbnRyeRIMCgRHb2xkGAQgASgNEiQK",
+          "BUl0ZW1zGAUgAygLMhUuUGxheWVyTXNnLkl0ZW1zRW50cnkaNwoLSGVyb2Vz",
+          "RW50cnkSCwoDa2V5GAEgASgNEhcKBXZhbHVlGAIgASgLMgguSGVyb01zZzoC",
+          "OAEaNgoKSXRlbXNFbnRyeRILCgNrZXkYASABKA0SFwoFdmFsdWUYAiABKAsy",
+          "CC5JdGVtTXNnOgI4AWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::EnumReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::CostItemMsg), global::CostItemMsg.Parser, new[]{ "CostType", "ObjType", "AttrName", "AttrValue" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::HeroMsg), global::HeroMsg.Parser, new[]{ "Id", "Exp", "Name" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerMsg), global::PlayerMsg.Parser, new[]{ "Id", "Exp", "Heroes", "Gold", "Items", "ItemsInt", "HeroesDicInt", "ItemType" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, })
+          new pbr::GeneratedClrTypeInfo(typeof(global::HeroMsg), global::HeroMsg.Parser, new[]{ "Id", "Exp", "Name", "OwnTime" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ItemMsg), global::ItemMsg.Parser, new[]{ "Id", "Num", "Type", "OwnTime" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerMsg), global::PlayerMsg.Parser, new[]{ "Id", "Exp", "Heroes", "Gold", "Items" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, })
         }));
   }
   #endregion
 
 }
 #region Messages
-[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-public sealed partial class CostItemMsg : pb::IMessage<CostItemMsg>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    , pb::IBufferMessage
-#endif
-{
-  private static readonly pb::MessageParser<CostItemMsg> _parser = new pb::MessageParser<CostItemMsg>(() => new CostItemMsg());
-  private pb::UnknownFieldSet _unknownFields;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<CostItemMsg> Parser { get { return _parser; } }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pbr::MessageDescriptor Descriptor {
-    get { return global::ObjectMsgReflection.Descriptor.MessageTypes[0]; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  pbr::MessageDescriptor pb::IMessage.Descriptor {
-    get { return Descriptor; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public CostItemMsg() {
-    OnConstruction();
-  }
-
-  partial void OnConstruction();
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public CostItemMsg(CostItemMsg other) : this() {
-    costType_ = other.costType_;
-    objType_ = other.objType_;
-    attrName_ = other.attrName_;
-    attrValue_ = other.attrValue_;
-    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public CostItemMsg Clone() {
-    return new CostItemMsg(this);
-  }
-
-  /// <summary>Field number for the "CostType" field.</summary>
-  public const int CostTypeFieldNumber = 1;
-  private global::CostItemType costType_ = global::CostItemType.Consume;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public global::CostItemType CostType {
-    get { return costType_; }
-    set {
-      costType_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "ObjType" field.</summary>
-  public const int ObjTypeFieldNumber = 2;
-  private global::ObjectType objType_ = global::ObjectType.Player;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public global::ObjectType ObjType {
-    get { return objType_; }
-    set {
-      objType_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "AttrName" field.</summary>
-  public const int AttrNameFieldNumber = 3;
-  private string attrName_ = "";
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public string AttrName {
-    get { return attrName_; }
-    set {
-      attrName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-    }
-  }
-
-  /// <summary>Field number for the "AttrValue" field.</summary>
-  public const int AttrValueFieldNumber = 4;
-  private uint attrValue_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint AttrValue {
-    get { return attrValue_; }
-    set {
-      attrValue_ = value;
-    }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override bool Equals(object other) {
-    return Equals(other as CostItemMsg);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(CostItemMsg other) {
-    if (ReferenceEquals(other, null)) {
-      return false;
-    }
-    if (ReferenceEquals(other, this)) {
-      return true;
-    }
-    if (CostType != other.CostType) return false;
-    if (ObjType != other.ObjType) return false;
-    if (AttrName != other.AttrName) return false;
-    if (AttrValue != other.AttrValue) return false;
-    return Equals(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override int GetHashCode() {
-    int hash = 1;
-    if (CostType != global::CostItemType.Consume) hash ^= CostType.GetHashCode();
-    if (ObjType != global::ObjectType.Player) hash ^= ObjType.GetHashCode();
-    if (AttrName.Length != 0) hash ^= AttrName.GetHashCode();
-    if (AttrValue != 0) hash ^= AttrValue.GetHashCode();
-    if (_unknownFields != null) {
-      hash ^= _unknownFields.GetHashCode();
-    }
-    return hash;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override string ToString() {
-    return pb::JsonFormatter.ToDiagnosticString(this);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void WriteTo(pb::CodedOutputStream output) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    output.WriteRawMessage(this);
-  #else
-    if (CostType != global::CostItemType.Consume) {
-      output.WriteRawTag(8);
-      output.WriteEnum((int) CostType);
-    }
-    if (ObjType != global::ObjectType.Player) {
-      output.WriteRawTag(16);
-      output.WriteEnum((int) ObjType);
-    }
-    if (AttrName.Length != 0) {
-      output.WriteRawTag(26);
-      output.WriteString(AttrName);
-    }
-    if (AttrValue != 0) {
-      output.WriteRawTag(32);
-      output.WriteUInt32(AttrValue);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(output);
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (CostType != global::CostItemType.Consume) {
-      output.WriteRawTag(8);
-      output.WriteEnum((int) CostType);
-    }
-    if (ObjType != global::ObjectType.Player) {
-      output.WriteRawTag(16);
-      output.WriteEnum((int) ObjType);
-    }
-    if (AttrName.Length != 0) {
-      output.WriteRawTag(26);
-      output.WriteString(AttrName);
-    }
-    if (AttrValue != 0) {
-      output.WriteRawTag(32);
-      output.WriteUInt32(AttrValue);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(ref output);
-    }
-  }
-  #endif
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int CalculateSize() {
-    int size = 0;
-    if (CostType != global::CostItemType.Consume) {
-      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) CostType);
-    }
-    if (ObjType != global::ObjectType.Player) {
-      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ObjType);
-    }
-    if (AttrName.Length != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeStringSize(AttrName);
-    }
-    if (AttrValue != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(AttrValue);
-    }
-    if (_unknownFields != null) {
-      size += _unknownFields.CalculateSize();
-    }
-    return size;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(CostItemMsg other) {
-    if (other == null) {
-      return;
-    }
-    if (other.CostType != global::CostItemType.Consume) {
-      CostType = other.CostType;
-    }
-    if (other.ObjType != global::ObjectType.Player) {
-      ObjType = other.ObjType;
-    }
-    if (other.AttrName.Length != 0) {
-      AttrName = other.AttrName;
-    }
-    if (other.AttrValue != 0) {
-      AttrValue = other.AttrValue;
-    }
-    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(pb::CodedInputStream input) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    input.ReadRawMessage(this);
-  #else
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-      switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-        case 8: {
-          CostType = (global::CostItemType) input.ReadEnum();
-          break;
-        }
-        case 16: {
-          ObjType = (global::ObjectType) input.ReadEnum();
-          break;
-        }
-        case 26: {
-          AttrName = input.ReadString();
-          break;
-        }
-        case 32: {
-          AttrValue = input.ReadUInt32();
-          break;
-        }
-      }
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-      switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-          break;
-        case 8: {
-          CostType = (global::CostItemType) input.ReadEnum();
-          break;
-        }
-        case 16: {
-          ObjType = (global::ObjectType) input.ReadEnum();
-          break;
-        }
-        case 26: {
-          AttrName = input.ReadString();
-          break;
-        }
-        case 32: {
-          AttrValue = input.ReadUInt32();
-          break;
-        }
-      }
-    }
-  }
-  #endif
-
-}
-
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -362,7 +59,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ObjectMsgReflection.Descriptor.MessageTypes[1]; }
+    get { return global::ObjectMsgReflection.Descriptor.MessageTypes[0]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -385,6 +82,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     id_ = other.id_;
     exp_ = other.exp_;
     name_ = other.name_;
+    ownTime_ = other.ownTime_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -430,6 +128,18 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     }
   }
 
+  /// <summary>Field number for the "OwnTime" field.</summary>
+  public const int OwnTimeFieldNumber = 4;
+  private ulong ownTime_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong OwnTime {
+    get { return ownTime_; }
+    set {
+      ownTime_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -448,6 +158,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     if (Id != other.Id) return false;
     if (Exp != other.Exp) return false;
     if (Name != other.Name) return false;
+    if (OwnTime != other.OwnTime) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -458,6 +169,7 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     if (Id != 0) hash ^= Id.GetHashCode();
     if (Exp != 0) hash ^= Exp.GetHashCode();
     if (Name.Length != 0) hash ^= Name.GetHashCode();
+    if (OwnTime != 0UL) hash ^= OwnTime.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -488,6 +200,10 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
       output.WriteRawTag(26);
       output.WriteString(Name);
     }
+    if (OwnTime != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(OwnTime);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -510,6 +226,10 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
       output.WriteRawTag(26);
       output.WriteString(Name);
     }
+    if (OwnTime != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(OwnTime);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -528,6 +248,9 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     }
     if (Name.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+    }
+    if (OwnTime != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(OwnTime);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -549,6 +272,9 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
     }
     if (other.Name.Length != 0) {
       Name = other.Name;
+    }
+    if (other.OwnTime != 0UL) {
+      OwnTime = other.OwnTime;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -577,6 +303,10 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
           Name = input.ReadString();
           break;
         }
+        case 32: {
+          OwnTime = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -602,6 +332,311 @@ public sealed partial class HeroMsg : pb::IMessage<HeroMsg>
         }
         case 26: {
           Name = input.ReadString();
+          break;
+        }
+        case 32: {
+          OwnTime = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ItemMsg : pb::IMessage<ItemMsg>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ItemMsg> _parser = new pb::MessageParser<ItemMsg>(() => new ItemMsg());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ItemMsg> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ObjectMsgReflection.Descriptor.MessageTypes[1]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ItemMsg() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ItemMsg(ItemMsg other) : this() {
+    id_ = other.id_;
+    num_ = other.num_;
+    type_ = other.type_;
+    ownTime_ = other.ownTime_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ItemMsg Clone() {
+    return new ItemMsg(this);
+  }
+
+  /// <summary>Field number for the "Id" field.</summary>
+  public const int IdFieldNumber = 1;
+  private uint id_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Id {
+    get { return id_; }
+    set {
+      id_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "Num" field.</summary>
+  public const int NumFieldNumber = 2;
+  private uint num_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Num {
+    get { return num_; }
+    set {
+      num_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "Type" field.</summary>
+  public const int TypeFieldNumber = 3;
+  private global::ItemType type_ = global::ItemType.Resource;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::ItemType Type {
+    get { return type_; }
+    set {
+      type_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "OwnTime" field.</summary>
+  public const int OwnTimeFieldNumber = 4;
+  private ulong ownTime_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong OwnTime {
+    get { return ownTime_; }
+    set {
+      ownTime_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ItemMsg);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ItemMsg other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Id != other.Id) return false;
+    if (Num != other.Num) return false;
+    if (Type != other.Type) return false;
+    if (OwnTime != other.OwnTime) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Id != 0) hash ^= Id.GetHashCode();
+    if (Num != 0) hash ^= Num.GetHashCode();
+    if (Type != global::ItemType.Resource) hash ^= Type.GetHashCode();
+    if (OwnTime != 0UL) hash ^= OwnTime.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Id != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Id);
+    }
+    if (Num != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(Num);
+    }
+    if (Type != global::ItemType.Resource) {
+      output.WriteRawTag(24);
+      output.WriteEnum((int) Type);
+    }
+    if (OwnTime != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(OwnTime);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Id != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Id);
+    }
+    if (Num != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(Num);
+    }
+    if (Type != global::ItemType.Resource) {
+      output.WriteRawTag(24);
+      output.WriteEnum((int) Type);
+    }
+    if (OwnTime != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(OwnTime);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Id != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Id);
+    }
+    if (Num != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Num);
+    }
+    if (Type != global::ItemType.Resource) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+    }
+    if (OwnTime != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(OwnTime);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ItemMsg other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Id != 0) {
+      Id = other.Id;
+    }
+    if (other.Num != 0) {
+      Num = other.Num;
+    }
+    if (other.Type != global::ItemType.Resource) {
+      Type = other.Type;
+    }
+    if (other.OwnTime != 0UL) {
+      OwnTime = other.OwnTime;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Id = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Num = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Type = (global::ItemType) input.ReadEnum();
+          break;
+        }
+        case 32: {
+          OwnTime = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Id = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Num = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Type = (global::ItemType) input.ReadEnum();
+          break;
+        }
+        case 32: {
+          OwnTime = input.ReadUInt64();
           break;
         }
       }
@@ -651,9 +686,6 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     heroes_ = other.heroes_.Clone();
     gold_ = other.gold_;
     items_ = other.items_.Clone();
-    itemsInt_ = other.itemsInt_.Clone();
-    heroesDicInt_ = other.heroesDicInt_.Clone();
-    itemType_ = other.itemType_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -677,10 +709,10 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
 
   /// <summary>Field number for the "Exp" field.</summary>
   public const int ExpFieldNumber = 2;
-  private int exp_;
+  private uint exp_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int Exp {
+  public uint Exp {
     get { return exp_; }
     set {
       exp_ = value;
@@ -700,10 +732,10 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
 
   /// <summary>Field number for the "Gold" field.</summary>
   public const int GoldFieldNumber = 4;
-  private int gold_;
+  private uint gold_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int Gold {
+  public uint Gold {
     get { return gold_; }
     set {
       gold_ = value;
@@ -712,47 +744,13 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
 
   /// <summary>Field number for the "Items" field.</summary>
   public const int ItemsFieldNumber = 5;
-  private static readonly pb::FieldCodec<global::HeroMsg> _repeated_items_codec
-      = pb::FieldCodec.ForMessage(42, global::HeroMsg.Parser);
-  private readonly pbc::RepeatedField<global::HeroMsg> items_ = new pbc::RepeatedField<global::HeroMsg>();
+  private static readonly pbc::MapField<uint, global::ItemMsg>.Codec _map_items_codec
+      = new pbc::MapField<uint, global::ItemMsg>.Codec(pb::FieldCodec.ForUInt32(8, 0), pb::FieldCodec.ForMessage(18, global::ItemMsg.Parser), 42);
+  private readonly pbc::MapField<uint, global::ItemMsg> items_ = new pbc::MapField<uint, global::ItemMsg>();
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pbc::RepeatedField<global::HeroMsg> Items {
+  public pbc::MapField<uint, global::ItemMsg> Items {
     get { return items_; }
-  }
-
-  /// <summary>Field number for the "ItemsInt" field.</summary>
-  public const int ItemsIntFieldNumber = 6;
-  private static readonly pb::FieldCodec<int> _repeated_itemsInt_codec
-      = pb::FieldCodec.ForInt32(50);
-  private readonly pbc::RepeatedField<int> itemsInt_ = new pbc::RepeatedField<int>();
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pbc::RepeatedField<int> ItemsInt {
-    get { return itemsInt_; }
-  }
-
-  /// <summary>Field number for the "HeroesDicInt" field.</summary>
-  public const int HeroesDicIntFieldNumber = 7;
-  private static readonly pbc::MapField<int, int>.Codec _map_heroesDicInt_codec
-      = new pbc::MapField<int, int>.Codec(pb::FieldCodec.ForInt32(8, 0), pb::FieldCodec.ForInt32(16, 0), 58);
-  private readonly pbc::MapField<int, int> heroesDicInt_ = new pbc::MapField<int, int>();
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public pbc::MapField<int, int> HeroesDicInt {
-    get { return heroesDicInt_; }
-  }
-
-  /// <summary>Field number for the "ItemType" field.</summary>
-  public const int ItemTypeFieldNumber = 8;
-  private global::ItemType itemType_ = global::ItemType.Resource;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public global::ItemType ItemType {
-    get { return itemType_; }
-    set {
-      itemType_ = value;
-    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -774,10 +772,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     if (Exp != other.Exp) return false;
     if (!Heroes.Equals(other.Heroes)) return false;
     if (Gold != other.Gold) return false;
-    if(!items_.Equals(other.items_)) return false;
-    if(!itemsInt_.Equals(other.itemsInt_)) return false;
-    if (!HeroesDicInt.Equals(other.HeroesDicInt)) return false;
-    if (ItemType != other.ItemType) return false;
+    if (!Items.Equals(other.Items)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -789,10 +784,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     if (Exp != 0) hash ^= Exp.GetHashCode();
     hash ^= Heroes.GetHashCode();
     if (Gold != 0) hash ^= Gold.GetHashCode();
-    hash ^= items_.GetHashCode();
-    hash ^= itemsInt_.GetHashCode();
-    hash ^= HeroesDicInt.GetHashCode();
-    if (ItemType != global::ItemType.Resource) hash ^= ItemType.GetHashCode();
+    hash ^= Items.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -817,20 +809,14 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     }
     if (Exp != 0) {
       output.WriteRawTag(16);
-      output.WriteInt32(Exp);
+      output.WriteUInt32(Exp);
     }
     heroes_.WriteTo(output, _map_heroes_codec);
     if (Gold != 0) {
       output.WriteRawTag(32);
-      output.WriteInt32(Gold);
+      output.WriteUInt32(Gold);
     }
-    items_.WriteTo(output, _repeated_items_codec);
-    itemsInt_.WriteTo(output, _repeated_itemsInt_codec);
-    heroesDicInt_.WriteTo(output, _map_heroesDicInt_codec);
-    if (ItemType != global::ItemType.Resource) {
-      output.WriteRawTag(64);
-      output.WriteEnum((int) ItemType);
-    }
+    items_.WriteTo(output, _map_items_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -847,20 +833,14 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     }
     if (Exp != 0) {
       output.WriteRawTag(16);
-      output.WriteInt32(Exp);
+      output.WriteUInt32(Exp);
     }
     heroes_.WriteTo(ref output, _map_heroes_codec);
     if (Gold != 0) {
       output.WriteRawTag(32);
-      output.WriteInt32(Gold);
+      output.WriteUInt32(Gold);
     }
-    items_.WriteTo(ref output, _repeated_items_codec);
-    itemsInt_.WriteTo(ref output, _repeated_itemsInt_codec);
-    heroesDicInt_.WriteTo(ref output, _map_heroesDicInt_codec);
-    if (ItemType != global::ItemType.Resource) {
-      output.WriteRawTag(64);
-      output.WriteEnum((int) ItemType);
-    }
+    items_.WriteTo(ref output, _map_items_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -875,18 +855,13 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Id);
     }
     if (Exp != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Exp);
     }
     size += heroes_.CalculateSize(_map_heroes_codec);
     if (Gold != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Gold);
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Gold);
     }
-    size += items_.CalculateSize(_repeated_items_codec);
-    size += itemsInt_.CalculateSize(_repeated_itemsInt_codec);
-    size += heroesDicInt_.CalculateSize(_map_heroesDicInt_codec);
-    if (ItemType != global::ItemType.Resource) {
-      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ItemType);
-    }
+    size += items_.CalculateSize(_map_items_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -909,12 +884,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
     if (other.Gold != 0) {
       Gold = other.Gold;
     }
-    items_.Add(other.items_);
-    itemsInt_.Add(other.itemsInt_);
-    heroesDicInt_.MergeFrom(other.heroesDicInt_);
-    if (other.ItemType != global::ItemType.Resource) {
-      ItemType = other.ItemType;
-    }
+    items_.MergeFrom(other.items_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -935,7 +905,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
           break;
         }
         case 16: {
-          Exp = input.ReadInt32();
+          Exp = input.ReadUInt32();
           break;
         }
         case 26: {
@@ -943,24 +913,11 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
           break;
         }
         case 32: {
-          Gold = input.ReadInt32();
+          Gold = input.ReadUInt32();
           break;
         }
         case 42: {
-          items_.AddEntriesFrom(input, _repeated_items_codec);
-          break;
-        }
-        case 50:
-        case 48: {
-          itemsInt_.AddEntriesFrom(input, _repeated_itemsInt_codec);
-          break;
-        }
-        case 58: {
-          heroesDicInt_.AddEntriesFrom(input, _map_heroesDicInt_codec);
-          break;
-        }
-        case 64: {
-          ItemType = (global::ItemType) input.ReadEnum();
+          items_.AddEntriesFrom(input, _map_items_codec);
           break;
         }
       }
@@ -983,7 +940,7 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
           break;
         }
         case 16: {
-          Exp = input.ReadInt32();
+          Exp = input.ReadUInt32();
           break;
         }
         case 26: {
@@ -991,24 +948,11 @@ public sealed partial class PlayerMsg : pb::IMessage<PlayerMsg>
           break;
         }
         case 32: {
-          Gold = input.ReadInt32();
+          Gold = input.ReadUInt32();
           break;
         }
         case 42: {
-          items_.AddEntriesFrom(ref input, _repeated_items_codec);
-          break;
-        }
-        case 50:
-        case 48: {
-          itemsInt_.AddEntriesFrom(ref input, _repeated_itemsInt_codec);
-          break;
-        }
-        case 58: {
-          heroesDicInt_.AddEntriesFrom(ref input, _map_heroesDicInt_codec);
-          break;
-        }
-        case 64: {
-          ItemType = (global::ItemType) input.ReadEnum();
+          items_.AddEntriesFrom(ref input, _map_items_codec);
           break;
         }
       }

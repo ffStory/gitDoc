@@ -27,7 +27,7 @@ public static partial class EnumReflection {
           "BBIICgREYXlzEAUqOAoMQ29zdEl0ZW1UeXBlEgsKB0NvbnN1bWUQABIQCgxH",
           "cmVhdGVyRXF1YWwQARIJCgVFcXVhbBACKi0KCUhlcm9TdGF0ZRIJCgVJZGVh",
           "bBAAEgkKBU1hcmNoEAESCgoGQmF0dGxlEAIqIwoISXRlbVR5cGUSDAoIUmVz",
-          "b3VyY2UQABIJCgVTcGVlZBACKkQKCk9iamVjdFR5cGUSCgoGUGxheWVyEAAS",
+          "b3VyY2UQABIJCgVTcGVlZBABKkQKCk9iamVjdFR5cGUSCgoGUGxheWVyEAAS",
           "CAoESGVybxABEggKBENhcmQQAhIICgRJdGVtEAMSDAoIQ29zdEl0ZW0QBCol",
           "CglUYXNrU3RhdGUSCgoGQWNjZXB0EAASDAoIRmluaXNoZWQQASpGCgZVSVR5",
           "cGUSDAoISGVyb0luZm8QABIMCghIZXJvTGlzdBABEg8KC0hlcm9JbmZvU3Vi",
@@ -67,7 +67,7 @@ public enum HeroState {
 
 public enum ItemType {
   [pbr::OriginalName("Resource")] Resource = 0,
-  [pbr::OriginalName("Speed")] Speed = 2,
+  [pbr::OriginalName("Speed")] Speed = 1,
 }
 
 public enum ObjectType {
