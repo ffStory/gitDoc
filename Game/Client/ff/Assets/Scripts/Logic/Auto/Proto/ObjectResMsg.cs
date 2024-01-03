@@ -22,36 +22,36 @@ public static partial class ObjectResMsgReflection {
   static ObjectResMsgReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "ChJPYmplY3RSZXNNc2cucHJvdG8aCkVudW0ucHJvdG8ingEKDkNvc3RJdGVt",
-          "UmVzTXNnEgoKAklkGAEgASgNEh8KCENvc3RUeXBlGAIgASgOMg0uQ29zdEl0",
-          "ZW1UeXBlEhwKB09ialR5cGUYAyABKA4yCy5PYmplY3RUeXBlEg0KBU9iaklk",
-          "GAQgASgNEhAKCEF0dHJOYW1lGAUgASgJEhEKCUF0dHJWYWx1ZRgGIAEoDRIN",
-          "CgVUaXBpcxgHIAEoCSJ6ChFDb3N0SXRlbVJlc01hcE1zZxIoCgNNYXAYASAD",
-          "KAsyGy5Db3N0SXRlbVJlc01hcE1zZy5NYXBFbnRyeRo7CghNYXBFbnRyeRIL",
-          "CgNrZXkYASABKA0SHgoFdmFsdWUYAiABKAsyDy5Db3N0SXRlbVJlc01zZzoC",
-          "OAEi0wEKCkhlcm9SZXNNc2cSCgoCSWQYASABKA0SDAoETmFtZRgCIAEoCRIb",
-          "CghJdGVtVHlwZRgDIAEoDjIJLkl0ZW1UeXBlEg8KB1Jld2FyZHMYBCADKAkS",
-          "KQoHRGljVGVzdBgFIAMoCzIYLkhlcm9SZXNNc2cuRGljVGVzdEVudHJ5EhAK",
-          "CFJld2FyZHMyGAYgAygFEhAKCFJld2FyZHMzGAcgAygNGi4KDERpY1Rlc3RF",
-          "bnRyeRILCgNrZXkYASABKAUSDQoFdmFsdWUYAiABKAk6AjgBIm4KDUhlcm9S",
-          "ZXNNYXBNc2cSJAoDTWFwGAEgAygLMhcuSGVyb1Jlc01hcE1zZy5NYXBFbnRy",
-          "eRo3CghNYXBFbnRyeRILCgNrZXkYASABKA0SGgoFdmFsdWUYAiABKAsyCy5I",
-          "ZXJvUmVzTXNnOgI4ASKvAQoKSXRlbVJlc01zZxIKCgJJZBgBIAEoDRIMCgRO",
-          "YW1lGAIgASgJEhsKCEl0ZW1UeXBlGAMgASgOMgkuSXRlbVR5cGUSDwoHUmV3",
-          "YXJkcxgEIAMoCRIpCgdEaWNUZXN0GAUgAygLMhguSXRlbVJlc01zZy5EaWNU",
-          "ZXN0RW50cnkaLgoMRGljVGVzdEVudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1",
-          "ZRgCIAEoCToCOAEibgoNSXRlbVJlc01hcE1zZxIkCgNNYXAYASADKAsyFy5J",
-          "dGVtUmVzTWFwTXNnLk1hcEVudHJ5GjcKCE1hcEVudHJ5EgsKA2tleRgBIAEo",
-          "DRIaCgV2YWx1ZRgCIAEoCzILLkl0ZW1SZXNNc2c6AjgBIjsKDlVJQ29uZmln",
-          "UmVzTXNnEgwKBFR5cGUYASABKAkSDQoFVGl0bGUYAiABKAkSDAoEVmlldxgD",
-          "IAEoCSJ6ChFVSUNvbmZpZ1Jlc01hcE1zZxIoCgNNYXAYASADKAsyGy5VSUNv",
-          "bmZpZ1Jlc01hcE1zZy5NYXBFbnRyeRo7CghNYXBFbnRyeRILCgNrZXkYASAB",
-          "KAkSHgoFdmFsdWUYAiABKAsyDy5VSUNvbmZpZ1Jlc01zZzoCOAFiBnByb3Rv",
-          "Mw=="));
+          "ChJPYmplY3RSZXNNc2cucHJvdG8aCkVudW0ucHJvdG8ioQEKDkNvc3RJdGVt",
+          "UmVzTXNnEgoKAklkGAEgASgNEhsKBFR5cGUYAiABKA4yDS5Db3N0SXRlbVR5",
+          "cGUSIAoGVWFUeXBlGAMgASgOMhAuVW5pZmllZEF0dHJUeXBlEhAKCFRhcmdl",
+          "dElkGAQgASgNEhAKCEF0dHJOYW1lGAUgASgJEhEKCUF0dHJWYWx1ZRgGIAEo",
+          "CRINCgVUaXBpcxgHIAEoCSJ6ChFDb3N0SXRlbVJlc01hcE1zZxIoCgNNYXAY",
+          "ASADKAsyGy5Db3N0SXRlbVJlc01hcE1zZy5NYXBFbnRyeRo7CghNYXBFbnRy",
+          "eRILCgNrZXkYASABKA0SHgoFdmFsdWUYAiABKAsyDy5Db3N0SXRlbVJlc01z",
+          "ZzoCOAEi0wEKCkhlcm9SZXNNc2cSCgoCSWQYASABKA0SDAoETmFtZRgCIAEo",
+          "CRIbCghJdGVtVHlwZRgDIAEoDjIJLkl0ZW1UeXBlEg8KB1Jld2FyZHMYBCAD",
+          "KAkSKQoHRGljVGVzdBgFIAMoCzIYLkhlcm9SZXNNc2cuRGljVGVzdEVudHJ5",
+          "EhAKCFJld2FyZHMyGAYgAygFEhAKCFJld2FyZHMzGAcgAygNGi4KDERpY1Rl",
+          "c3RFbnRyeRILCgNrZXkYASABKAUSDQoFdmFsdWUYAiABKAk6AjgBIm4KDUhl",
+          "cm9SZXNNYXBNc2cSJAoDTWFwGAEgAygLMhcuSGVyb1Jlc01hcE1zZy5NYXBF",
+          "bnRyeRo3CghNYXBFbnRyeRILCgNrZXkYASABKA0SGgoFdmFsdWUYAiABKAsy",
+          "Cy5IZXJvUmVzTXNnOgI4ASKvAQoKSXRlbVJlc01zZxIKCgJJZBgBIAEoDRIM",
+          "CgROYW1lGAIgASgJEhsKCEl0ZW1UeXBlGAMgASgOMgkuSXRlbVR5cGUSDwoH",
+          "UmV3YXJkcxgEIAMoCRIpCgdEaWNUZXN0GAUgAygLMhguSXRlbVJlc01zZy5E",
+          "aWNUZXN0RW50cnkaLgoMRGljVGVzdEVudHJ5EgsKA2tleRgBIAEoBRINCgV2",
+          "YWx1ZRgCIAEoCToCOAEibgoNSXRlbVJlc01hcE1zZxIkCgNNYXAYASADKAsy",
+          "Fy5JdGVtUmVzTWFwTXNnLk1hcEVudHJ5GjcKCE1hcEVudHJ5EgsKA2tleRgB",
+          "IAEoDRIaCgV2YWx1ZRgCIAEoCzILLkl0ZW1SZXNNc2c6AjgBIjsKDlVJQ29u",
+          "ZmlnUmVzTXNnEgwKBFR5cGUYASABKAkSDQoFVGl0bGUYAiABKAkSDAoEVmll",
+          "dxgDIAEoCSJ6ChFVSUNvbmZpZ1Jlc01hcE1zZxIoCgNNYXAYASADKAsyGy5V",
+          "SUNvbmZpZ1Jlc01hcE1zZy5NYXBFbnRyeRo7CghNYXBFbnRyeRILCgNrZXkY",
+          "ASABKAkSHgoFdmFsdWUYAiABKAsyDy5VSUNvbmZpZ1Jlc01zZzoCOAFiBnBy",
+          "b3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::EnumReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::CostItemResMsg), global::CostItemResMsg.Parser, new[]{ "Id", "CostType", "ObjType", "ObjId", "AttrName", "AttrValue", "Tipis" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CostItemResMsg), global::CostItemResMsg.Parser, new[]{ "Id", "Type", "UaType", "TargetId", "AttrName", "AttrValue", "Tipis" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::CostItemResMapMsg), global::CostItemResMapMsg.Parser, new[]{ "Map" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::HeroResMsg), global::HeroResMsg.Parser, new[]{ "Id", "Name", "ItemType", "Rewards", "DicTest", "Rewards2", "Rewards3" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::HeroResMapMsg), global::HeroResMapMsg.Parser, new[]{ "Map" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
@@ -101,9 +101,9 @@ public sealed partial class CostItemResMsg : pb::IMessage<CostItemResMsg>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public CostItemResMsg(CostItemResMsg other) : this() {
     id_ = other.id_;
-    costType_ = other.costType_;
-    objType_ = other.objType_;
-    objId_ = other.objId_;
+    type_ = other.type_;
+    uaType_ = other.uaType_;
+    targetId_ = other.targetId_;
     attrName_ = other.attrName_;
     attrValue_ = other.attrValue_;
     tipis_ = other.tipis_;
@@ -128,39 +128,39 @@ public sealed partial class CostItemResMsg : pb::IMessage<CostItemResMsg>
     }
   }
 
-  /// <summary>Field number for the "CostType" field.</summary>
-  public const int CostTypeFieldNumber = 2;
-  private global::CostItemType costType_ = global::CostItemType.Consume;
+  /// <summary>Field number for the "Type" field.</summary>
+  public const int TypeFieldNumber = 2;
+  private global::CostItemType type_ = global::CostItemType.Consume;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public global::CostItemType CostType {
-    get { return costType_; }
+  public global::CostItemType Type {
+    get { return type_; }
     set {
-      costType_ = value;
+      type_ = value;
     }
   }
 
-  /// <summary>Field number for the "ObjType" field.</summary>
-  public const int ObjTypeFieldNumber = 3;
-  private global::ObjectType objType_ = global::ObjectType.Player;
+  /// <summary>Field number for the "UaType" field.</summary>
+  public const int UaTypeFieldNumber = 3;
+  private global::UnifiedAttrType uaType_ = global::UnifiedAttrType.UaPlayer;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public global::ObjectType ObjType {
-    get { return objType_; }
+  public global::UnifiedAttrType UaType {
+    get { return uaType_; }
     set {
-      objType_ = value;
+      uaType_ = value;
     }
   }
 
-  /// <summary>Field number for the "ObjId" field.</summary>
-  public const int ObjIdFieldNumber = 4;
-  private uint objId_;
+  /// <summary>Field number for the "TargetId" field.</summary>
+  public const int TargetIdFieldNumber = 4;
+  private uint targetId_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint ObjId {
-    get { return objId_; }
+  public uint TargetId {
+    get { return targetId_; }
     set {
-      objId_ = value;
+      targetId_ = value;
     }
   }
 
@@ -178,13 +178,13 @@ public sealed partial class CostItemResMsg : pb::IMessage<CostItemResMsg>
 
   /// <summary>Field number for the "AttrValue" field.</summary>
   public const int AttrValueFieldNumber = 6;
-  private uint attrValue_;
+  private string attrValue_ = "";
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint AttrValue {
+  public string AttrValue {
     get { return attrValue_; }
     set {
-      attrValue_ = value;
+      attrValue_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
     }
   }
 
@@ -216,9 +216,9 @@ public sealed partial class CostItemResMsg : pb::IMessage<CostItemResMsg>
       return true;
     }
     if (Id != other.Id) return false;
-    if (CostType != other.CostType) return false;
-    if (ObjType != other.ObjType) return false;
-    if (ObjId != other.ObjId) return false;
+    if (Type != other.Type) return false;
+    if (UaType != other.UaType) return false;
+    if (TargetId != other.TargetId) return false;
     if (AttrName != other.AttrName) return false;
     if (AttrValue != other.AttrValue) return false;
     if (Tipis != other.Tipis) return false;
@@ -230,11 +230,11 @@ public sealed partial class CostItemResMsg : pb::IMessage<CostItemResMsg>
   public override int GetHashCode() {
     int hash = 1;
     if (Id != 0) hash ^= Id.GetHashCode();
-    if (CostType != global::CostItemType.Consume) hash ^= CostType.GetHashCode();
-    if (ObjType != global::ObjectType.Player) hash ^= ObjType.GetHashCode();
-    if (ObjId != 0) hash ^= ObjId.GetHashCode();
+    if (Type != global::CostItemType.Consume) hash ^= Type.GetHashCode();
+    if (UaType != global::UnifiedAttrType.UaPlayer) hash ^= UaType.GetHashCode();
+    if (TargetId != 0) hash ^= TargetId.GetHashCode();
     if (AttrName.Length != 0) hash ^= AttrName.GetHashCode();
-    if (AttrValue != 0) hash ^= AttrValue.GetHashCode();
+    if (AttrValue.Length != 0) hash ^= AttrValue.GetHashCode();
     if (Tipis.Length != 0) hash ^= Tipis.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -258,25 +258,25 @@ public sealed partial class CostItemResMsg : pb::IMessage<CostItemResMsg>
       output.WriteRawTag(8);
       output.WriteUInt32(Id);
     }
-    if (CostType != global::CostItemType.Consume) {
+    if (Type != global::CostItemType.Consume) {
       output.WriteRawTag(16);
-      output.WriteEnum((int) CostType);
+      output.WriteEnum((int) Type);
     }
-    if (ObjType != global::ObjectType.Player) {
+    if (UaType != global::UnifiedAttrType.UaPlayer) {
       output.WriteRawTag(24);
-      output.WriteEnum((int) ObjType);
+      output.WriteEnum((int) UaType);
     }
-    if (ObjId != 0) {
+    if (TargetId != 0) {
       output.WriteRawTag(32);
-      output.WriteUInt32(ObjId);
+      output.WriteUInt32(TargetId);
     }
     if (AttrName.Length != 0) {
       output.WriteRawTag(42);
       output.WriteString(AttrName);
     }
-    if (AttrValue != 0) {
-      output.WriteRawTag(48);
-      output.WriteUInt32(AttrValue);
+    if (AttrValue.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(AttrValue);
     }
     if (Tipis.Length != 0) {
       output.WriteRawTag(58);
@@ -296,25 +296,25 @@ public sealed partial class CostItemResMsg : pb::IMessage<CostItemResMsg>
       output.WriteRawTag(8);
       output.WriteUInt32(Id);
     }
-    if (CostType != global::CostItemType.Consume) {
+    if (Type != global::CostItemType.Consume) {
       output.WriteRawTag(16);
-      output.WriteEnum((int) CostType);
+      output.WriteEnum((int) Type);
     }
-    if (ObjType != global::ObjectType.Player) {
+    if (UaType != global::UnifiedAttrType.UaPlayer) {
       output.WriteRawTag(24);
-      output.WriteEnum((int) ObjType);
+      output.WriteEnum((int) UaType);
     }
-    if (ObjId != 0) {
+    if (TargetId != 0) {
       output.WriteRawTag(32);
-      output.WriteUInt32(ObjId);
+      output.WriteUInt32(TargetId);
     }
     if (AttrName.Length != 0) {
       output.WriteRawTag(42);
       output.WriteString(AttrName);
     }
-    if (AttrValue != 0) {
-      output.WriteRawTag(48);
-      output.WriteUInt32(AttrValue);
+    if (AttrValue.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(AttrValue);
     }
     if (Tipis.Length != 0) {
       output.WriteRawTag(58);
@@ -333,20 +333,20 @@ public sealed partial class CostItemResMsg : pb::IMessage<CostItemResMsg>
     if (Id != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Id);
     }
-    if (CostType != global::CostItemType.Consume) {
-      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) CostType);
+    if (Type != global::CostItemType.Consume) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
     }
-    if (ObjType != global::ObjectType.Player) {
-      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ObjType);
+    if (UaType != global::UnifiedAttrType.UaPlayer) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) UaType);
     }
-    if (ObjId != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ObjId);
+    if (TargetId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetId);
     }
     if (AttrName.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(AttrName);
     }
-    if (AttrValue != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(AttrValue);
+    if (AttrValue.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(AttrValue);
     }
     if (Tipis.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Tipis);
@@ -366,19 +366,19 @@ public sealed partial class CostItemResMsg : pb::IMessage<CostItemResMsg>
     if (other.Id != 0) {
       Id = other.Id;
     }
-    if (other.CostType != global::CostItemType.Consume) {
-      CostType = other.CostType;
+    if (other.Type != global::CostItemType.Consume) {
+      Type = other.Type;
     }
-    if (other.ObjType != global::ObjectType.Player) {
-      ObjType = other.ObjType;
+    if (other.UaType != global::UnifiedAttrType.UaPlayer) {
+      UaType = other.UaType;
     }
-    if (other.ObjId != 0) {
-      ObjId = other.ObjId;
+    if (other.TargetId != 0) {
+      TargetId = other.TargetId;
     }
     if (other.AttrName.Length != 0) {
       AttrName = other.AttrName;
     }
-    if (other.AttrValue != 0) {
+    if (other.AttrValue.Length != 0) {
       AttrValue = other.AttrValue;
     }
     if (other.Tipis.Length != 0) {
@@ -404,23 +404,23 @@ public sealed partial class CostItemResMsg : pb::IMessage<CostItemResMsg>
           break;
         }
         case 16: {
-          CostType = (global::CostItemType) input.ReadEnum();
+          Type = (global::CostItemType) input.ReadEnum();
           break;
         }
         case 24: {
-          ObjType = (global::ObjectType) input.ReadEnum();
+          UaType = (global::UnifiedAttrType) input.ReadEnum();
           break;
         }
         case 32: {
-          ObjId = input.ReadUInt32();
+          TargetId = input.ReadUInt32();
           break;
         }
         case 42: {
           AttrName = input.ReadString();
           break;
         }
-        case 48: {
-          AttrValue = input.ReadUInt32();
+        case 50: {
+          AttrValue = input.ReadString();
           break;
         }
         case 58: {
@@ -447,23 +447,23 @@ public sealed partial class CostItemResMsg : pb::IMessage<CostItemResMsg>
           break;
         }
         case 16: {
-          CostType = (global::CostItemType) input.ReadEnum();
+          Type = (global::CostItemType) input.ReadEnum();
           break;
         }
         case 24: {
-          ObjType = (global::ObjectType) input.ReadEnum();
+          UaType = (global::UnifiedAttrType) input.ReadEnum();
           break;
         }
         case 32: {
-          ObjId = input.ReadUInt32();
+          TargetId = input.ReadUInt32();
           break;
         }
         case 42: {
           AttrName = input.ReadString();
           break;
         }
-        case 48: {
-          AttrValue = input.ReadUInt32();
+        case 50: {
+          AttrValue = input.ReadString();
           break;
         }
         case 58: {

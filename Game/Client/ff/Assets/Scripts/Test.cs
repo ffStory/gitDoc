@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 using Core;
 using Core.Cost;
 using Logic;
@@ -19,11 +20,11 @@ public class Test : MonoBehaviour
         //TODO
         Game.Instance.Player.Heroes.Add(1, new Hero(Game.Instance.Player));
         Game.Instance.Player.Heroes[1].Id = 1;
-        Game.Instance.Player.Heroes[1].Exp = 5000;
+        Game.Instance.Player.Heroes[1].Exp = 499;
         UIManager.Instance.PushView(new BaseUISnapShoot(UIType.HeroList));
 
         var hero = Game.Instance.Player.Heroes[1];
-        var cost = new Cost(new List<uint> {1, 2});
+        var cost = new Cost(new List<uint> {1, 2, 3, 4});
         
         var costItemRes = ResManager.Instance.CostItemResMapMsg.Map[1];
         
@@ -35,6 +36,10 @@ public class Test : MonoBehaviour
         var result = cost.Check(Game.Instance, targetContext);
         cost.Consume(Game.Instance, targetContext);
         Debug.Log("...." + result.IsSuccess + "  " + hero.Exp);
+    }
 
+    private void Tesdt(uint x)
+    {
+        
     }
 }

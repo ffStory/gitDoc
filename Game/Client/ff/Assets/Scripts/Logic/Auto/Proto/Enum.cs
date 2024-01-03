@@ -24,19 +24,21 @@ public static partial class EnumReflection {
         string.Concat(
           "CgpFbnVtLnByb3RvKlcKCkF0dHJGb3JtYXQSCgoGTnVtYmVyEAASCQoFTGV2",
           "ZWwQARIKCgZBbW91bnQQAhIMCghEdXJhdGlvbhADEg4KClBlcmNlbnRhZ2UQ",
-          "BBIICgREYXlzEAUqPAoMQ29zdEl0ZW1UeXBlEgsKB0NvbnN1bWUQABIQCgxH",
-          "cmVhdGVyRXF1YWwQARINCglFbnVtRXF1YWwQAiotCglIZXJvU3RhdGUSCQoF",
-          "SWRlYWwQABIJCgVNYXJjaBABEgoKBkJhdHRsZRACKiMKCEl0ZW1UeXBlEgwK",
-          "CFJlc291cmNlEAASCQoFU3BlZWQQAipECgpPYmplY3RUeXBlEgoKBlBsYXll",
-          "chAAEggKBEhlcm8QARIICgRDYXJkEAISCAoESXRlbRADEgwKCENvc3RJdGVt",
-          "EAQqJQoJVGFza1N0YXRlEgoKBkFjY2VwdBAAEgwKCEZpbmlzaGVkEAEqRgoG",
-          "VUlUeXBlEgwKCEhlcm9JbmZvEAASDAoISGVyb0xpc3QQARIPCgtIZXJvSW5m",
-          "b1N1YhACEg8KC0hlcm9MaXN0U3ViEAMqNgoQVmlld0RlQWN0aXZlVHlwZRII",
-          "CgROb25lEAASCwoHRGVzdHJveRABEgsKB0Rpc2FibGUQAiosCglWaWV3TGF5",
-          "ZXISCgoGQm90dG9tEAASCgoGTWlkZGxlEAESBwoDVG9wEAJiBnByb3RvMw=="));
+          "BBIICgREYXlzEAUqOAoMQ29zdEl0ZW1UeXBlEgsKB0NvbnN1bWUQABIQCgxH",
+          "cmVhdGVyRXF1YWwQARIJCgVFcXVhbBACKi0KCUhlcm9TdGF0ZRIJCgVJZGVh",
+          "bBAAEgkKBU1hcmNoEAESCgoGQmF0dGxlEAIqIwoISXRlbVR5cGUSDAoIUmVz",
+          "b3VyY2UQABIJCgVTcGVlZBACKkQKCk9iamVjdFR5cGUSCgoGUGxheWVyEAAS",
+          "CAoESGVybxABEggKBENhcmQQAhIICgRJdGVtEAMSDAoIQ29zdEl0ZW0QBCol",
+          "CglUYXNrU3RhdGUSCgoGQWNjZXB0EAASDAoIRmluaXNoZWQQASpGCgZVSVR5",
+          "cGUSDAoISGVyb0luZm8QABIMCghIZXJvTGlzdBABEg8KC0hlcm9JbmZvU3Vi",
+          "EAISDwoLSGVyb0xpc3RTdWIQAyo3Cg9VbmlmaWVkQXR0clR5cGUSDAoIVWFQ",
+          "bGF5ZXIQABIKCgZVYUhlcm8QARIKCgZVYUl0ZW0QAio2ChBWaWV3RGVBY3Rp",
+          "dmVUeXBlEggKBE5vbmUQABILCgdEZXN0cm95EAESCwoHRGlzYWJsZRACKiwK",
+          "CVZpZXdMYXllchIKCgZCb3R0b20QABIKCgZNaWRkbGUQARIHCgNUb3AQAmIG",
+          "cHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::AttrFormat), typeof(global::CostItemType), typeof(global::HeroState), typeof(global::ItemType), typeof(global::ObjectType), typeof(global::TaskState), typeof(global::UIType), typeof(global::ViewDeActiveType), typeof(global::ViewLayer), }, null, null));
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::AttrFormat), typeof(global::CostItemType), typeof(global::HeroState), typeof(global::ItemType), typeof(global::ObjectType), typeof(global::TaskState), typeof(global::UIType), typeof(global::UnifiedAttrType), typeof(global::ViewDeActiveType), typeof(global::ViewLayer), }, null, null));
   }
   #endregion
 
@@ -54,7 +56,7 @@ public enum AttrFormat {
 public enum CostItemType {
   [pbr::OriginalName("Consume")] Consume = 0,
   [pbr::OriginalName("GreaterEqual")] GreaterEqual = 1,
-  [pbr::OriginalName("EnumEqual")] EnumEqual = 2,
+  [pbr::OriginalName("Equal")] Equal = 2,
 }
 
 public enum HeroState {
@@ -86,6 +88,12 @@ public enum UIType {
   [pbr::OriginalName("HeroList")] HeroList = 1,
   [pbr::OriginalName("HeroInfoSub")] HeroInfoSub = 2,
   [pbr::OriginalName("HeroListSub")] HeroListSub = 3,
+}
+
+public enum UnifiedAttrType {
+  [pbr::OriginalName("UaPlayer")] UaPlayer = 0,
+  [pbr::OriginalName("UaHero")] UaHero = 1,
+  [pbr::OriginalName("UaItem")] UaItem = 2,
 }
 
 public enum ViewDeActiveType {

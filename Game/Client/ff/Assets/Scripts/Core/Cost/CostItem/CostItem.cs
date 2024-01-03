@@ -19,11 +19,12 @@ namespace Core.Cost.CostItem
         protected CostItem(CostItemResMsg msg)
         {
             _id = msg.Id;
-            _type = msg.CostType;
+            _type = msg.Type;
             _config = msg;
         }
 
-        public abstract object GetValue(Game game, TargetContext optContext);
+        // public abstract object GetValue(Game game, TargetContext optContext);
+        public abstract (Type Type, object Value) GetTypeAndValue(Game game, TargetContext optContext);
 
         public virtual void Check(Game game, out CostItemCheckResult checkResult, TargetContext targetContext)
         {
@@ -55,12 +56,12 @@ namespace Core.Cost.CostItem
 
         public static CostItem CreateCostItem(CostItemResMsg msg)
         {
-            switch (msg.CostType)
+            switch (msg.Type)
             {
                 case CostItemType.Consume:
                     return new CostItemConsume(msg);
-                case CostItemType.EnumEqual:
-                    return new CostItemEnumEqual(msg);
+                case CostItemType.Equal:
+                    return new CostItemEqual(msg);
                 case CostItemType.GreaterEqual:
                     return new CostItemGreaterEqual(msg);
                 default:

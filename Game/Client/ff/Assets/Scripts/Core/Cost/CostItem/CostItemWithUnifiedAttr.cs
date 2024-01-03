@@ -1,3 +1,4 @@
+using System;
 using Logic;
 
 namespace Core.Cost.CostItem
@@ -7,12 +8,17 @@ namespace Core.Cost.CostItem
         protected CostItemWithUnifiedAttr(CostItemResMsg msg) : base(msg)
         {
             AttrValue = msg.AttrValue;
-            _unifiedAttr = Core.UnifiedAttr.UnifiedAttr.CreateUnifiedAttr(msg);
+            _unifiedAttr = UnifiedAttr.UnifiedAttr.CreateUnifiedAttr(msg);
         }
 
-        public override object GetValue(Game game, TargetContext optContext)
+        // public override object GetValue(Game game, TargetContext optContext)
+        // {
+        //     return _unifiedAttr.GetValue(game, optContext);
+        // }
+        
+        public override (Type Type, object Value) GetTypeAndValue(Game game, TargetContext optContext)
         {
-            return _unifiedAttr.GetValue(game, optContext);
+            return _unifiedAttr.GetTypeAndValue(game, optContext);
         }
 
         protected void AddValue (Game game, long value, TargetContext targetContext)
@@ -20,7 +26,7 @@ namespace Core.Cost.CostItem
             _unifiedAttr.Add(game, value, targetContext);
         }
 
-        protected readonly uint AttrValue;
+        protected readonly string AttrValue;
         private readonly Core.UnifiedAttr.UnifiedAttr _unifiedAttr;
     }
 }

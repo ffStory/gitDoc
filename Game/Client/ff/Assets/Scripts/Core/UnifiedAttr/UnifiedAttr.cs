@@ -1,22 +1,20 @@
+using System;
 using Logic;
 
 namespace Core.UnifiedAttr
 {
     public abstract class UnifiedAttr
     {
-        protected readonly ObjectType ObjType;
-        protected string AttrName;
-        protected uint Id;
-        
-        protected UnifiedAttr(ObjectType type)
+        private readonly UnifiedAttrType _type;
+
+        protected UnifiedAttr(UnifiedAttrType type)
         {
-            ObjType = type;
+            _type = type;
         }
 
-        public virtual object GetValue(Game game, TargetContext optContext)
-        {
-            return 0;
-        }
+        // public virtual object GetValue(Game game, TargetContext optContext);
+
+        public abstract (Type Type, object Value) GetTypeAndValue(Game game, TargetContext optContext);
 
         public abstract object GetTarget(Game game, TargetContext optContext);
 
@@ -49,12 +47,12 @@ namespace Core.UnifiedAttr
 
         public static UnifiedAttr CreateUnifiedAttr(CostItemResMsg costItemResMsg)
         {
-            var type = costItemResMsg.ObjType;
+            var type = costItemResMsg.UaType;
             switch (type)
             {
-                case ObjectType.Hero:
+                case UnifiedAttrType.UaHero:
 
-                    return new UnifiedAttrHero(type, costItemResMsg.AttrName, costItemResMsg.ObjId);
+                    return new UnifiedAttrHero(type, costItemResMsg.AttrName, costItemResMsg.TargetId);
             }
             return null;
         }

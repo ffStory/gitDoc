@@ -14,7 +14,7 @@ enum CostItemType
 {
     Consume = 0;
     GreaterEqual = 1;
-    EnumEqual = 2;
+    Equal = 2;
 }
 
 enum HeroState
@@ -51,6 +51,13 @@ enum UIType
     HeroList = 1;
     HeroInfoSub = 2;
     HeroListSub = 3;
+}
+
+enum UnifiedAttrType
+{
+    UaPlayer = 0;
+    UaHero = 1;
+    UaItem = 2;
 }
 
 enum ViewDeActiveType

@@ -1,5 +1,4 @@
 using System;
-using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Util
@@ -50,31 +49,72 @@ namespace Util
         }
         
         /// <summary>
-        /// 表达式树获得属性类型
+        /// 反射获得属性类型
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="propertyName"></param>
-        /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static Type GetPropertyType<T>(T obj, string propertyName)
+        /// <exception cref="ArgumentException"></exception>
+        public static Type GetPropertyType(object obj, string propertyName)
         {
-            // 创建参数表达式
-            ParameterExpression param = Expression.Parameter(typeof(T), "x");
+            Type type = obj.GetType();
 
-            // 创建属性访问表达式
-            MemberExpression memberExpression = Expression.Property(param, propertyName);
+            // 使用反射获取属性信息
+            PropertyInfo propertyInfo = type.GetProperty(propertyName);
 
-            // 创建 Lambda 表达式
-            Expression<Func<T, Type>> lambda = Expression.Lambda<Func<T, Type>>(
-                Expression.Constant(memberExpression.Type),
-                param
-            );
+            if (propertyInfo != null)
+            {
+                // 返回属性的类型
+                return propertyInfo.PropertyType;
+            }
+            // 属性不存在
+            throw new ArgumentException($"Property {propertyName} not found in type {type}");
+        }
+        
+        public static Type GetPropertyType<T>(string propertyName)
+        {
+            Type type = typeof(T);
 
-            // 编译 Lambda 表达式并获取委托
-            Func<T, Type> func = lambda.Compile();
+            // 使用反射获取属性信息
+            PropertyInfo propertyInfo = type.GetProperty(propertyName);
 
-            // 调用委托获取属性类型
-            return func(obj);
+            if (propertyInfo != null)
+            {
+                // 返回属性的类型
+                return propertyInfo.PropertyType;
+            }
+            else
+            {
+                // 属性不存在
+                throw new ArgumentException($"Property {propertyName} not found in type {type}");
+            }
+        }
+        
+        /// <summary>
+        /// 获得属性的类型和值
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static (Type Type, object Value) GetPropertyTypeAndValue(object obj, string propertyName)
+        {
+            Type type = obj.GetType();
+
+            // 使用反射获取属性信息
+            PropertyInfo propertyInfo = type.GetProperty(propertyName);
+
+            if (propertyInfo != null)
+            {
+                // 获取属性的类型和值
+                Type propertyType = propertyInfo.PropertyType;
+                object propertyValue = propertyInfo.GetValue(obj);
+
+                return (propertyType, propertyValue);
+            }
+            
+            // 属性不存在
+            throw new ArgumentException($"Property {propertyName} not found in type {type}");
         }
         
         /// <summary>
