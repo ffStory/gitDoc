@@ -1,6 +1,5 @@
 using System;
 using Logic;
-using Logic.Manager;
 
 namespace Core.Cost.CostItem
 {
@@ -63,16 +62,16 @@ namespace Core.Cost.CostItem
             return item;
         }
 
-        public static CostItem CreateCostItem(CostItemResMsg msg)
+        public static CostItem CreateCostItem(CostItemResMsg msg, string[] strParams)
         {
             switch (msg.Type)
             {
                 case CostItemType.Consume:
-                    return new CostItemConsume(msg);
+                    return new CostItemConsume(msg, strParams);
                 case CostItemType.Equal:
-                    return new CostItemEqual(msg);
+                    return new CostItemEqual(msg, strParams);
                 case CostItemType.GreaterEqual:
-                    return new CostItemGreaterEqual(msg);
+                    return new CostItemGreaterEqual(msg, strParams);
                 default:
                     throw new NotImplementedException();
             }

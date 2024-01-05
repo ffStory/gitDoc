@@ -6,10 +6,8 @@ message CostItemResMsg
     uint32 Id = 1;
     CostItemType Type = 2;
     UnifiedAttrType UaType = 3;
-    uint32 TargetId = 4;
-    string AttrName = 5;
-    string AttrValue = 6;
-    string Tipis = 7;
+    string AttrName = 4;
+    string Tipis = 5;
 }
 message CostItemResMapMsg
 {
@@ -26,6 +24,7 @@ message HeroResMsg
     repeated int32 Rewards2 = 6;
     repeated uint32 Rewards3 = 7;
     repeated uint32 UpgradeCost = 8;
+    repeated string LevelCost = 9;
 }
 message HeroResMapMsg
 {

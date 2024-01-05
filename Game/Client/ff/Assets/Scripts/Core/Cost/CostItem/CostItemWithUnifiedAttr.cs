@@ -5,10 +5,10 @@ namespace Core.Cost.CostItem
 {
     public abstract class CostItemWithUnifiedAttr : CostItem
     {
-        protected CostItemWithUnifiedAttr(CostItemResMsg msg) : base(msg)
+        protected CostItemWithUnifiedAttr(CostItemResMsg msg, string[] strParams) : base(msg)
         {
-            AttrValue = msg.AttrValue;
-            _unifiedAttr = UnifiedAttr.UnifiedAttr.CreateUnifiedAttr(msg);
+            AttrValue = strParams[1];
+            _unifiedAttr = UnifiedAttr.UnifiedAttr.CreateUnifiedAttr(msg, strParams);
         }
 
         // public override object GetValue(Game game, TargetContext optContext)

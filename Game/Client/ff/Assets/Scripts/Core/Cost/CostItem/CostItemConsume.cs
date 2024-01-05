@@ -5,7 +5,7 @@ namespace Core.Cost.CostItem
 {
     public class CostItemConsume : CostItemWithUnifiedAttr
     {
-        public CostItemConsume(CostItemResMsg msg) : base(msg)
+        public CostItemConsume(CostItemResMsg msg, string[] strParams) : base(msg, strParams)
         {
         }
 

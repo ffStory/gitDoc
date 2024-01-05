@@ -17,7 +17,6 @@ namespace Core.Cost
             _targetContext = targetContext;
             _callBack = successCall;
             
-            Release();
             RegisterCost();
         }
 
@@ -40,7 +39,6 @@ namespace Core.Cost
             if (_cost.Check(_game, _targetContext).IsSuccess)
             {
                 _callBack();
-                Release();
             }
         }
 

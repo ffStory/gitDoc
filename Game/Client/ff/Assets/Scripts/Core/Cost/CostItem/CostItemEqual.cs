@@ -5,7 +5,7 @@ namespace Core.Cost.CostItem
 {
     public class CostItemEqual : CostItemWithUnifiedAttr
     {
-        public CostItemEqual(CostItemResMsg msg) : base(msg)
+        public CostItemEqual(CostItemResMsg msg, string[] strParams) : base(msg, strParams)
         {
         }
 

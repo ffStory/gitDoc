@@ -1,5 +1,3 @@
-using System;
-using System.Diagnostics;
 using Logic.Manager;
 using Logic.Object;
 
@@ -21,19 +19,6 @@ namespace Logic
         public void Init()
         {
             ResManager.Instance.Init();
-        }
-
-        public object GetObjectByType(ObjectType type, uint id)
-        {
-            switch (type)
-            {
-                case ObjectType.Player:
-                    return Player;
-                case ObjectType.Hero:
-                    return Player.Heroes[id];
-                default:
-                    throw new NotImplementedException("Game.GetObjectByType");
-            }
         }
     }
 }

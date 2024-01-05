@@ -5,9 +5,8 @@ namespace Core.Cost.CostItem
 {
     public class CostItemGreaterEqual : CostItemWithUnifiedAttr
     {
-        public CostItemGreaterEqual(CostItemResMsg msg) : base(msg)
+        public CostItemGreaterEqual(CostItemResMsg msg, string[] strParams) : base(msg, strParams)
         {
-
         }
 
         public override void Check(Game game, out CostItemCheckResult checkResult, TargetContext targetContext)

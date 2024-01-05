@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Core;
 using Core.Cost;
 using Logic;
@@ -30,13 +31,15 @@ public class Test : MonoBehaviour
         player.Items.Add(1, item);
         
         UIManager.Instance.PushView(new BaseUISnapShoot(UIType.HeroList));
+        
     }
 
     void OnEnable()
     {
         var hero = Game.Instance.Player.Heroes[1];
-        hero.State = HeroState.Battle;
+        hero.State = HeroState.Ideal;
         hero.Exp = 500;
+        var result = hero.LevelCost.Check(Game.Instance, null);
         // var cost = new Cost(new List<uint> {1, 2, 3, 4});
         //
         // var costItemRes = ResManager.Instance.CostItemResMapMsg.Map[1];
@@ -48,7 +51,8 @@ public class Test : MonoBehaviour
         // hero.State = HeroState.Battle;
         // var result = cost.Check(Game.Instance, targetContext, true);
         // cost.Consume(Game.Instance, targetContext);
-        // Debug.Log("...." + result.IsSuccess + "  " + hero.Exp);
+        hero.LevelCost.Consume(Game.Instance, null);
+        Debug.Log("...." + result.IsSuccess + "  " + hero.Exp);
     }
 
     private void Tesdt(uint x)

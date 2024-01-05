@@ -19,17 +19,24 @@ namespace Core.Cost
 
     public class Cost
     {
-        public Cost(List<uint> ids)
+        private Cost()
+        {
+            Items = new List<CostItem.CostItem>();
+        }
+        
+        public Cost(List<string> items)
         {
             Items = new List<CostItem.CostItem>();
             
-            if (ids is null){return;}
+            if (items is null){return;}
 
-            foreach (var id in ids)
+            foreach (var item in items)
             {
+                var array = item.Split('-');
+                var id = uint.Parse(array[0]);
                 if (ResManager.Instance.CostItemResMapMsg.Map.TryGetValue(id, out CostItemResMsg costItemResMsg))
                 {
-                    Items.Add(CostItem.CostItem.CreateCostItem(costItemResMsg));
+                    Items.Add(CostItem.CostItem.CreateCostItem(costItemResMsg, array));
                 }
             }
         }
@@ -60,7 +67,7 @@ namespace Core.Cost
         
         public Cost Multiply(uint times)
         {
-            var newCost = new Cost(null);
+            var newCost = new Cost();
             foreach (var item in Items)
             {
                 newCost.Items.Add(item.IsMultiply() ? item.Multiply(times) : item.Copy());

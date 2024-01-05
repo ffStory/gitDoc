@@ -38,14 +38,14 @@ namespace Core.UnifiedAttr
             return "";
         }
 
-        public static UnifiedAttr CreateUnifiedAttr(CostItemResMsg costItemResMsg)
+        public static UnifiedAttr CreateUnifiedAttr(CostItemResMsg costItemResMsg, string[] strParams)
         {
             var type = costItemResMsg.UaType;
             switch (type)
             {
                 case UnifiedAttrType.UaHero:
-
-                    return new UnifiedAttrHero(type, costItemResMsg.AttrName, costItemResMsg.TargetId);
+                    var targetId = strParams?.Length > 2 ? uint.Parse(strParams[2]) : 0; 
+                    return new UnifiedAttrHero(type, costItemResMsg.AttrName, targetId);
             }
             return null;
         }

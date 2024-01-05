@@ -15,43 +15,30 @@ namespace Core.UnifiedAttr
             _id = id;
         }
 
-        // public override object GetValue(Game game, TargetContext optContext)
-        // {
-        //     if (_id != 0)
-        //     {
-        //         if (!game.Player.Heroes.TryGetValue(_id, out Hero hero)) { return 0; }
-        //
-        //         return Utility.GetPropertyValue(hero, _attrName);
-        //     }
-        //     
-        //     var target = GetTarget(game, optContext);
-        //     if (target == null)
-        //     {
-        //         return 0;
-        //     }
-        //
-        //     return Utility.GetPropertyValue(target as Hero, _attrName);
-        // }
-
         public override (Type Type, object Value) GetTypeAndValue(Game game, TargetContext optContext)
         {
-            if (_id != 0)
-            {
-                if (!game.Player.Heroes.TryGetValue(_id, out Hero hero)) { return (typeof(Object), 0); }
-
-                return Utility.GetPropertyTypeAndValue(hero, _attrName);
-            }
-            
             var target = GetTarget(game, optContext);
             if (target == null)
             {
-                return  (typeof(Object), 0);
+                var type = Utility.GetPropertyType<Hero>(_attrName);
+                if (type.IsEnum)
+                {
+                    return (type, Enum.Parse(type, "0"));
+                }
+                
+                return  (type, Convert.ChangeType("0", type));
             }
             return Utility.GetPropertyTypeAndValue(target as Hero, _attrName);
         }
 
         public override object GetTarget(Game game, TargetContext optContext)
         {
+            if (_id != 0)
+            {
+                game.Player.Heroes.TryGetValue(_id, out Hero hero);
+                return hero;
+            }
+            
             if (optContext?.Context == null)
             {
                 return null;
