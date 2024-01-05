@@ -16,6 +16,7 @@ namespace Editor
             {"int", "int"},
             {"uint", "uint"},
             {"ulong", "ulong"},
+            {"long", "long"},
             {"string", "string"},
         };
 
@@ -24,6 +25,7 @@ namespace Editor
             {"int", "int32"},
             {"uint", "uint32"},
             {"ulong", "uint64"},
+            {"long", "int64"},
             {"string", "string"},
         };
 
@@ -154,6 +156,7 @@ namespace Editor
                 builder.Append("using Google.Protobuf;\r\n");
                 builder.Append("using Logic.Object;\r\n");
                 builder.Append("using Logic;\r\n");
+                builder.Append("using Core;\r\n");
                 var path = "../../Resource/Object";
                 var files = Directory.GetFiles(path);
                 foreach (var t in files)

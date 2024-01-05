@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Core;
 using Google.Protobuf;
 using Logic.Object;
 using Logic;
+using Core;
 
 public abstract class BaseHero : BaseObject
 {

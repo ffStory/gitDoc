@@ -9,12 +9,12 @@ namespace Core
         protected BaseObject(Game game, ObjectType type)
         {
             Game = game;
-            Type = type;
+            ObjType = type;
         }
 
         public string GetAttrEvent(string attrName)
         {
-            return Type.ToString() + '-' + attrName + "-" + Id;
+            return ObjType.ToString() + '-' + attrName + "-" + Id;
         }
 
         protected void PostAttrEvent(string attrName, object oldV = null, object newV = null)
@@ -38,6 +38,6 @@ namespace Core
 
         public Game Game { get; private set; }
         public uint Id { get; set; }
-        public ObjectType Type { get;}
+        public ObjectType ObjType { get;}
     }
 }

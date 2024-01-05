@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UI.Item;
 using UI.Views;
 using UnityEngine;
 
@@ -19,13 +18,22 @@ namespace Logic.Manager
         public readonly string Path;
         public readonly ViewLayer Layer;
     }
+
+    /// <summary>
+    /// A跳转B界面 B返回A带回的参数
+    /// </summary>
+    public class ViewBackData
+    {
+        public UIType Type;
+    }
     
     public class BaseUISnapShoot
     {
         public ViewDeActiveType ViewDeActivePushType = ViewDeActiveType.Destroy; // A跳转B界面 A的关闭方式
         public ViewDeActiveType ViewDeActiveBackType = ViewDeActiveType.Destroy;// A跳转B界面 B返回关闭方式
-        private readonly Stack<UIType> _uiList;
+        private readonly Stack<UIType> _uiList; // 一个View里面子UI栈
         private readonly ViewConfig _viewConfig;
+        public ViewBackData ViewBackData;
 
         public BaseUISnapShoot(UIType type)
         {
@@ -104,7 +112,6 @@ namespace Logic.Manager
                 _layers.Add(layerType, layer);
             }
 
-            _topNavigation = canvas.Find("TopNavigation").GetComponent<TopNavigation>();
             RegisterView();
         }
         
@@ -138,7 +145,7 @@ namespace Logic.Manager
         }
 
         /// <summary>
-        /// 
+        /// 使一个View失效。三种方式
         /// </summary>
         /// <param name="viewName"></param>
         /// <param name="closeType"></param>
@@ -161,7 +168,7 @@ namespace Logic.Manager
         }
 
         /// <summary>
-        /// 
+        /// 显示一个View
         /// </summary>
         /// <param name="snapShoot"></param>
         private void ShowView(BaseUISnapShoot snapShoot)
@@ -176,7 +183,7 @@ namespace Logic.Manager
                 tfm.name = config.Name;
                 baseView = tfm.GetComponent<BaseView>();
                 _cacheViews.Add(config.Name, baseView);
-                baseView.Create(snapShoot);
+                baseView.Init(snapShoot);
             }
             baseView.transform.SetAsLastSibling();
             baseView.gameObject.SetActive(true);
@@ -200,9 +207,13 @@ namespace Logic.Manager
             return CheckLastView() && GetTopSnapShoot().CheckLastUI();
         }
         
-        public void BackView()
+        /// <summary>
+        /// 返回UI，可以是同一个View中的返回
+        /// </summary>
+        /// <param name="viewBackData"></param>
+        public void BackUI(ViewBackData viewBackData = null)
         {
-            //最后的UI 没有返回键
+            //返回上一个UI
             if (CheckLastUI()){return;}
             var topSnap = GetTopSnapShoot();
             if (topSnap.CheckLastUI())
@@ -210,13 +221,32 @@ namespace Logic.Manager
                 var config = _snapShoots.Peek().GetViewConfig();
                 DeActiveView(config.Name, topSnap.ViewDeActiveBackType);
                 _snapShoots.Pop();
-                ShowView(_snapShoots.Peek()); 
+                var snap = _snapShoots.Peek();
+                if (viewBackData != null) {snap.ViewBackData = viewBackData;}
+                ShowView(snap); 
             }
             else
             {
                 var topView = GetTopView();
                 topView.Back();
             }
+        }
+        
+        /// <summary>
+        /// 返回上一个View
+        /// </summary>
+        /// <param name="viewBackData"></param>
+        public void BackView(ViewBackData viewBackData = null)
+        {
+            //最后的UI 没有返回键
+            if (CheckLastUI()){return;}
+            var config = _snapShoots.Peek().GetViewConfig();
+            var topSnap = GetTopSnapShoot();
+            DeActiveView(config.Name, topSnap.ViewDeActiveBackType);
+            _snapShoots.Pop();
+            var snap = _snapShoots.Peek();
+            if (viewBackData != null) {snap.ViewBackData = viewBackData;}
+            ShowView(snap); 
         }
 
         public BaseUISnapShoot GetTopSnapShoot()
@@ -254,25 +284,12 @@ namespace Logic.Manager
             }
         }
 
-        public void UpdateTopNavigation(UIType type)
-        {
-            ResManager.Instance.UIConfigResMapMsg.Map.TryGetValue(type.ToString(), out var config);
-            if (config == null)
-            {
-                Debug.LogError($"{type} UIConfig is null in UpdateTopNavigation");
-                return;
-            }
-            
-            _topNavigation.Refresh(config);
-        }
-
         public ViewConfig GetViewConfig(string viewName)
         {
             _viewConfigs.TryGetValue(viewName, out var config);
             return config;
         }
 
-        private TopNavigation _topNavigation;
         private static UIManager _instance;
         public static UIManager Instance => _instance ??= new UIManager();
         private readonly Stack<BaseUISnapShoot> _snapShoots;

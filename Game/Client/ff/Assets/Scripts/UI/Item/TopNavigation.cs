@@ -1,4 +1,5 @@
 using Logic.Manager;
+using UI.Views;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,13 @@ namespace UI.Item
     {
         [SerializeField]private Button btnBack;
         [SerializeField]private Text txtTitle;
+        private BaseView _view;
 
+        public void Init(BaseView view)
+        {
+            _view = view;
+        }
+        
         private void Start()
         {
             btnBack.onClick.AddListener(OnClickBack);
@@ -16,7 +23,7 @@ namespace UI.Item
 
         private void OnClickBack()
         {
-            UIManager.Instance.BackView();
+            UIManager.Instance.BackUI(_view.GetViewBackData());
         }
 
         public void Refresh(UIConfigResMsg config)

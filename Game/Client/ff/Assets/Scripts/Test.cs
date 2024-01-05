@@ -28,6 +28,8 @@ public class Test : MonoBehaviour
         };
         player.Items = new Dictionary<uint, Item>();
         player.Items.Add(1, item);
+        
+        UIManager.Instance.PushView(new BaseUISnapShoot(UIType.HeroList));
     }
 
     void OnEnable()
