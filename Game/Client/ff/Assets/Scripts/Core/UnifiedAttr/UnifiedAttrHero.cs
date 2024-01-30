@@ -54,14 +54,17 @@ namespace Core.UnifiedAttr
             if (target == null){return;}
 
             var hero = target as Hero;
-            var curV = (uint)Utility.GetPropertyValue(hero, _attrName);
-            var result = 0u;
+            var tuple = Utility.GetPropertyTypeAndValue(hero, _attrName);
+            var curV = Convert.ToInt64(tuple.Value);
+            var result = 0L;
             if (value >= 0 || -value <= curV)
             {
-                result = (uint)(curV + value);
+                result = (curV + value);
             }
+
+            var resultV = Convert.ChangeType(result, tuple.Type);
             
-            Utility.SetProperty(hero, _attrName, result);
+            Utility.SetProperty(hero, _attrName, resultV);
         }
 
         public override string GetEvent(Game game, TargetContext optContext)

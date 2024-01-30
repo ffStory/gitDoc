@@ -371,7 +371,7 @@ namespace Editor
 
                 if (onlyGetterFlag)
                 {
-                    builder.Append($"    public abstract {type} {attrName} {{ get; }}\r\n");
+                    builder.Append($"    public virtual {type} {attrName} {{ get; }}\r\n");
                 }
                 else if (type.StartsWith("List") || type.StartsWith("Dictionary") || ObjectTypeList.Contains(type))
                 {
@@ -379,10 +379,10 @@ namespace Editor
                 }
                 else
                 {
-                    var privateAttr = Utility.FirstCharLower(attrName);
+                    var privateAttr = "_" + Utility.FirstCharLower(attrName);
                     builder.Append
                     (
-                        $"    protected {type} {privateAttr};\r\n" +
+                        $"    private {type} {privateAttr};\r\n" +
                         $"    public virtual {type} {attrName}\r\n" +
                         "    {\r\n" +
                         $"        get => {privateAttr};\r\n" +

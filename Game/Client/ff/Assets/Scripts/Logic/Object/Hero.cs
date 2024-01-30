@@ -36,6 +36,7 @@ namespace Logic.Object
             // });
         }
 
-        public override uint Level => throw new System.NotImplementedException();
+        public override uint Level => 1;
+        // public override uint Level => throw new System.NotImplementedException();
     }
 }

@@ -53,6 +53,10 @@ public class Test : MonoBehaviour
         // cost.Consume(Game.Instance, targetContext);
         hero.LevelCost.Consume(Game.Instance, null);
         Debug.Log("...." + result.IsSuccess + "  " + hero.Exp);
+
+        uint a = 1;
+        long b = 2;
+        var c = a - b;
     }
 
     private void Tesdt(uint x)

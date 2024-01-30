@@ -7,49 +7,49 @@ using Core;
 public abstract class BaseHero : BaseObject
 {
     public BaseHero(Game game) : base(game, ObjectType.Hero){}
-    protected uint exp;
+    private uint _exp;
     public virtual uint Exp
     {
-        get => exp;
+        get => _exp;
         set
         {
-            var old = exp;
-            exp = value;
-            PostAttrEvent("Exp", old, exp);
+            var old = _exp;
+            _exp = value;
+            PostAttrEvent("Exp", old, _exp);
         }
     }
     public abstract uint Level { get; }
-    protected string name;
+    private string _name;
     public virtual string Name
     {
-        get => name;
+        get => _name;
         set
         {
-            var old = name;
-            name = value;
-            PostAttrEvent("Name", old, name);
+            var old = _name;
+            _name = value;
+            PostAttrEvent("Name", old, _name);
         }
     }
-    protected HeroState state;
+    private HeroState _state;
     public virtual HeroState State
     {
-        get => state;
+        get => _state;
         set
         {
-            var old = state;
-            state = value;
-            PostAttrEvent("State", old, state);
+            var old = _state;
+            _state = value;
+            PostAttrEvent("State", old, _state);
         }
     }
-    protected ulong ownTime;
+    private ulong _ownTime;
     public virtual ulong OwnTime
     {
-        get => ownTime;
+        get => _ownTime;
         set
         {
-            var old = ownTime;
-            ownTime = value;
-            PostAttrEvent("OwnTime", old, ownTime);
+            var old = _ownTime;
+            _ownTime = value;
+            PostAttrEvent("OwnTime", old, _ownTime);
         }
     }
     public override void LoadMsg(IMessage iMessage)
@@ -64,40 +64,40 @@ public abstract class BaseHero : BaseObject
     }
 }
 
-public abstract class BaseItem : BaseObject
+public class BaseItem : BaseObject
 {
     public BaseItem(Game game) : base(game, ObjectType.Item){}
-    protected uint num;
+    private uint _num;
     public virtual uint Num
     {
-        get => num;
+        get => _num;
         set
         {
-            var old = num;
-            num = value;
-            PostAttrEvent("Num", old, num);
+            var old = _num;
+            _num = value;
+            PostAttrEvent("Num", old, _num);
         }
     }
-    protected ItemType type;
+    private ItemType _type;
     public virtual ItemType Type
     {
-        get => type;
+        get => _type;
         set
         {
-            var old = type;
-            type = value;
-            PostAttrEvent("Type", old, type);
+            var old = _type;
+            _type = value;
+            PostAttrEvent("Type", old, _type);
         }
     }
-    protected ulong ownTime;
+    private ulong _ownTime;
     public virtual ulong OwnTime
     {
-        get => ownTime;
+        get => _ownTime;
         set
         {
-            var old = ownTime;
-            ownTime = value;
-            PostAttrEvent("OwnTime", old, ownTime);
+            var old = _ownTime;
+            _ownTime = value;
+            PostAttrEvent("OwnTime", old, _ownTime);
         }
     }
     public override void LoadMsg(IMessage iMessage)
@@ -112,31 +112,31 @@ public abstract class BaseItem : BaseObject
     }
 }
 
-public abstract class BasePlayer : BaseObject
+public class BasePlayer : BaseObject
 {
     public BasePlayer(Game game) : base(game, ObjectType.Player){}
-    protected uint exp;
+    private uint _exp;
     public virtual uint Exp
     {
-        get => exp;
+        get => _exp;
         set
         {
-            var old = exp;
-            exp = value;
-            PostAttrEvent("Exp", old, exp);
+            var old = _exp;
+            _exp = value;
+            PostAttrEvent("Exp", old, _exp);
         }
     }
-    public abstract uint Level { get; }
+    public virtual uint Level { get; }
     public Dictionary<uint, Hero> Heroes;
-    protected uint gold;
+    private uint _gold;
     public virtual uint Gold
     {
-        get => gold;
+        get => _gold;
         set
         {
-            var old = gold;
-            gold = value;
-            PostAttrEvent("Gold", old, gold);
+            var old = _gold;
+            _gold = value;
+            PostAttrEvent("Gold", old, _gold);
         }
     }
     public Dictionary<uint, Item> Items;
