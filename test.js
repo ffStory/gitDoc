@@ -1,8 +1,6 @@
-master1
-web2
-web3
-win1
-web4
-web5
-dev1
-master2
+test2 1
+test2 amend
+test2 amend push
+rebase test
+rebase test 2
+rebase test 3
