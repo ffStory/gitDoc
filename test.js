@@ -9,3 +9,4 @@ test other
 test master
 test merge
 test originMerge
+test originMerge
