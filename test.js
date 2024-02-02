@@ -7,3 +7,4 @@ rebase test 3
 test 111111111111111111
 test other
 test master
+test merge
