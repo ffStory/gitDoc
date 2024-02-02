@@ -8,3 +8,4 @@ test 111111111111111111
 test other
 test master
 test merge
+test originMerge
